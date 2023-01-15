@@ -92,7 +92,6 @@ const updateTable = async (req, res) => {
             });
         }
         const tableNumberExists = await Table.findOne({ tableNo });
-        console.log("tableNumberExists", tableNumberExists);
         if (tableNumberExists._id != tableId) {
             return res.status(500).json({
                 message: "Table number exists",
@@ -137,7 +136,6 @@ const deleteTable = async (req, res) => {
                     .then((deleteResult) => {
                         console.log(deleteResult);
                         return res.status(200).json({
-                            success: true,
                             message: "Table deleted",
                         });
                     })
