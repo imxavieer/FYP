@@ -273,7 +273,7 @@ const deleteReservation = async (req, res) => {
                     .catch((err) => {
                         console.log(err);
                         res.status(500).json({
-                            message: err,
+                            message: "Failed to delete reservation",
                         });
                     });
             }
@@ -281,7 +281,7 @@ const deleteReservation = async (req, res) => {
     } catch (err) {
         console.log(err);
         return res.status(500).json({
-            message: err,
+            message: "Failed to delete reservation",
         });
     }
 };

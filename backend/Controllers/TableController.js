@@ -41,13 +41,13 @@ const addTable = async (req, res) => {
             .catch((err) => {
                 console.log(err);
                 return res.status(500).json({
-                    message: err,
+                    message: "Failed to add table",
                 });
             });
     } catch (err) {
         console.log(err);
         return res.status(500).json({
-            message: err,
+            message: "Failed to add table",
         });
     }
 };
@@ -65,12 +65,12 @@ const getAllTables = async (req, res) => {
             .catch((err) => {
                 console.log(err);
                 return res.status(500).json({
-                    message: err,
+                    message: "Failed to get table(s)",
                 });
             });
     } catch (err) {
         return res.status(500).json({
-            message: err,
+            message: "Failed to get table(s)",
         });
     }
 };
@@ -110,13 +110,13 @@ const updateTable = async (req, res) => {
             .catch((err) => {
                 console.log(err);
                 return res.status(500).json({
-                    message: err,
+                    message: "Table failed to update",
                 });
             });
     } catch (err) {
         console.log(err);
         return res.status(500).json({
-            message: err,
+            message: "Table failed to update",
         });
     }
 };
@@ -142,7 +142,7 @@ const deleteTable = async (req, res) => {
                     .catch((err) => {
                         console.log(err);
                         res.status(500).json({
-                            message: err,
+                            message: "Failed to delete table",
                         });
                     });
             }
@@ -150,7 +150,7 @@ const deleteTable = async (req, res) => {
     } catch (err) {
         console.log(err);
         return res.status(500).json({
-            message: err,
+            message: "Failed to delete table",
         });
     }
 };
