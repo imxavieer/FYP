@@ -27,7 +27,7 @@ router.put("/:tableId",updateTable)
 // =========================Delete=========================
 // 1) Delete table
 // takes in tableId as parameter
-router.delete(":tableId",deleteTable)
+router.delete("/:tableId",deleteTable)
 
 // ===========================import routes===========================
 module.exports = router;
