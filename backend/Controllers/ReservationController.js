@@ -15,6 +15,7 @@ const createReservation = async (req, res) => {
             });
         }
         // check if no of pax is empty or 0
+        // set default no of pax to 2 at frontend, to be confirmed
         if (!noOfPax || noOfPax == 0) {
             return res.status(400).json({
                 message: "No of pax cannot be empty or 0!",
