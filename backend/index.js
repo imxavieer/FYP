@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-
+require("dotenv").config();
 
 const app = express();
 
@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 
 const ReservationRoute = require('./Routes/ReservationRoutes');
 
-app.use(ReservationRoute);
+app.use("/api/reservation", ReservationRoute);
 
 app.use( (error, req , res , next) => {
     res.status(error.code || 500);
@@ -20,7 +20,7 @@ app.use( (error, req , res , next) => {
 mongoose
     .connect('mongodb+srv://sanghil:1058022a@cluster0.ahpmxxy.mongodb.net/FYP?retryWrites=true&w=majority')
     .then( () => {
-        app.listen(5000);
+        app.listen(3000);
         console.log('Connected Successfully');
     } )
     .catch(error => {
