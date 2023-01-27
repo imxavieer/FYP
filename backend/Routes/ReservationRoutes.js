@@ -5,7 +5,7 @@ const router = express.Router();
 // ===========================import routes===========================
 const {
     createReservation,
-    getAllResrvations,
+    getAllReservations,
     getReserationById,
     getReservationsByDateTime,
     getReservationsByTableId,
@@ -20,7 +20,7 @@ router.post("/",createReservation);
 
 // =========================Read=========================
 // 1) View all reservartions
-router.get("/",getAllResrvations)
+router.get("/",getAllReservations)
 
 // 2) Get reservation by ID 
 // takes in reservationId as parameter

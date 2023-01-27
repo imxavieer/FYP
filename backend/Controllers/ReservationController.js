@@ -73,7 +73,7 @@ const createReservation = async (req, res) => {
 
 // =========================Read=========================
 // 1) View all reservartions
-const getAllResrvations = async (req, res) => {
+const getAllReservations = async (req, res) => {
     try {
         await Reservation.find()
             .then((data) => {
@@ -288,7 +288,7 @@ const deleteReservation = async (req, res) => {
 
 module.exports = {
     createReservation,
-    getAllResrvations,
+    getAllReservations,
     getReserationById,
     getReservationsByDateTime,
     getReservationsByTableId,
