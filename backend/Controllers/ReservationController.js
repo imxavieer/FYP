@@ -1,297 +1,390 @@
-// =========================Import schema=========================
-const Reservation = require("../Models/ReservationModel");
+const HttpError = require('../Models/http-error');
 
-// =========================Create=========================
-// 1) Create reservation
-const createReservation = async (req, res) => {
-    // table object consists of tableId and tableNo
-    const { name, email, noOfPax, table } = req.body;
-    const { tableId, tableNo } = table;
-    try {
-        // check if name and email are filled in
-        if (!name || !email) {
-            return res.status(400).json({
-                message: "Name and email cannot be empty!",
-            });
-        }
-        // check if no of pax is empty or 0
-        if (!noOfPax || noOfPax == 0) {
-            return res.status(400).json({
-                message: "No of pax cannot be empty or 0!",
-            });
-        }
-        // check if table is filled in (takes in table object)
-        if (!table) {
-            return res.status(400).json({
-                message: "Table cannot be empty",
-            });
-        }
+const { validationResult } = require('express-validator');
 
-        // for testing purposes; it takes in date time from frontend in production
-        const date = new Date(2023, 0, 15, 11);
-        // Check for existing reservations for given timing
-        // Check if any of the existing reservations match the table name (if match, means it is taken)
-        // check for table Ids
-        const takenTableReservation = await Reservation.findOne({
-            date,
-            tableId,
-        });
-        console.log("takenTableReservation", takenTableReservation);
-        if (takenTableReservation) {
-            return res.status(500).json({
-                message: "This table is reserved at this slot",
-            });
-        }
-        const newReservation = new Reservation({
-            name,
-            email,
-            noOfPax,
-            tableId,
-            tableNo,
-            date,
-        });
-        await Reservation.create(newReservation)
-            .then(() => {
-                // send a confirmation email
-                return res.status(200).json({
-                    message: "Reservation successfully made!",
-                    id: newReservation._id,
-                });
-            })
-            .catch((err) => {
-                console.log(err);
-                return res.status(500).json({
-                    message: "Failed to add reservation(s)",
-                });
-            });
-    } catch (err) {
-        return res.status(500).json({
-            message: err,
-        });
-    }
+const Reservation = require('../Models/ReservationModel');
+const { json } = require('body-parser');
+
+
+const t_list = [
+    '0800',
+    '0830',
+    '0900',
+    '0930',
+    '1000',
+    '1030',
+    '1100',
+    '1130',
+    '1200',
+    '1230',
+    '1300',
+    '1330',
+    '1400',
+    '1430',
+    '1500',
+    '1530',
+    '1600',
+    '1630',
+    '1700',
+    '1730',
+    '1800',
+    '1830',
+    '1900',
+    '1930',
+    '2000',
+    '2030',
+    '2100',
+    '2130',
+    '2200',
+    '2230'
+];
+
+
+const combine_rule = {
+	
+    3: [ [1,2] , [1,3] , [2,3], [3,4] ],
+	4: [ [1,2] , [1,3] , [2,3], [3,4] ],
+	5: [ [7,13], [5,9], [4,11], [1,2,3] , [1,3,4] , [2,3,4] ],
+	6: [ [7,13], [5,9], [4,11], [1,2,3] , [1,3,4] , [2,3,4] ],
+	7: [ [9,10], [13,16] , [14,15] , [3,4,11] , [1,2,3,4] ],
+	8: [ [9,10], [13,16] , [14,15] , [3,4,11] , [1,2,3,4] ],
+	9: [ [5,9,10] , [2,3,4,11] ],
+	10: [ [5,9,10] , [2,3,4,11] ]
+    
 };
 
-// =========================Read=========================
-// 1) View all reservartions
-const getAllResrvations = async (req, res) => {
-    try {
-        await Reservation.find()
-            .then((data) => {
-                return res.status(200).json({
-                    data,
-                });
-            })
-            .catch((err) => {
-                console.log(err);
-                return res.status(500).json({
-                    message: "Failed to get reservation(s)",
-                });
-            });
-    } catch (err) {
-        console.log(err);
-        return res.status(500).json({
-            message: "Failed to get reservation(s)",
-        });
-    }
-};
+const two_pax_table = [1,2,3,4,5,6,7];
 
-// 2) Get reservation by ID
-// Takes in resrvationId
-const getReserationById = async (req, res) => {
-    const { reservationId } = req.params;
-    try {
-        await Reservation.findById(reservationId)
-            .then((data) => {
-                if (!data) {
-                    return res.status(404).json({
-                        message: "Reservation is not found",
-                    });
-                }
-                res.status(200).json({
-                    data,
-                });
-            })
-            .catch((err) => {
-                console.log(err);
-                res.send({
-                    message: "Failed to get reservation(s)",
-                });
-            });
-    } catch (err) {
-        console.log(err);
-        res.status(500).json({
-            message: "Failed to get reservation(s)",
-        });
-    }
-};
+const four_pax_table = [8,9,10,11,12,13,14,15,16];
 
-// 3) Get reservation by Date Time (Year, Month, Day)
-// Takes in DateTime object (Year, Month, Day)
-const getReservationsByDateTime = async (req, res) => {
-    // const {date} = req.body
-    const date = new Date(2023, 0, 15, 11);
-    try {
-        await Reservation.find({ date })
-            .then((data) => {
-                return res.status(200).json({
-                    data,
-                });
-            })
-            .catch((err) => {
-                console.log(err);
-                res.status(500).json({
-                    message: "Failed to get reservation(s)",
-                });
-            });
-    } catch (err) {
-        console.log(err);
-        res.status(500).json({
-            message: "Failed to get reservation(s)",
-        });
-    }
-};
 
-// 4) Get reservation by Table Number
-// Takes in tableId (this is handled by frontend options)
-const getReservationsByTableId = async (req, res) => {
-    const { tableId } = req.params;
-    try {
-        await Reservation.find({ tableId })
-            .then((data) => {
-                return res.status(200).json({
-                    data,
-                });
-            })
-            .catch((err) => {
-                console.log(err);
-                res.status(500).json({
-                    message: "Failed to get reservation(s)",
-                });
-            });
-    } catch (err) {
-        console.log(err);
-        res.status(500).json({
-            message: "Failed to get reservation(s)",
-        });
-    }
-};
 
-// =========================Update=========================
-// 1) Update reservation status
-// 2) Update reservation details
-const updateReservation = async (req, res) => {
-    // table object consists of tableId and tableNo
-    console.log(req.body);
-    const { name, email, noOfPax, table } = req.body;
-    const { tableId, tableNo } = table;
-    const { reservationId } = req.params;
-    try {
-        // check if name and email are filled in
-        if (!name || !email) {
-            return res.status(400).json({
-                message: "Name and email cannot be empty!",
-            });
-        }
-        // check if no of pax is empty or 0
-        if (!noOfPax || noOfPax == 0) {
-            return res.status(400).json({
-                message: "No of pax cannot be empty or 0!",
-            });
-        }
-        // check if table is filled in (takes in table object)
-        if (!table || !tableId || !tableNo) {
-            return res.status(400).json({
-                message: "Table cannot be empty",
-            });
+
+const getAvailableTiming = async (req , res , next) => {
+    
+    /*
+    const test = new Reservation({
+        email: "shchong.2020@gmail.com",
+        name: "sanghil",
+        pax: 4,
+        date_of_visit: "2023-01-24 0800",
+        table_id: 16,
+        status: 1
+    });
+
+    test.save();
+    
+    res.json({message: "successful"});
+    
+    */
+    
+    
+    const error = validationResult(req);
+
+    if(!error.isEmpty()){
+        const err = new HttpError('Invalid inputs passed' , 422);
+        return next(err);
+    }
+
+    const { date , pax } = req.body;
+
+    let date_input = date;
+    let num_pax = pax;
+    let reservations;
+
+    try{
+        reservations = await Reservation.find({});
+    }catch(error){
+        const err = new HttpError("Something went wrong while fetching data" , 500);
+        return next(err);
+    }
+
+    //Create an empty list to store all the filtered rows that match the date of visit selected and reservation status = 1
+    let filtered_rows = [];
+
+    for(let i = 0 ; i < reservations.length ; i++){
+        let reservation = reservations[i].toObject();
+        let date_fetched = reservation.date_of_visit.split(" ")[0];
+
+        if(date_fetched === date_input){
+            filtered_rows.push(reservation);
         }
 
-        // for testing purposes; it takes in date time from frontend in production
-        const date = new Date(2023, 0, 15, 11);
-        // Check for existing reservations for given timing
-        // Check if any of the existing reservations match the table name (if match, means it is taken)
-        // check for table Ids
-        const takenTableReservation = await Reservation.findOne({
-            date,
-            tableId,
-        });
-        console.log("takenTableReservation", takenTableReservation);
-        if (
-            takenTableReservation &&
-            takenTableReservation._id != reservationId
-        ) {
-            return res.status(500).json({
-                message: "This table is reserved at this slot",
-            });
-        }
-        const updatedReservation = {
-            name,
-            email,
-            noOfPax,
-            tableId,
-            tableNo,
-            date,
-        };
-        await Reservation.updateOne({ _id: reservationId }, updatedReservation)
-            .then(() => {
-                // send a confirmation email
-                return res.status(200).json({
-                    message: "Reservation successfully updated",
-                });
-            })
-            .catch((err) => {
-                console.log(err);
-                return res.status(500).json({
-                    message: "Reservation failed to update",
-                });
-            });
-    } catch (err) {
-        console.log(err);
-        return res.status(500).json({
-            message: "Reservation failed to update",
-        });
     }
-};
+    
+    //Create two empty lists -> One to store all the 2 pax table IDs and another to store all the 4 pax table IDs
+    let first_list = []; //Stores all the 2 pax table IDs from filtered_rows
+    let second_list = []; //Stores all the 4 pax table IDs from filtered rows
 
-// =========================Delete=========================
-// 1) Delete reservation
-const deleteReservation = async (req, res) => {
-    const { reservationId } = req.params;
-    try {
-        await Reservation.findById(reservationId).then((result) => {
-            if (!result) {
-                return res.status(404).json({
-                    message: "Reservation does not exist!",
-                });
-            } else {
-                Reservation.deleteOne(result)
-                    .then((deleteResult) => {
-                        console.log(deleteResult);
-                        return res.status(200).json({
-                            message: "Reservation deleted",
-                        });
-                    })
-                    .catch((err) => {
-                        console.log(err);
-                        res.status(500).json({
-                            message: "Failed to delete reservation",
-                        });
-                    });
+    //Loop two_pax_table against the filtered rows and add all the rows that have the table id of 2 pax tables
+    for(let i = 0 ; i < two_pax_table.length ; i++ ){
+        let id = two_pax_table[i];
+        for(let j = 0 ; j < filtered_rows.length ; j++){
+            let filtered_row = filtered_rows[j];
+            let id_fetched = filtered_row.table_id;
+            if(id === id_fetched){
+                first_list.push(filtered_row);
             }
-        });
-    } catch (err) {
-        console.log(err);
-        return res.status(500).json({
-            message: "Failed to delete reservation",
-        });
+        }
     }
+
+    //Loop two_pax_table against the filtered rows and add all the rows that have the table id of 4 pax tables
+    for(let i = 0 ; i < four_pax_table.length ; i++ ){
+        const id = four_pax_table[i];
+        for(let j = 0 ; j < filtered_rows.length ; j++){
+            let filtered_row = filtered_rows[j];
+            let table_id = filtered_row.table_id;
+            if(id === table_id){
+                second_list.push(filtered_row);
+            }
+        }
+    }
+
+    //We now have two filtered rows: first_list and second_list
+    
+    //If pax is 1 or 2
+    if(num_pax === 1 || num_pax === 2){
+        //Create an empty array that will return timings to be blocked out (it means at that timing, all the tables are booked)
+        let return_list = [];
+        
+        //Initialize the sum to be added up
+        let sum = 0;
+
+        //WHILE all the timings in the t_list have been looped through, starting from 0800, loop t_list against first_list
+        let counter = 0;
+        while(counter <= t_list.length-1){          
+            let compare_timing = t_list[counter];
+            for(let i = 0 ; i < first_list.length ; i++){
+                //Whenever there is a match with the timing, sum the table IDs up
+                let row = first_list[i];
+                let timing = row.date_of_visit.split(" ")[1];
+                if(timing === compare_timing){
+                    sum += row.table_id;
+                }
+            }
+            if(sum === 28){
+                //Push the timing into return_list since all tables are booked at that timing
+                return_list.push(compare_timing);
+            }
+
+            counter++;
+            sum = 0;
+        }
+
+        res.json(return_list);
+        
+    }else if(num_pax === 3 || num_pax === 4){
+        //Either One 4 pax table can be used or Two 2 pax tables can be used
+        //BUT we need to prioritize One 4 pax table first
+        //For each of the timing in t_list, we need to first check if there is at least one available 4 pax table
+
+        //Create an empty array that will return timings to be blocked out (it means at that timing, all the tables are booked)
+        let return_list = [];
+
+        //WHILE all the timings in the t_list have been looped through, starting from 0800, loop t_list against second_list
+        let counter = 0;
+
+        let sum = 0;
+
+        while(counter <= t_list.length-1){
+            let compare_timing = t_list[counter];
+            for(let i = 0 ; i < second_list.length ; i++){
+                //Whenever there is a match with the timing, sum the table IDs up
+                let row = second_list[i];
+                let timing = row.date_of_visit.split(" ")[1];
+                if(timing === compare_timing){
+                    sum += row.table_id;
+                }
+            }
+            
+            if(sum === 108){
+                //If the code reaches here, that means that all the 4 pax tables are fully filled at that particular timing
+                //Next we need to check if there is at least Two 2 pax tables available which also follow the table combination rule
+                //Prepare the id_list that contains all the IDs of 2 pax tables.
+                let id_list = [1,2,3,4,5,6,7];
+
+                //Using the timing in the current loop, loop it through the first_list
+                //If there is a match with the timing, remove that particular table id from the id_list
+                for(let j = 0 ; j < first_list.length ; j++){
+                    let row = first_list[j];
+                    let timing = row.date_of_visit.split(" ")[1];
+                    let compare_id = row.table_id;
+                    if(timing === compare_timing){
+                        let index = id_list.indexOf(compare_id);
+                        id_list.splice(index,1);
+                    }
+                }
+                
+                //If length of id_list is 0 or 1, there are insufficient 2 pax tables available to be combined
+                //No 4 pax tables and 2 pax tables available to cater to the number of pax indicated by the user
+                //Push the timing into return_list to be blocked out
+                if(id_list.length === 0 || id_list.length === 1){
+                    return_list.push(compare_timing);
+                }else{
+                    //There are at least Two 2 pax tables available
+                    //We then need to check if there is at least one combination that follows the table combination rule
+                    //Under the combine_rule, refer to the array that contains the combination for the particular key
+                    //In this case, the key is the number of pax indicated by the user
+                    let combinations = combine_rule[num_pax];
+
+                    //Initialize the total number of combinations
+                    let total_combination = combinations.length;
+
+                    //Initialize the fail_counter to check how many combinations failed
+                    let fail_counter = 0;
+
+                    //Loop through the combinations and then loop through the IDs within the id_list and check if the IDs exist in
+                    //the combination. Whenever there is a match, increase the check_counter_exist. After looping through the contents,
+                    //check if the number of elements inside the combination === check_counter. If they are equal, it means that
+                    //there are table IDs that match the combination. As long as there is one match, we can say that the user is able
+                    //to book for that particular timing. We can break from the loop.
+                    for(let i = 0 ; i < combinations.length ; i++){
+                        //Initialize a check_counter to see how many combinations cannot match  
+                        let check_counter_exist = 0;
+                        let combination = combinations[i];
+                        let combination_length = combination.length;
+                        for(let j = 0 ; j < id_list.length ; j++){
+                            let id_check = id_list[j];
+                            if(combination.includes(id_check)){
+                                check_counter_exist++;
+                            }
+                        }
+                        if(combination_length === check_counter_exist){
+                            break;
+                        }else{
+                            //Increase the fail_counter since the combination failed
+                            fail_counter++;
+                            //Continue the loop with different combination
+                            check_counter_exist = 0;
+                        }
+                        
+                    }
+
+                    //Check if fail_counter === total_combinations. If they are equal, it means that all the combinations failed
+                    //and there are so available two pax tables that can be combined
+                    //Finally, push that timing into the return list
+                    if(fail_counter === total_combination){
+                        return_list.push(compare_timing);
+                    }
+
+                    //Continue the while loop using the next timing
+                    //Reset the id_list to its original to be used for next iteration
+                    counter++;
+                    sum  = 0;
+                    id_list = [1,2,3,4,5,6,7];
+
+                }
+            }else{
+                //If you reach here means that there is at least one available 4 Pax Table so continue the loop using the next value
+                counter++; 
+                sum = 0;
+            }
+        }
+
+        res.json({return_list});
+    
+    }else{
+        //If you reach this block means that number of pax is 5 or greater
+        //Since from 5pax onwards, tables need to be combined no matter what, instead of separating the filtered rows into first_list and second_list, based on the table IDs,
+        //we will directly use the filtered rows that contain all the 2 pax and 4 pax IDs
+        //Instead, we will create the id_list that contains ALL the table IDs as well.
+        let id_list = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
+
+        //Initialize the return_list that will return the timings to be blocked out on the UI
+        let return_list = [];
+
+        //***
+        //The idea is that, for EACH of the timing in the t_list, we are going to filter out those table IDs that are already booked at particular timing by removing
+        //those IDs from the id_list. So the id_list will remain with the table IDs that are not booked at that particular timing. We will then use the key -> num_pax
+        //to get the combinations from the combine_rule, which is the form of list of lists.
+        //We will loop through the combinations and also loop through the content within each combination and check if table IDs within the filtered id_list exist in the
+        //combination list. Whenever there is a match, we will increment the check_match. If the check_match equal to number of elements inside the combination list, that
+        //combination is available and we can stop the looping because as long as there is one available combination, we can cater to that number of pax indicated by user
+        //***
+
+        //Initialize the combinations using the key -> num_pax
+        let combinations = combine_rule[num_pax];
+
+        //WHILE we have looped through the all the timings in t_list, we start looping (starting from 0800) in t_list against the filtered rows
+        let counter = 0;
+
+        while(counter <= t_list.length-1){
+            let compare_timing = t_list[counter];
+            for(let i = 0 ; i < filtered_rows.length ; i++){
+                let row = filtered_rows[i];
+                let row_timing = row.date_of_visit.split(" ")[1];
+                let id_check = row.table_id;
+                //We compare the timing in the t_list and the timing of the each row. If the timing matches, it means that particular table is already booked at that timing
+                if(compare_timing === row_timing){
+                    //Since this table is already booked at this timing, remove that table ID from id_list
+                    let index = id_list.indexOf(id_check);
+                    id_list.splice(index,1);
+                }
+            }
+
+            //Once we reach here, the id_list is now filtered and only contains tables that are not booked at that particular timing
+            //Initialize the total number of combinations
+            let total_combination = combinations.length;
+
+            //Initialize the fail_counter to check how many combinations failed
+            let fail_counter = 0;
+
+            //Now, we will loop combinations which will then loop the contents within each combination
+            for(let i = 0 ; i < combinations.length ; i++){
+                //Initialize a check_counter to see how many combinations cannot match  
+                let check_counter_exist = 0;
+                let combination = combinations[i];
+                let combination_length = combination.length;
+                for(let j = 0 ; j < id_list.length ; j++){
+                    let id_check = id_list[j];
+                    if(combination.includes(id_check)){
+                        check_counter_exist++;
+                    }
+                }
+                if(combination_length === check_counter_exist){
+                    //If it reaches here, it means that the combination can be formed and we can cater to the pax indicated to the user. Break from looping immediately
+                    break;
+                }else{
+                    //Increase the fail_counter since the combination failed
+                    fail_counter++;
+                    //Continue the loop with different combination
+                    check_counter_exist = 0;
+                }
+            }
+
+            //Check if fail_counter === total_combinations. If they are equal, it means that all the combinations failed
+            //and there are so available two pax tables that can be combined
+            //Finally, push that timing into the return list
+            if(fail_counter === total_combination){
+                return_list.push(compare_timing);
+            }
+
+            //Continue the while loop using the next timing
+            //Reset the id_list to its original to be used for next iteration
+            counter++;
+            id_list = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
+        }
+
+        res.json({return_list});
+
+        
+
+
+    }
+
+    
+    
+
+
 };
 
-module.exports = {
-    createReservation,
-    getAllResrvations,
-    getReserationById,
-    getReservationsByDateTime,
-    getReservationsByTableId,
-    updateReservation,
-    deleteReservation,
-};
+
+
+
+
+
+
+
+
+
+exports.getAvailableTiming = getAvailableTiming;
