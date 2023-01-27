@@ -1,7 +1,8 @@
 const HttpError = require("../Models/http-error");
 
 const { validationResult } = require("express-validator");
-
+// for sending confirmation email upon reservation
+const { sendConfirmation } = require("../HelperFunctions/EmailFunctions");
 const Reservation = require("../Models/ReservationModel");
 const { json } = require("body-parser");
 
@@ -412,14 +413,19 @@ const createReservation = async (req, res, next) => {
     });
 
     try {
-        await newReservation.save().then((reservation) => {
+        await newReservation.save().then(async (reservation) => {
             // create verifiation email
             // everything except for status
-
-            return res.json({
-                message: "Reservation created successfully",
-                data: reservation._id,
-            });
+            await sendConfirmation(reservation)
+                .then(() => {
+                    return res.json({
+                        message: "Reservation created successfully",
+                        data: reservation._id,
+                    });
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
         });
     } catch (err) {
         console.error(err.message);
