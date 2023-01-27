@@ -379,7 +379,27 @@ const getAvailableTiming = async (req , res , next) => {
 };
 
 
+const createReservation = async (req,res,next)  => {
+    const {num_pax, date_of_visit, table_id, customer_name, customer_contact, customer_email} = req.body;
 
+    const newReservation = new Reservation({
+        num_pax,
+        date_of_visit,
+        table_id,
+        customer_name,
+        customer_contact,
+        customer_email
+    });
+
+    try{
+        const reservation = await newReservation.save();
+        // create a confirmation email
+        res.json(reservation);
+    }catch(err){
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+}
 
 
 
