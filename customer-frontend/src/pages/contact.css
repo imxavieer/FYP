@@ -1,0 +1,66 @@
+.center-text {
+    text-align: center;
+}
+
+#map {
+    height:100px;
+    width: 100px;
+}
+
+.contact-div {
+    top: -70px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.contact-background {
+    display: block;
+    margin: auto;
+    height: 100%;
+    width: 100%;
+    opacity: 0.6;
+    position: relative;
+}
+
+.contact-centered-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'SeoulHangangC';
+    font-size: 4.3vw;
+    color: black;
+    text-align: center;
+}
+
+@font-face {
+    font-family: 'SeoulHangangC';
+    font-weight: 800;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/seoulhangang/SeoulHangangCExtraBold.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/seoulhangang/SeoulHangangCExtraBold.eot?#iefix') format('embedded-opentype'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/seoulhangang/SeoulHangangCExtraBold.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/seoulhangang/SeoulHangangCExtraBold.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/seoulhangang/SeoulHangangCExtraBold.ttf') format("truetype");
+    font-display: swap;
+}
+
+.copyright {
+    color: white;
+}
+
+.company-logo {
+    top: -8px;
+    position: relative;
+}
+
+.footer-bg {
+    top: -70px;
+    bottom: 70px;
+    position: relative;
+    background-color: #f9d230;
+    padding-top: 50px;
+    padding-bottom: 60px;
+}
