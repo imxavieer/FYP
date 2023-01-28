@@ -25,7 +25,7 @@ const HoneyNightKorean = styled(Link)({
 
 const StyledLink = styled(Link)({
   textDecoration: "none",
-  color: "#F49300",
+  color: "white",
   fontSize: "1.8vw",
   fontWeight: "bold",
   marginLeft: 40,
