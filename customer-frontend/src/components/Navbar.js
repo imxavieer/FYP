@@ -43,6 +43,10 @@ const StyledLinkTwo = styled(Link)({
   fontWeight: "bold",
   marginLeft: 40,
   marginRight: 40,
+  "&:hover": {
+    color: "black",
+    borderBottom: "1px solid black",
+  },
 });
 
 function Navbar() {
@@ -74,21 +78,39 @@ function Navbar() {
               alt="honeynightlogo"
               className="honeynight-logo"
             />
-            <HoneyNightKorean to="/">HONEY NIGHT 꿀밤 </HoneyNightKorean>{" "}
+            <HoneyNightKorean to="/" className="seoul-hangang">
+              HONEY NIGHT 꿀밤
+            </HoneyNightKorean>{" "}
           </Grid>
           <Grid item xs={7} lg={9}>
             {isMobile ? (
               <DrawerComponent />
             ) : (
               <div>
-                <StyledLink to="/">Home </StyledLink>{" "}
-                <StyledLink to="/about">About </StyledLink>{" "}
-                <StyledLink to="/menu">Menu </StyledLink>{" "}
-                <StyledLink to="/contact">Contact Us </StyledLink>
-                <StyledLinkTwo to="https://qashiereats.com/honeynight">
+                <StyledLink to="/" className="seoul-hangang">
+                  Home{" "}
+                </StyledLink>{" "}
+                <StyledLink to="/about" className="seoul-hangang">
+                  About{" "}
+                </StyledLink>{" "}
+                <StyledLink to="/menu" className="seoul-hangang">
+                  Menu{" "}
+                </StyledLink>{" "}
+                <StyledLink to="/contact" className="seoul-hangang">
+                  Contact Us{" "}
+                </StyledLink>
+                <StyledLinkTwo
+                  to="https://qashiereats.com/honeynight"
+                  className="seoul-hangang padding-navitem-order hover-effect-class"
+                >
                   Order{" "}
                 </StyledLinkTwo>{" "}
-                <StyledLinkTwo to="/reserve">Reserve </StyledLinkTwo>{" "}
+                <StyledLinkTwo
+                  to="/reserve"
+                  className="seoul-hangang padding-navitem-reserve "
+                >
+                  Reserve{" "}
+                </StyledLinkTwo>{" "}
               </div>
             )}{" "}
           </Grid>

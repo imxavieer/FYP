@@ -7,3 +7,46 @@
     float: right;
 }
 
+.seoul-hangang {
+    font-family: 'SeoulHangangC';
+}
+
+.padding-navitem-order {
+    padding-left: 10px;
+    padding-right: 2px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.padding-navitem-reserve {
+    padding-left: 10px;
+    padding-right: 7px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+/* .hover-effect-class {
+    overflow: hidden;
+    transition: 1s all ease;
+}
+
+.hover-effect-class::before {
+    transition: all 0.6s ease;
+    transform: translate(-50%, -50%) rotate (-45deg);
+}
+
+.hover-effect-class:hover::before {
+    height: 380%;
+} */
+
+@font-face {
+    font-family: 'SeoulHangangC';
+    font-weight: 800;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/seoulhangang/SeoulHangangCExtraBold.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/seoulhangang/SeoulHangangCExtraBold.eot?#iefix') format('embedded-opentype'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/seoulhangang/SeoulHangangCExtraBold.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/seoulhangang/SeoulHangangCExtraBold.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/seoulhangang/SeoulHangangCExtraBold.ttf') format("truetype");
+    font-display: swap;
+}
