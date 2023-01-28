@@ -1,0 +1,16 @@
+.center-text {
+    text-align: center;
+}
+
+.copyright {
+    color: white;
+}
+.company-logo {
+    top: -8px;
+    position: relative;
+}
+.footer-bg {
+    background-color: #f9d230;
+    padding-top: 50px;
+    padding-bottom: 60px;
+}
