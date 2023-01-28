@@ -1,0 +1,68 @@
+.center-text {
+    text-align: center;
+}
+
+.copyright {
+    color: white;
+}
+
+.company-logo {
+    top: -8px;
+    position: relative;
+}
+
+.about-background {
+    display: block;
+    margin: auto;
+    height: 100%;
+    width: 100%;
+    opacity: 0.9;
+    position: relative;
+}
+
+.about-div {
+    top: -70px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.about-background {
+    display: block;
+    margin: auto;
+    height: 10%;
+    width: 100%;
+    opacity: 0.85;
+    position: relative;
+}
+
+.about-centered-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* transform: translate(-50%, -50%); */
+    transform: translate(-50%, -100%);
+    font-family: 'SeoulHangangC';
+    font-size: 4.3vw;
+    color: black;
+    text-align: center;
+}
+
+.company-logo {
+    top: -8px;
+    position: relative;
+}
+
+.footer-bg {
+    top: -70px;
+    bottom: 70px;
+    position: relative;
+    background-color: #f9d230;
+    padding-top: 50px;
+    padding-bottom: 60px;
+}
+
+.copyright {
+    color: white;
+}
