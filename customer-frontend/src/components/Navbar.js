@@ -19,8 +19,8 @@ const HoneyNightKorean = styled(Link)({
   color: "#F49300",
   fontSize: "2.0vw",
   fontWeight: "bold",
-  marginLeft: 30,
-  marginRight: 30,
+  marginLeft: 20,
+  marginRight: 40,
 });
 
 const StyledLink = styled(Link)({
@@ -28,8 +28,8 @@ const StyledLink = styled(Link)({
   color: "#F49300",
   fontSize: "1.8vw",
   fontWeight: "bold",
-  marginLeft: 30,
-  marginRight: 30,
+  marginLeft: 40,
+  marginRight: 40,
   "&:hover": {
     color: "black",
     borderBottom: "1px solid black",
@@ -48,7 +48,7 @@ const StyledLinkTwo = styled(Link)({
 function Navbar() {
   const [colorChange, setColorchange] = useState(false);
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
   const changeNavbarColor = () => {
     if (window.scrollY >= 80) {
       setColorchange(true);
