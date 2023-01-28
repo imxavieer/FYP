@@ -10,11 +10,14 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import HoneyNightLogo from "../honeynightlogo.PNG";
 import DrawerComponent from "./DrawerComponent";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import "./Navbar.css";
 
 const HoneyNightKorean = styled(Link)({
   textDecoration: "none",
   color: "#F49300",
-  fontSize: "25px",
+  fontSize: "2.0vw",
   fontWeight: "bold",
   marginLeft: 30,
   marginRight: 30,
@@ -23,7 +26,7 @@ const HoneyNightKorean = styled(Link)({
 const StyledLink = styled(Link)({
   textDecoration: "none",
   color: "#F49300",
-  fontSize: "25px",
+  fontSize: "1.8vw",
   fontWeight: "bold",
   marginLeft: 30,
   marginRight: 30,
@@ -36,7 +39,7 @@ const StyledLinkTwo = styled(Link)({
   textDecoration: "none",
   color: "white",
   backgroundColor: "#F49300",
-  fontSize: "25px",
+  fontSize: "1.8vw",
   fontWeight: "bold",
   marginLeft: 40,
   marginRight: 40,
@@ -63,23 +66,33 @@ function Navbar() {
       }}
     >
       <CssBaseline />
-      <Toolbar>
-        <img src={HoneyNightLogo} width="50" height="50" />
-        <HoneyNightKorean to="/">HONEY NIGHT 꿀밤 </HoneyNightKorean>{" "}
-        {isMobile ? (
-          <DrawerComponent />
-        ) : (
-          <div>
-            <StyledLink to="/">Home </StyledLink>{" "}
-            <StyledLink to="/about">About </StyledLink>{" "}
-            <StyledLink to="/menu">Menu </StyledLink>{" "}
-            <StyledLink to="/contact">Contact Us </StyledLink>
-            <StyledLinkTwo to="https://qashiereats.com/honeynight">
-              Order{" "}
-            </StyledLinkTwo>{" "}
-            <StyledLinkTwo to="/reserve">Reserve </StyledLinkTwo>{" "}
-          </div>
-        )}{" "}
+      <Toolbar style={{ justifyContent: "space-between" }}>
+        <Grid container spacing={0}>
+          <Grid item xs={5} lg={3}>
+            <img
+              src={HoneyNightLogo}
+              alt="honeynightlogo"
+              className="honeynight-logo"
+            />
+            <HoneyNightKorean to="/">HONEY NIGHT 꿀밤 </HoneyNightKorean>{" "}
+          </Grid>
+          <Grid item xs={7} lg={9}>
+            {isMobile ? (
+              <DrawerComponent />
+            ) : (
+              <div>
+                <StyledLink to="/">Home </StyledLink>{" "}
+                <StyledLink to="/about">About </StyledLink>{" "}
+                <StyledLink to="/menu">Menu </StyledLink>{" "}
+                <StyledLink to="/contact">Contact Us </StyledLink>
+                <StyledLinkTwo to="https://qashiereats.com/honeynight">
+                  Order{" "}
+                </StyledLinkTwo>{" "}
+                <StyledLinkTwo to="/reserve">Reserve </StyledLinkTwo>{" "}
+              </div>
+            )}{" "}
+          </Grid>
+        </Grid>
       </Toolbar>{" "}
     </AppBar>
   );

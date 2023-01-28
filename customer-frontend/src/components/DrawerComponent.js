@@ -10,6 +10,7 @@ import {
 import { styled } from "@mui/system";
 import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
+import "./DrawerComponent.css";
 
 const MobileStyledLink = styled(Link)({
   textDecoration: "none",
@@ -24,14 +25,17 @@ const MobileStyledLink = styled(Link)({
   },
 });
 const MobileIconButton = styled(IconButton)({
-  color: "#F49300",
-  justifyContent: "space-between",
+  color: "#F49300"
 });
 function DrawerComponent() {
   const [openDrawer, setOpenDrawer] = useState(false);
   return (
     <>
-      <Drawer open={openDrawer} onClose={() => setOpenDrawer(false)}>
+      <Drawer
+        open={openDrawer}
+        anchor="right"
+        onClose={() => setOpenDrawer(false)}
+      >
         <List>
           <ListItem onClick={() => setOpenDrawer(false)}>
             <ListItemText>
@@ -73,8 +77,12 @@ function DrawerComponent() {
           <Divider />
         </List>
       </Drawer>
-      <MobileIconButton onClick={() => setOpenDrawer(!openDrawer)}>
-        <MenuIcon />
+      <MobileIconButton
+        className="menu-icon"
+        edge="end"
+        onClick={() => setOpenDrawer(!openDrawer)}
+      >
+        <MenuIcon className="menu-icon" />
       </MobileIconButton>
     </>
   );
