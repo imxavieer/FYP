@@ -433,4 +433,19 @@ const createReservation = async (req, res, next) => {
     }
 };
 
-module.exports = { getAvailableTiming, createReservation };
+const testEmailConfirmation = async(req,res)=>{
+    const fakeReservation = {
+        email:"sm.lee.2020@smu.edu.sg",
+        name:"Siang Meng",
+        pax:2,
+        date_of_visit: new Date().toISOString(),
+        table_id:"11",
+    }
+    await sendConfirmation(fakeReservation).then(()=>{
+        return res.status(200).json({
+            message:"Email sent"
+        })
+    })
+}
+
+module.exports = { getAvailableTiming, createReservation ,testEmailConfirmation};

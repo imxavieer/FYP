@@ -1,4 +1,8 @@
 const nodemailer = require("nodemailer");
+const path = require("path");
+var handlebars = require("handlebars");
+
+var fs = require("fs");
 let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -9,29 +13,44 @@ let transporter = nodemailer.createTransport({
 
 // email scenarios: (can refactor later)
 // confirmaion
+
 const sendConfirmation = async (reservationDetails) => {
+    var confirmationHtmlTemplate = fs.readFileSync(
+        path.resolve(__dirname, "../EmailTemplates/ConfirmationEmail.html"),
+        { encoding: "utf-8" }
+    );
+    var template = handlebars.compile(confirmationHtmlTemplate);
     const {
         email: recipient,
         name,
         pax,
         date_of_visit,
-        _id:reservation_id,
+        _id: reservation_id,
     } = reservationDetails;
 
+    var replacements = {
+        recipient,
+        name,
+        pax,
+        date_of_visit,
+        reservation_id,
+    };
+
+    var htmlToSend = template(replacements);
     emailSubject = "Reservation Confirmation";
-    emailContent = `<h4>Dear ${name},</h4>  Thank you for making a reservation with us. 
-    Your reservation details are as follows: <br><br>
-    &nbsp;&nbsp;Reference: ${reservation_id} 
-    <br> &nbsp;&nbsp;Date of Visit: ${date_of_visit} 
-    <br> &nbsp;&nbsp;Number of Pax: ${pax} 
-    <br><br> We look forward to seeing you!\n\n<br>
-    <h5>Regards, <br>- Honey Night</h5>`;
 
     await transporter.sendMail({
         from: `"Honey Night" ${process.env.TRANSPORTER_AUTH_USER}`, // sender address
         to: recipient, // list of receivers
         subject: emailSubject, // Subject line
-        html: emailContent, // html body
+        html: htmlToSend, // html body
+        attachments: [
+            {
+                filename: "logo.png",
+                path: path.resolve(__dirname, "../EmailTemplates/logo.png"),
+                cid: "honeyNightLogo", //same cid value as in the html img src
+            },
+        ],
     });
 };
 
