@@ -60,7 +60,7 @@ function Menu() {
         },
     ];
     return (
-        <div>
+        <div className="menu">
             <h2>Menu page</h2>
             <Grid container spacing={2}>
                 {menuItems.map((item, index) => {
