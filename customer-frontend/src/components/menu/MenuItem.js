@@ -43,7 +43,9 @@ function MenuItem({
                 </Typography>
               </Grid>
               <Grid item xs={3}>
-                <Typography variant="subtitle1" textAlign={"right"}>
+                <Typography variant="subtitle1" textAlign={"right"} sx={{
+                    fontWeight: 'bold'
+                }}>
                   {menuItemPrice}
                 </Typography>
               </Grid>
