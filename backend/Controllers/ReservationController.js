@@ -4,6 +4,9 @@ const { validationResult } = require("express-validator");
 // for sending confirmation email upon reservation
 const { sendConfirmation } = require("../HelperFunctions/EmailFunctions");
 const Reservation = require("../Models/ReservationModel");
+const {
+    convertToDateTimeFormat,
+} = require("../HelperFunctions/DateTimeFormattingFunctions");
 const { json } = require("body-parser");
 
 const t_list = [
@@ -403,49 +406,99 @@ const getAvailableTiming = async (req, res, next) => {
 
 const createReservation = async (req, res, next) => {
     const { email, name, pax, date_of_visit, table_id, status } = req.body;
-    const newReservation = new Reservation({
-        email,
-        name,
-        pax,
-        date_of_visit,
-        table_id,
-        status,
-    });
-
     try {
-        await newReservation.save().then(async (reservation) => {
-            // create verifiation email
-            // everything except for status
-            await sendConfirmation(reservation)
-                .then(() => {
-                    return res.json({
-                        message: "Reservation created successfully",
-                        data: reservation._id,
-                    });
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
+        // 1) get the original datetime object --> original
+        // 2) add 30 min to original --> dummy
+        // 3) create a new reservation with original
+        // 4) create reservation with dummy datetime
+        // 5) send confirmation email for 3)
+
+        // because GMT +8
+        const originalDateTimeInMs =
+            Date.parse(date_of_visit) - 8 * 60 * 60 * 1000;
+        // first 30 min
+        const originalDateTime = new Date(originalDateTimeInMs);
+        console.log("originalDateTime", originalDateTime);
+        // second 30 min
+        const dummyDateTimeInMs = originalDateTimeInMs + 30 * 60 * 1000;
+        const dummyDateTime = new Date(dummyDateTimeInMs);
+
+        // for testing only
+        // return res.json({
+        //     message: "OK",
+        //     originalDateTime: originalDateTime.toUTCString(),
+        //     dummyDateTime,
+        // });
+
+        const newReservation = new Reservation({
+            email,
+            name,
+            pax,
+            date_of_visit: convertToDateTimeFormat(originalDateTime),
+            table_id,
+            status,
         });
+
+        const dummyReservation = new Reservation({
+            email,
+            name,
+            pax,
+            date_of_visit: convertToDateTimeFormat(dummyDateTime),
+            table_id,
+            status,
+        });
+
+        const createReservationPromise = await Reservation.create(
+            newReservation
+        );
+        const createDummyReservationPromise = await Reservation.create(
+            dummyReservation
+        );
+
+        // this is to ensure the confirmation email is only sent after both reservations are successfully created
+        Promise.allSettled([
+            createReservationPromise,
+            createDummyReservationPromise,
+        ])
+            .then(async (results) => {
+                // if both succeed, send email
+                const originalReservation = results[0].value;
+                console.log("originalReservation", originalReservation);
+                await sendConfirmation(originalReservation)
+                    .then(() => {
+                        return res.json({
+                            message: "Reservation created successfully",
+                            data: originalReservation._id,
+                        });
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            })
+            .catch((err) => {});
     } catch (err) {
         console.error(err.message);
         res.status(500).send("Server Error");
     }
 };
 
-const testEmailConfirmation = async(req,res)=>{
+const testEmailConfirmation = async (req, res) => {
     const fakeReservation = {
-        email:"sm.lee.2020@smu.edu.sg",
-        name:"Siang Meng",
-        pax:2,
+        email: "sm.lee.2020@smu.edu.sg",
+        name: "Siang Meng",
+        pax: 2,
         date_of_visit: new Date().toISOString(),
-        table_id:"11",
-    }
-    await sendConfirmation(fakeReservation).then(()=>{
+        table_id: "11",
+    };
+    await sendConfirmation(fakeReservation).then(() => {
         return res.status(200).json({
-            message:"Email sent"
-        })
-    })
-}
+            message: "Email sent",
+        });
+    });
+};
 
-module.exports = { getAvailableTiming, createReservation ,testEmailConfirmation};
+module.exports = {
+    getAvailableTiming,
+    createReservation,
+    testEmailConfirmation,
+};

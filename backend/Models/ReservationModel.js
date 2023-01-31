@@ -7,7 +7,7 @@ const Reservation = new Schema({
     name: {type: String , required: true},
     pax: {type: Number , required: true},
     date_of_visit: {type: String , required: true},
-    table_id: {type: Number , required: true},
+    table_id: {type: Array , required: true},
     status: {type: Number , required: true},
 });
 
