@@ -96,7 +96,10 @@ function Menu() {
                     </Link>
                 </Grid> */}
             </Grid>
-            <Link target={"_blank"} href={MenuPdf}>
+            <Link target={"_blank"} href={MenuPdf}
+            sx = {{
+                textDecoration:"none"
+            }}>
                 <Button
                     variant="filled"
                     className={"actionButton"}

@@ -16,12 +16,14 @@ function MenuItem({
   return (
     <Grid item xs={12} sm={6}>
       <Card className="menuItemContainer"
-    //   sx = {{
-    //     maxHeight:{
-    //         xs:"200px",
-    //         md:"100px"
-    //     }
-    //   }}
+      sx = {{
+        transition:"background 0.3s, color 0.3s",
+        "&:hover": {
+          background: "#F49300",
+          color:"white",
+          boxShadow:"8px 8px 8px #808080"
+      },
+      }}
       >
         <Grid container spacing={2}>
           {/* image */}
