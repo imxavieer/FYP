@@ -15,23 +15,32 @@ function MenuItem({
 }) {
   return (
     <Grid item xs={12} sm={6}>
-      <Card className="menuItemContainer">
+      <Card className="menuItemContainer"
+    //   sx = {{
+    //     maxHeight:{
+    //         xs:"200px",
+    //         md:"100px"
+    //     }
+    //   }}
+      >
         <Grid container spacing={2}>
           {/* image */}
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={6}>
             <img src={menuImage} className="menuItemImage" />
           </Grid>
 
           {/* other details */}
-          <Grid item xs={12} md={8}>
+          <Grid item xs={12} md={6}>
             {/* name & price */}
             <Grid container>
-              <Grid item xs={6}>
-                <Typography variant="h5" textAlign={"left"}>
+              <Grid item xs={9}>
+                <Typography variant="subtitle1" textAlign={"left"} sx={{
+                    fontWeight: 'bold'
+                }}>
                   {menuItemName}
                 </Typography>
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={3}>
                 <Typography variant="subtitle1" textAlign={"right"}>
                   {menuItemPrice}
                 </Typography>

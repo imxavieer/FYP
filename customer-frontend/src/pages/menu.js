@@ -12,51 +12,51 @@ function Menu() {
     const menuItems = [
         {
             menuImage:
-                "https://res.cloudinary.com/duxqahhdk/image/upload/v1675128915/samples/food/pot-mussels.jpg",
-            menuItemName: "Menu Item 1",
-            menuItemPrice: "$25",
+                "https://www.thespruceeats.com/thmb/m-tYmUNj3nHdyXsTXdp_xsqH1oM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/kimbap-korean-sushi-rolls-2118795-Hero_01-2453c846edd1449ab87c26761be72064.jpg",
+            menuItemName: "Honey Night Kimbab",
+            menuItemPrice: "$9.90",
             menuItemDescription:
-                "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate",
+                "Seasoning rice roll with egg, pork ham, crabstick, carrot, spinach, burdock, yellow radish.",
         },
         {
             menuImage:
-                "https://res.cloudinary.com/duxqahhdk/image/upload/v1675128915/samples/food/pot-mussels.jpg",
-            menuItemName: "Menu Item 2",
-            menuItemPrice: "$25",
+                "https://assets.bonappetit.com/photos/624f3dc73a6e981591892a9d/master/pass/0407-bibimbap-at-home-lede.jpg",
+            menuItemName: "Bimbimbap",
+            menuItemPrice: "$10",
             menuItemDescription:
-                "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate",
+                "Mixed rice and homemade chill paste sauce with variety of vegetables and Chicken or Tuna. Serve with Soup.",
         },
         {
             menuImage:
-                "https://res.cloudinary.com/duxqahhdk/image/upload/v1675128915/samples/food/pot-mussels.jpg",
-            menuItemName: "Menu Item 3",
-            menuItemPrice: "$25",
+                "https://www.koreanbapsang.com/wp-content/uploads/2014/03/DSC_5089-3.jpg",
+            menuItemName: "Kimchi Stew",
+            menuItemPrice: "$12",
             menuItemDescription:
-                "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate",
+                "Kimchi stew is one of the most loved of all the stews in Korean cuisine. You can choose pork or tuna. Serve with Rice.",
         },
         {
             menuImage:
-                "https://res.cloudinary.com/duxqahhdk/image/upload/v1675128915/samples/food/pot-mussels.jpg",
-            menuItemName: "Menu Item 4",
-            menuItemPrice: "$25",
+                "https://asianinspirations.com.au/wp-content/uploads/2021/09/R00397-Hot-Spicy-Tteokbokki.jpg",
+            menuItemName: "Spicy Rice Cake",
+            menuItemPrice: "$13",
             menuItemDescription:
-                "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate",
+                "popular Korean food made from chewy rice cakes cooked in a red, spicy broth.",
         },
         {
             menuImage:
-                "https://res.cloudinary.com/duxqahhdk/image/upload/v1675128915/samples/food/pot-mussels.jpg",
-            menuItemName: "Menu Item 5",
-            menuItemPrice: "$25",
+                "https://as2.ftcdn.net/v2/jpg/02/67/01/95/1000_F_267019566_2xc1s5VszZCMLXhpDfRlwpaLtuzCBUJ4.jpg",
+            menuItemName: "Stir Fried Baby Octupus",
+            menuItemPrice: "$26",
             menuItemDescription:
-                "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate",
+                "Baby octopus are marinated in a spicy gochujang sauce and seared quickly on the grill",
         },
         {
             menuImage:
-                "https://res.cloudinary.com/duxqahhdk/image/upload/v1675128915/samples/food/pot-mussels.jpg",
-            menuItemName: "Menu Item 6",
-            menuItemPrice: "$25",
+                "https://www.kitchensanctuary.com/wp-content/uploads/2019/08/Korean-Fried-Chicken-foodporn-7373.jpg",
+            menuItemName: "Boneless Chicken",
+            menuItemPrice: "$15",
             menuItemDescription:
-                "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate",
+                "An undeniable Korean favorite loved for its aromatic and irrestible crunch",
         },
     ];
     return (

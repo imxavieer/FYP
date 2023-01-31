@@ -4,12 +4,14 @@
 
 .menuItemImage {
     max-width: 100%;
+    /* width: 100%; */
+    /* max-height:100px; */
     border-radius: 5px;
 }
 
 .menuItemDescription {
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 5;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
 }
