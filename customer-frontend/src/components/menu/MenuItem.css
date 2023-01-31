@@ -6,3 +6,9 @@
     max-width: 100%;
 }
 
+.menuItemDescription {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+}
