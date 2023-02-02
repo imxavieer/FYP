@@ -3,6 +3,7 @@ import { Box, Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import "./PopupPrompt.css";
 import "../index.css";
+import DiningIcon from "@mui/icons-material/Dining";
 function PopupPrompt() {
     const navigate = useNavigate();
     const redirectToReservation = () => {
@@ -13,28 +14,19 @@ function PopupPrompt() {
     };
     return (
         <Box className="popupContainer">
-            <Typography variant="h4">Welcome!</Typography>
-            <Typography className = "popupText">Want to dine in?</Typography>
-            <Button
-                variant={"filled"}
-                onClick={() => {
-                    redirectToReservation();
-                }}
-                sx = {{
-                    background:"#e19200",
-                }}
-            >
-                Reserve here
-            </Button>
-
-            <Typography className = "popupText">Know what to eat?</Typography>
+            <Box className="iconContainer">
+                <DiningIcon />
+            </Box>
             <Button
                 variant={"filled"}
                 onClick={() => {
                     redirectToOrder();
                 }}
-                sx = {{
-                    background:"#e19200",
+                sx={{
+                    background: "#e19200",
+                    "&:hover": {
+                        background: "#A56402",
+                    },
                 }}
             >
                 Order here

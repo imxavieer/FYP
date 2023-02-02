@@ -14,6 +14,14 @@
 .popupContainer:hover{
     opacity: 1;
 }
+.iconContainer {
+    width: 100%;
+}
+
+.iconContainer svg {
+    width: auto;
+    height: auto;
+}
 
 .popupText {
     padding-top: 10px;

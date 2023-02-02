@@ -17,3 +17,7 @@ code {
   background: orange;
   color: white;
 }
+
+.actionButton:hover {
+  background: #d08c0c;
+}
