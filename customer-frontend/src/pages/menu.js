@@ -115,7 +115,7 @@ function Menu() {
                     View Full Menu
                 </Button>
             </Link>
-            <PopupPrompt/>
+            {/* <PopupPrompt/> */}
         </div>
     );
 }

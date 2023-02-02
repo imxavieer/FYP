@@ -19,6 +19,7 @@ function App() {
         <Route path="contact" element={<Contact />} />
         <Route path="reserve" element={<Reserve />} />
       </Routes>
+      <PopupPrompt/>
     </Router>
   );
 }
