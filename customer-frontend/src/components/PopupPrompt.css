@@ -1,0 +1,15 @@
+.popupContainer {
+    position: fixed;
+    bottom: 30vh;
+    right: 0px;
+    padding: 20px;
+    background: rgb(141, 95, 8);
+    color: white;
+    margin: 10px auto;
+    border-radius: 5px 0px 0px 5px;
+}
+
+.popupText {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

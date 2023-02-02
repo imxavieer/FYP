@@ -2,6 +2,7 @@ import React from "react";
 import { Grid, Button, Link } from "@mui/material";
 import MenuItem from "../components/menu/MenuItem";
 import MenuPdf from "../documents/menu.pdf";
+import PopupPrompt from "../components/PopupPrompt";
 import "./menu.css";
 function Menu() {
     // MenuItem
@@ -114,6 +115,7 @@ function Menu() {
                     View Full Menu
                 </Button>
             </Link>
+            <PopupPrompt/>
         </div>
     );
 }
