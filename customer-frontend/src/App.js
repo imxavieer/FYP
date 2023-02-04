@@ -21,8 +21,8 @@ function App() {
         <Menu />
         <Contact />
         <Routes>
-          {/* <Route path="/" elment={<Home />} />
-          <Route path="/about" elment={<About />} /> */}
+          {/* {/* <Route path="/" elment={<Home />} /> */}
+          {/* <Route path="/about" elment={<About />} />  */}
           <Route path="reserve" element={<Reserve />} />
         </Routes>
       </Router>
