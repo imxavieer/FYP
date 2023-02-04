@@ -6,6 +6,7 @@
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@fontsource/roboto": "^4.5.8",
+    "@fullpage/react-fullpage": "^0.1.32",
     "@googlemaps/react-wrapper": "^1.1.35",
     "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.6",
@@ -16,6 +17,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.0",
     "react-scripts": "5.0.1",
+    "react-scroll": "^1.8.9",
     "web-vitals": "^2.1.4",
     "webpack": "4.19.1"
   },

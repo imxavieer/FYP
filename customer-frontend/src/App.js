@@ -1,4 +1,5 @@
 import Navbar from "./components/Navbar";
+import React, { useState } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/home";
@@ -6,20 +7,29 @@ import About from "./pages/about";
 import Menu from "./pages/menu";
 import Contact from "./pages/contact";
 import Reserve from "./pages/reserve";
+import { browserHistory } from "react-router";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="" element={<Home />} />
-        <Route path="about" element={<About />} />
-        <Route path="menu" element={<Menu />} />
-        <Route path="contact" element={<Contact />} />
-        <Route path="reserve" element={<Reserve />} />
-      </Routes>
-    </Router>
+    <>
+      <Router>
+        <Navbar />
+        <Home />
+        <About />
+        <Menu />
+        <Contact />
+        <Routes>
+          {/* <Route path="/" elment={<Home />} />
+          <Route path="/about" elment={<About />} /> */}
+          <Route path="reserve" element={<Reserve />} />
+        </Routes>
+      </Router>
+    </>
   );
+  const location = useLocation();
+  const [showFilter, setShowFilter] = useState(false);
 }
 
 export default App;
