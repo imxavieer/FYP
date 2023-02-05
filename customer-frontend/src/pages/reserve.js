@@ -56,7 +56,7 @@ function Reserve() {
 
   return (
     <React.Fragment>
-      <Grid container justifyContent={'center'} margin={"40px 0px"}>
+      <Grid container className='reservationText'>
         <Box textAlign={'center'}>
           <h5 >RESERVATION</h5>
           <h2>Book A Table</h2>
@@ -64,10 +64,10 @@ function Reserve() {
           <b><p>Book a reservation here or send a booking request to <span style={{color: "#F49300"}}>+65 8671 1443</span></p></b>
         </Box>
       </Grid>
-      <Box sx={{ minWidth: 120 }}>
-        <Grid container>
+      <Box sx={{minWidth: 120}}>
+        <Grid container padding={5}>
           <Grid item xs={3}>
-            <FormControl sx={{ minWidth: 300 }}>
+            <FormControl sx={{minWidth: 300}}>
               <InputLabel id="num-pax-label">Number of People</InputLabel>
                 <Select
                   labelId="num-pax-label"
@@ -100,13 +100,14 @@ function Reserve() {
                   minDate={todayDate}
                   onChange={handleDateChange}
                   renderInput={(params) => <TextField {...params} />}
+                  sx={{minWidth: 300}}
                 />
               </Stack>
             </LocalizationProvider>
           </Grid>
 
           <Grid item xs={3}>
-          <FormControl sx={{ minWidth: 300 }}>
+          <FormControl sx={{ minWidth: 300, marginLeft:'40px' }}>
               <InputLabel id="timeslot-label">Time</InputLabel>
                 <Select
                   labelId="timeslot-label"
@@ -142,7 +143,7 @@ function Reserve() {
           </Grid>
 
           <Grid item xs={3}>
-            <BookTableButton variant="contained" onClick={openConfirmationPaper}>NEXT</BookTableButton>
+            <BookTableButton variant="contained" onClick={openConfirmationPaper} sx={{marginLeft: '50px'}}>NEXT</BookTableButton>
           </Grid>
         </Grid>
 
