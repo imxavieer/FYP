@@ -45,7 +45,7 @@ const StyledTab = styled(Tab)({
     borderBottom: "1px solid black",
   },
 });
-const StyledLink = styled(AnchorLink)({
+const StyledLink = styled(Link)({
   textDecoration: "none",
   color: "white",
   fontSize: "1.8vw",

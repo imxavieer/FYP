@@ -6,7 +6,6 @@ import "./about.css";
 import { useEffect } from "react";
 
 function About() {
-  const location = useLocation();
   const { pathname } = useLocation();
 
   let location = useLocation();
