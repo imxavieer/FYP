@@ -15,6 +15,7 @@ const mapStyles = {
 };
 
 function Contact() {
+  // THIS CODE IS IMPORTANT FROM HERE
   const { pathname } = useLocation();
   let location = useLocation();
   useEffect(() => {
@@ -32,6 +33,7 @@ function Contact() {
   } else {
     return (
       <>
+        {/* // THIS CODE IS IMPORTANT UNTIL HERE  */}
         <div id="contact-div">
           <Grid container justifyContent={"center"} margin={"40px 0px"}>
             <Grid item xs={6}>

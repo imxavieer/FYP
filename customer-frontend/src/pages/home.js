@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import "./home.css";
 
 function Home() {
+  // THIS CODE IS IMPORTANT FROM HERE 
   let location = useLocation();
   useEffect(() => {
     if (location.hash) {
@@ -23,6 +24,7 @@ function Home() {
   } else {
     return (
       <>
+      {/* // THIS CODE IS IMPORTANT UNTIL HERE  */}
         <div className="home-div" id="home-div">
           <img
             src="https://lh3.googleusercontent.com/p/AF1QipM2-1q3y02OLtQRglRivhdYtyLJzKASZgslUM2M=w1080-h608-p-no-v0"

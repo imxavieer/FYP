@@ -2,6 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 function Menu() {
+  // THIS CODE IS IMPORTANT FROM HERE
   const { pathname } = useLocation();
   let location = useLocation();
   useEffect(() => {
@@ -19,6 +20,7 @@ function Menu() {
   } else {
     return (
       <>
+        {/* // THIS CODE IS IMPORTANT UNTIL HERE  */}
         <div className="home-div" id="menu-div">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
           ultrices fermentum ornare. Donec eu arcu sit amet velit maximus

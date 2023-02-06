@@ -6,6 +6,7 @@ import "./about.css";
 import { useEffect } from "react";
 
 function About() {
+  // THIS CODE IS IMPORTANT FROM HERE
   const { pathname } = useLocation();
 
   let location = useLocation();
@@ -25,6 +26,7 @@ function About() {
   } else {
     return (
       <>
+        {/* // THIS CODE IS IMPORTANT UNTIL HERE  */}
         <div className="home-div" id="about-div">
           <img
             src="https://lh3.googleusercontent.com/pw/AMWts8A5JUdio1CGSW4N4yS23QFvd6_ud7ghDFyD2YBRA9z0cqgQyXWYD8OPNmRJ1PEvQ5vbU4rkq5xMuVINFAZhmQ4oIAbKdda2zPsdQMOFMgHMYtwDL4e7pORRfuI5om683LYDXIJL5_DJTXZ2WazB5h89nw=w472-h465-no?authuser=0"
