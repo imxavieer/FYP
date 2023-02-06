@@ -25,7 +25,7 @@ const MobileStyledLink = styled(Link)({
   },
 });
 const MobileIconButton = styled(IconButton)({
-  color: "#F49300"
+  color: "#F49300",
 });
 function DrawerComponent() {
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -63,7 +63,12 @@ function DrawerComponent() {
           <Divider />
           <ListItem onClick={() => setOpenDrawer(false)}>
             <ListItemText>
-              <MobileStyledLink to="https://qashiereats.com/honeynight">
+              <MobileStyledLink
+                onClick={() =>
+                  window.open("https://qashiereats.com/honeynight")
+                }
+                to={window.location.href}
+              >
                 Order
               </MobileStyledLink>
             </ListItemText>

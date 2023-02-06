@@ -23,7 +23,6 @@ import Tabs from "@mui/material/Tabs";
 import { Link } from "react-router-dom";
 import AnchorLink from "react-anchor-link-smooth-scroll-v2";
 
-
 const HoneyNightKorean = styled(Link)({
   textDecoration: "none",
   color: "#F49300",
@@ -135,8 +134,7 @@ function Navbar() {
                 <DrawerComponent />
               ) : (
                 <div>
-
-                  <StyledLink  to="/#home-div" className="seoul-hangang"> 
+                  <StyledLink to="/#home-div" className="seoul-hangang">
                     Home{" "}
                   </StyledLink>{" "}
                   <StyledLink to="/#about-div" className="seoul-hangang">
@@ -146,11 +144,13 @@ function Navbar() {
                     Menu{" "}
                   </StyledLink>{" "}
                   <StyledLink to="/#contact-div" className="seoul-hangang">
-
                     Contact Us{" "}
                   </StyledLink>
                   <StyledLinkTwo
-                    to="https://qashiereats.com/honeynight"
+                    onClick={() =>
+                      window.open("https://qashiereats.com/honeynight")
+                    }
+                    to={window.location.href}
                     className="seoul-hangang padding-navitem-order hover-effect-class"
                   >
                     Order{" "}
