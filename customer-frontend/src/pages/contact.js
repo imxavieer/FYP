@@ -3,16 +3,24 @@ import Footer from "../components/Footer";
 import { useLocation } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { faWhatsapp } from '@fortawesome/free-solid-svg-icons';
+
 import "./contact.css";
 import { useEffect } from "react";
 
-import Button from "@mui/material/Button";
-import { styled } from "@mui/material/styles";
+// import { styled } from "@mui/material/styles";
 
-const mapStyles = {
-  width: "30%",
-  height: "30%",
-};
+// const mapStyles = {
+//   width: "30%",
+//   height: "30%",
+// };
 
 function Contact() {
   // THIS CODE IS IMPORTANT FROM HERE
@@ -34,92 +42,118 @@ function Contact() {
     return (
       <>
         {/* // THIS CODE IS IMPORTANT UNTIL HERE  */}
-        <div id="contact-div">
-          <Grid container justifyContent={"center"} margin={"40px 0px"}>
-            <Grid item xs={6}>
+
+        <div id="contact-div" >
+          <Grid
+            container
+            justifyContent={"center"}
+            margin={"0px 0px 50px 0px"}
+            padding={"0px 50px 50px 0px"}
+            style={{ backgroundColor: "#d5dde8" }}>
+            
+            <Grid item xs={12} sm={6}>
               <Box textAlign={"center"}>
                 <h2>Locate Us</h2>
-                <p>Kindly refer to the interactive map below find us</p>
+                <p>Kindly refer to the interactive map below to find us!</p>
                 <div id="Map">
-                  <b>Google Map supposed to be displayed here</b>
+                      <iframe title="Googlemap" style={{ width: "95%", height: "590px" }} src="https://maps.google.com/maps?q=Honey%20Night&t=k&z=17&ie=UTF8&iwloc=&output=embed" frameborder="0"  marginheight="0" marginwidth="0">
+                      </iframe>
                 </div>
               </Box>
             </Grid>
-            <Grid item xs={6}>
+
+            <Grid item xs={12} sm={6}>
               <Box textAlign={"center"}>
-                <h2>More details</h2>
+                <h2>More Information</h2>
                 <p>
-                  Kindly refer to infographic below for our opening hours and
+                  Kindly refer below for our opening hours and
                   contact information
                 </p>
-                <p>
+                {/* <p>
                   <b>
                     Opening hrs and contact details supposed to be displayed
                     here
                   </b>
-                </p>
+                </p> */}
+                <Card sx={{ minWidth: 200 }} style={{backgroundColor: "#EFF7FF"}}>
+                  <CardContent >
+
+                    <Typography variant="h5" component="div">
+                      <b>Business Hours</b>
+                    </Typography>
+                    
+                    <Typography sx={{ mt:1 }} variant="h6" color="text.primary">
+                      <b>Normal Hours </b>
+                    </Typography>
+
+                    <Typography sx={{ mb: 1, mt:1 }} color="text.secondary">
+                                  Monday: 11:30am - 11:00pm
+                                  <br></br>
+                                  Wednesday: 11:30am - 11:00pm
+                                  <br></br>
+                                  Thursday: 11:30am - 11:00pm
+                                  <br></br>
+                                  Sunday: 11:30am - 11:00pm
+                                  <br></br>
+                    </Typography>
+
+                    <Typography variant="h6" color="text.primary">
+                      <b>Extended Hours</b>
+                    </Typography>
+
+                    <Typography color="text.secondary">
+                      Friday and Saturday: 11:30am - <b><u>11:30pm</u></b> 🍺
+                    </Typography>
+
+                    <Typography sx={{ mb: 0, mt: 3 }} variant="h6" component="div">
+                      <b>*Note: Closed on Tuesdays 💤😴</b>
+                      <hr></hr>
+                    </Typography>
+
+                    <Typography variant="h5" component="div">
+                      <b>Contact Details</b>
+                    </Typography>
+
+                    <Typography sx={{ mt:1 }} variant="h6" color="text.primary">
+                      <b>Email Us 💌</b>
+                    </Typography>
+
+                    <Typography sx={{ mb: 1, mt:1 }} color="text.secondary">
+                      honeynight.business@gmail.com
+                    </Typography>
+
+                    <Typography variant="h6" color="text.primary">
+                      <b>Call/WhatsApp Us 📞</b>
+                    </Typography>
+
+                    <Typography sx={{ mb: 1, mt:1 }} color="text.secondary">
+                      Call: 6677 2946
+                      <br></br>
+                      WhatsApp: 8671 1443
+                    </Typography>                    
+                  </CardContent>
+                
+                </Card>
+
+
               </Box>
             </Grid>
           </Grid>
-          <Box>
+          
+          {/* <Box>
             <Grid
               container
               justifyContent={"center"}
               margin={"40px 0px"}
             ></Grid>
-          </Box>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-          ultrices fermentum ornare. Donec eu arcu sit amet velit maximus
-          laoreet eu et velit. Praesent facilisis turpis id congue rutrum.
-          Curabitur sodales felis rutrum auctor luctus. Vivamus est odio,
-          porttitor nec consectetur non, finibus non leo. Vivamus laoreet a ante
-          eu facilisis. Nunc placerat, nisl quis porta dapibus, metus massa
-          sodales nulla, ac eleifend enim turpis in magna. Suspendisse vulputate
-          dui orci, in bibendum enim blandit ac. Sed non orci non leo eleifend
-          euismod id a erat. Integer eleifend odio vitae lorem imperdiet, ut
-          porttitor odio condimentum. Sed quis leo condimentum, convallis dolor
-          nec, sollicitudin est. Aenean lobortis porta massa, ac tempor nisl
-          eleifend ut. Nam consequat pharetra ornare. Donec consectetur tellus
-          quis enim vulputate, quis molestie ex blandit. Donec id posuere augue.
-          Aliquam feugiat diam ut auctor venenatis. Vivamus consequat quam nibh,
-          semper facilisis lorem bibendum auctor. Duis porttitor nisl commodo
-          nisl ultricies euismod. Maecenas quis nulla ante. Integer finibus
-          libero massa, eu tincidunt nisi consequat at. Vivamus ullamcorper odio
-          in nisl interdum vehicula. Etiam auctor ipsum vel est lacinia rhoncus.
-          Vestibulum blandit sed nisl id volutpat. Aliquam at arcu dui. In
-          tempus massa est. Nulla posuere maximus nisi, id gravida mi maximus
-          id. Nunc fermentum euismod magna, nec congue ligula. Aenean in lectus
-          tincidunt, rutrum felis eu, finibus est. Suspendisse semper odio id
-          faucibus lobortis. Morbi eu leo sapien. Curabitur at sem tristique,
-          efficitur turpis quis, volutpat sem. Maecenas in pulvinar lectus, ut
-          imperdiet lectus. Sed fringilla libero non nibh viverra, at bibendum
-          mi finibus. In porttitor luctus felis a congue. Praesent ac nulla sed
-          urna scelerisque cursus a et ligula. Nam placerat tortor nec odio
-          suscipit pellentesque. Curabitur aliquam dignissim justo, quis semper
-          metus vehicula vitae. Nullam consectetur tellus sed arcu sagittis
-          facilisis. Aenean ultrices et lacus dictum pulvinar. Nullam vehicula
-          egestas ex. Donec viverra ante non magna congue cursus. Interdum et
-          malesuada fames ac ante ipsum primis in faucibus. Cras risus ipsum,
-          hendrerit nec semper vitae, pretium eget metus. Nam et turpis eget
-          eros facilisis auctor. Nunc sed sapien vitae felis hendrerit
-          scelerisque. Praesent fringilla molestie sem, non ultricies justo
-          convallis ut. In ac libero molestie, pharetra lorem a, aliquam diam.
-          Pellentesque nulla mauris, fringilla quis eros et, malesuada
-          ullamcorper nibh. Etiam a ullamcorper purus. Mauris bibendum pharetra
-          suscipit. Aliquam eu est eu odio sodales suscipit et id justo.
-          Praesent mollis tincidunt sem non lobortis. Donec sit amet imperdiet
-          dui. Vivamus ut egestas augue, sit amet laoreet ligula. Quisque ac est
-          imperdiet, ornare mi eu, suscipit ligula. Ut at cursus nibh. Aliquam
-          varius est sed risus scelerisque, sit amet cursus dolor condimentum.
-          Donec suscipit diam quis eros lacinia porta. Mauris egestas orci id
-          sagittis accumsan. Suspendisse congue laoreet lacus eget tristique.
-          Fusce diam turpis, mattis ac laoreet sit amet, semper non justo.
+          </Box> */}
+
           <Footer></Footer>
-          <script
+          {/* <script
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
             defer
           ></script>
-          <script src="./googlemap.js"></script>
+          <script src="./googlemap.js"></script> */}
         </div>
       </>
     );
