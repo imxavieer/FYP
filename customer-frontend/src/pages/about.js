@@ -9,8 +9,6 @@ function About() {
   // THIS CODE IS IMPORTANT FROM HERE
   const { pathname } = useLocation();
 
-  let location = useLocation();
-
   useEffect(() => {
     if (location.hash) {
       let elem = document.getElementById(location.hash.slice(1));
