@@ -8,8 +8,6 @@ import { useEffect } from "react";
 function About() {
   const { pathname } = useLocation();
 
-  let location = useLocation();
-
   useEffect(() => {
     if (location.hash) {
       let elem = document.getElementById(location.hash.slice(1));
