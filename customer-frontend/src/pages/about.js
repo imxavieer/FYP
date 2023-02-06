@@ -1,13 +1,15 @@
 import React from "react";
 import Footer from "../components/Footer";
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
 
 import "./about.css";
+import { useEffect } from "react";
 
 function About() {
   const location = useLocation();
   const { pathname } = useLocation();
+
+  let location = useLocation();
 
   useEffect(() => {
     if (location.hash) {
