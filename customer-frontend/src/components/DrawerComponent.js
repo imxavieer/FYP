@@ -39,25 +39,25 @@ function DrawerComponent() {
         <List>
           <ListItem onClick={() => setOpenDrawer(false)}>
             <ListItemText>
-              <MobileStyledLink to="/">Home</MobileStyledLink>
+              <MobileStyledLink to="/#home-div">Home</MobileStyledLink>
             </ListItemText>
           </ListItem>
           <Divider />
           <ListItem onClick={() => setOpenDrawer(false)}>
             <ListItemText>
-              <MobileStyledLink to="/about">About</MobileStyledLink>
+              <MobileStyledLink to="/#about-div">About</MobileStyledLink>
             </ListItemText>
           </ListItem>
           <Divider />
           <ListItem onClick={() => setOpenDrawer(false)}>
             <ListItemText>
-              <MobileStyledLink to="/menu">Menu</MobileStyledLink>
+              <MobileStyledLink to="/#menu-div">Menu</MobileStyledLink>
             </ListItemText>
           </ListItem>
           <Divider />
           <ListItem onClick={() => setOpenDrawer(false)}>
             <ListItemText>
-              <MobileStyledLink to="/contact">Contact</MobileStyledLink>
+              <MobileStyledLink to="/#contact-div">Contact</MobileStyledLink>
             </ListItemText>
           </ListItem>
           <Divider />

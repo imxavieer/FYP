@@ -19,8 +19,8 @@ import Menu from "../pages/menu";
 import Contact from "../pages/contact";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
-import { Link } from "react-scroll";
-import AnchorLink from 'react-anchor-link-smooth-scroll-v2'
+import { Link } from "react-router-dom";
+import AnchorLink from "react-anchor-link-smooth-scroll-v2";
 
 const HoneyNightKorean = styled(Link)({
   textDecoration: "none",
@@ -43,7 +43,7 @@ const StyledTab = styled(Tab)({
     borderBottom: "1px solid black",
   },
 });
-const StyledLink = styled(AnchorLink)({
+const StyledLink = styled(Link)({
   textDecoration: "none",
   color: "white",
   fontSize: "1.8vw",
@@ -133,28 +133,16 @@ function Navbar() {
                 <DrawerComponent />
               ) : (
                 <div>
-                  <StyledLink
-                    href="#home-div"
-                    className="seoul-hangang"
-                  >
+                  <StyledLink  to="/#home-div" className="seoul-hangang"> 
                     Home{" "}
                   </StyledLink>{" "}
-                  <StyledLink
-                    href="#about-div"
-                    className="seoul-hangang"
-                  >
+                  <StyledLink to="/#about-div" className="seoul-hangang">
                     About{" "}
                   </StyledLink>
-                  <StyledLink
-                    href="#menu-div"
-                    className="seoul-hangang"
-                  >
+                  <StyledLink to="/#menu-div" className="seoul-hangang">
                     Menu{" "}
                   </StyledLink>{" "}
-                  <StyledLink
-                    href="#contact-div"
-                    className="seoul-hangang"
-                  >
+                  <StyledLink to="/#contact-div" className="seoul-hangang">
                     Contact Us{" "}
                   </StyledLink>
                   <StyledLinkTwo
