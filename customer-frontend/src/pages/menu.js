@@ -5,6 +5,7 @@ import { Grid, Button, Link } from "@mui/material";
 import MenuItem from "../components/menu/MenuItem";
 import MenuPdf from "../documents/menu.pdf";
 import "./menu.css";
+
 function Menu() {
     // MenuItem
     // menuImage --> url of the image
@@ -82,7 +83,7 @@ function Menu() {
             <>
                 {/* // THIS CODE IS IMPORTANT UNTIL HERE  */}
                 <div className="home-div" id="menu-div">
-                    <Grid container spacing={2}>
+                    <Grid container spacing={2} pt={5}>
                         {menuItems.map((item, index) => {
                             const {
                                 menuImage,
