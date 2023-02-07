@@ -33,7 +33,8 @@
     margin: auto;
     height: 100%;
     width: 100%;
-    opacity: 0.6;
+    /* opacity: 0.6; */
+    filter: brightness(40%);
     position: relative;
 }
 
@@ -43,8 +44,9 @@
     left: 50%;
     transform: translate(-50%, -50%);
     font-family: 'SeoulHangangC';
-    font-size: 4.3vw;
-    color: black;
+    font-size: 4.6vw;
+    /* color: black; */
+    color: white;
     text-align: center;
 }
 
