@@ -131,9 +131,12 @@ function Menu() {
                                 background: "#e19200",
                                 color: "white",
                                 margin: "10px auto",
+                                mt: "37px",
+                                mb: "0px",
                                 display: "flex",
                                 padding: "10px",
                             }}
+                            
                         >
                             View Full Menu
                         </Button>
