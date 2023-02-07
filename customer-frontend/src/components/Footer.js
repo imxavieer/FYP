@@ -4,6 +4,7 @@ import IconButton from "@mui/material/IconButton";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import "./Footer.css";
+
 function SocialMedia({ classes }) {
   return (
     // From 0 to 600px wide (smart-phones), I take up 12 columns, or the whole device width!

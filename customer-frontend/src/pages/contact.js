@@ -8,9 +8,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
-import { faWhatsapp } from '@fortawesome/free-solid-svg-icons';
+
 
 import "./contact.css";
 import { useEffect } from "react";
@@ -151,15 +149,7 @@ function Contact() {
               </Grid>
             </Grid>
             
-            {/* <Box>
-              <Grid
-                container
-                justifyContent={"center"}
-                margin={"40px 0px"}
-              ></Grid>
-            </Box> */}
-
-            <Footer></Footer>
+            
             {/* <script
               src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
               defer
@@ -167,6 +157,7 @@ function Contact() {
             <script src="./googlemap.js"></script> */}
           </div>
         </ThemeProvider>
+        <Footer></Footer>
       </>
     );
   }

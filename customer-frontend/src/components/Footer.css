@@ -1,16 +1,21 @@
 .center-text {
     text-align: center;
+    font-size: large;
 }
 
 .copyright {
     color: white;
 }
+
 .company-logo {
     top: -8px;
     position: relative;
 }
+
 .footer-bg {
     background-color: #f9d230;
     padding-top: 50px;
     padding-bottom: 60px;
+    /* display:flex;
+    align-items: flex-end; */
 }
