@@ -11,17 +11,8 @@
     position: relative;
 }
 
-.footer-bg {
-    top: -70px;
-    bottom: 70px;
-    position: relative;
-    background-color: #f9d230;
-    padding-top: 50px;
-    padding-bottom: 60px;
-}
-
 .home-div {
-    top: -70px;
+    /* top: -70px; */
     position: relative;
     margin-left: auto;
     margin-right: auto;
@@ -33,7 +24,8 @@
     margin: auto;
     height: 100%;
     width: 100%;
-    opacity: 0.6;
+    /* opacity: 0.6; */
+    filter: brightness(40%);
     position: relative;
 }
 
@@ -43,8 +35,9 @@
     left: 50%;
     transform: translate(-50%, -50%);
     font-family: 'SeoulHangangC';
-    font-size: 4.3vw;
-    color: black;
+    font-size: 4.6vw;
+    /* color: black; */
+    color: white;
     text-align: center;
 }
 

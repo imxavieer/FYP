@@ -11,27 +11,29 @@ import CancelReservation from "./pages/cancelreservation";
 import { browserHistory } from "react-router";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import PopupPrompt from "./components/PopupPrompt";
 
 function App() {
-  return (
-    <>
-      <Router>
-        <Navbar />
-        <Home />
-        <About />
-        <Menu />
-        <Contact />
-        <Routes>
-          {/* {/* <Route path="/" elment={<Home />} /> */}
-          {/* <Route path="/about" elment={<About />} />  */}
-          <Route path="/reserve" element={<Reserve />} />
-          <Route path="/reserve/cancel/:reservationId" element={<CancelReservation/>}/>
-        </Routes>
-      </Router>
-    </>
-  );
-  const location = useLocation();
-  const [showFilter, setShowFilter] = useState(false);
+    return (
+        <>
+            <Router>
+                <Navbar />
+                <Home />
+                <About />
+                <Menu />
+                <Contact />
+                <Routes>
+                    {/* {/* <Route path="/" elment={<Home />} /> */}
+                    {/* <Route path="/about" elment={<About />} />  */}
+                    <Route path="reserve" element={<Reserve />} />
+                    <Route path="/reserve/cancel/:reservationId" element={<CancelReservation/>}/>
+                </Routes>
+                <PopupPrompt />
+            </Router>
+        </>
+    );
+    const location = useLocation();
+    const [showFilter, setShowFilter] = useState(false);
 }
 
 export default App;
