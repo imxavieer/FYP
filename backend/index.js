@@ -1,38 +1,28 @@
-// ==================imports==================
-const express = require("express");
-const app = express();
-const cors = require("cors");
-const mongoose = require("mongoose");
+const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 require("dotenv").config();
 
-// ==================configure a[p settings==================
-app.use(cors());
-app.use(express.json());
+const app = express();
 
-// ==================connect to mongoose==================
-async function connect() {
-    try {
-        await mongoose.connect(process.env.DATABASE_URL);
-        console.log("Connected");
-    } catch (error) {
+app.use(bodyParser.json());
+
+const ReservationRoute = require('./Routes/ReservationRoutes');
+
+app.use("/api/reservation", ReservationRoute);
+
+app.use( (error, req , res , next) => {
+    res.status(error.code || 500);
+    res.json({message: error.message || "An unknown error occurred"});
+});
+
+
+mongoose
+    .connect('mongodb+srv://sanghil:1058022a@cluster0.ahpmxxy.mongodb.net/FYP?retryWrites=true&w=majority')
+    .then( () => {
+        app.listen(5000);
+        console.log('Connected Successfully');
+    } )
+    .catch(error => {
         console.log(error);
-    }
-}
-
-connect();
-
-// ==================use the routes==================
-// =========test routes=========
-app.get("/api", (req, res) => {
-    res.send("This is working");
-});
-
-// =========reservation routes=========
-app.use("/api/reservations", require("./Routes/ReservationRoutes"));
-// =========table routes=========
-app.use("/api/tables", require("./Routes/TableRoutes"));
-
-// ==================port listeneer==================
-app.listen(8000, () => {
-    console.log("OK");
-});
+    });
