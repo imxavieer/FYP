@@ -14,8 +14,6 @@
 
 .footer-bg {
     background-color: #f9d230;
-    padding-top: 50px;
-    padding-bottom: 60px;
-    /* display:flex;
-    align-items: flex-end; */
+    padding-top: 20px;
+    padding-bottom: 20px;
 }

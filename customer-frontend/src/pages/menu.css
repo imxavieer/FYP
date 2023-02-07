@@ -2,8 +2,8 @@
     padding: 10px;
 }
 
-.menu {
-    margin: 3rem;
+.menuTitle {
+    text-align: center;
 }
 
 
@@ -19,5 +19,7 @@
 
 #menu-div {
     height: 100vh;
+    /* padding:10px; */
+    margin: auto;
     /* background: purple */
 }

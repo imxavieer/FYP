@@ -56,7 +56,7 @@ function Contact() {
             <Grid
               container
               justifyContent={"center"}
-              margin={"0px 0px 50px 0px"}
+              // margin={"0px 0px 50px 0px"}
               padding={"0px 50px 50px 0px"}
               style={{ backgroundColor: "#1c1c1c" }}>
               

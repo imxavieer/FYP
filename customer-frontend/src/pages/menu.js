@@ -81,6 +81,7 @@ function Menu() {
     } else {
         return (
             <div className="menu-div" id="menu-div">
+                <h1 className="menuTitle">Menu</h1>
                 <Box
                     sx={{
                         width:{
@@ -102,7 +103,8 @@ function Menu() {
                         // }
                     }}
                 >
-                    <Grid container spacing={2} id="menuItems" pt={5} mb={2}>
+                    <Grid container spacing={2} id="menuItems" 
+                    >
                         {menuItems.map((item, index) => {
                             const {
                                 menuImage,
@@ -120,21 +122,6 @@ function Menu() {
                                 />
                             );
                         })}
-                        {/* <Grid item xs={12}>
-                    <Link target={"_blank"} href={MenuPdf}>
-                        <Button
-                            variant="filled"
-                            className={"actionButton"}
-                            sx={{
-                                background: "#e19200",
-                                color: "white",
-                                margin: "10px auto",
-                            }}
-                        >
-                            View Full Menu
-                        </Button>
-                    </Link>
-                </Grid> */}
                     </Grid>
                 </Box>
                 <Link
@@ -151,8 +138,6 @@ function Menu() {
                             background: "#e19200",
                             color: "white",
                             margin: "10px auto",
-                            mt: "30px",
-                            mb: "37px",
                             display: "flex",
                             padding: "10px",
                         }}
