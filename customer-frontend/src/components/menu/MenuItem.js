@@ -17,11 +17,12 @@ function MenuItem({
     <Grid item xs={12} sm={6}>
       <Card className="menuItemContainer"
       sx = {{
+        background:"#2f3133",
         transition:"background 0.3s, color 0.3s",
         "&:hover": {
           background: "#F49300",
           color:"white",
-          boxShadow:"8px 8px 8px #808080"
+          // boxShadow:"8px 8px 8px #808080"
       },
       }}
       >
@@ -37,14 +38,16 @@ function MenuItem({
             <Grid container>
               <Grid item xs={9}>
                 <Typography variant="subtitle1" textAlign={"left"} sx={{
-                    fontWeight: 'bold'
+                    fontWeight: 'bold',
+                    color:"white",
                 }}>
                   {menuItemName}
                 </Typography>
               </Grid>
               <Grid item xs={3}>
                 <Typography variant="subtitle1" textAlign={"right"} sx={{
-                    fontWeight: 'bold'
+                    fontWeight: 'bold',
+                    color: 'white'
                 }}>
                   {menuItemPrice}
                 </Typography>
