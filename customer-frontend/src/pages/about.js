@@ -8,6 +8,8 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import aboutPic from '../HoneyNightBG.png';
 
+
+
 function About() {
   // THIS CODE IS IMPORTANT FROM HERE
   const { pathname } = useLocation();
@@ -45,7 +47,7 @@ function About() {
                 justifyContent="space-evenly"
                 alignItems="center"
               >
-                <Grid item xs={12} sm={5}>
+                <Grid item xs={12} sm={5} mt={5}>
                   <p class="small-text">
                     <u>Our Story  </u>
                   </p>
@@ -57,11 +59,11 @@ function About() {
                     </span>
                   </p>
                   <p class="small-text">Enquire now: 6677 2946</p>
-                  <Button variant="outlined" color="warning">Order Now</Button>
+                  <Button variant="outlined" color="warning"><a href="/#menu-div">View Menu</a></Button>
                 </Grid>
 
 
-                <Grid item sm={5} className="hidden-mobile">
+                <Grid item sm={5} className="hidden-mobile" mt={5}>
                   {/* <p>this text is to be replaced with honeynight picture</p> */}
                   <img class="aboutPic" src={aboutPic}></img>
                 </Grid>  
