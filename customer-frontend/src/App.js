@@ -1,27 +1,37 @@
-import React from 'react';
-
-import logo from './logo.svg';
-import './App.css';
+import Navbar from "./components/Navbar";
+import React, { useState } from "react";
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/home";
+import About from "./pages/about";
+import Menu from "./pages/menu";
+import Contact from "./pages/contact";
+import Reserve from "./pages/reserve";
+import { browserHistory } from "react-router";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import PopupPrompt from "./components/PopupPrompt";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <>
+            <Router>
+                <Navbar />
+                <Home />
+                <About />
+                <Menu />
+                <Contact />
+                <Routes>
+                    {/* {/* <Route path="/" elment={<Home />} /> */}
+                    {/* <Route path="/about" elment={<About />} />  */}
+                    <Route path="reserve" element={<Reserve />} />
+                </Routes>
+                <PopupPrompt />
+            </Router>
+        </>
+    );
+    const location = useLocation();
+    const [showFilter, setShowFilter] = useState(false);
 }
 
 export default App;
