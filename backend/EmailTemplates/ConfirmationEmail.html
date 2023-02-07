@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style>
+            body {
+                background: black;
+                color: white;
+            }
+            #bodyContainer {
+                padding: 20px;
+                margin: 20px;
+            }
+            #emailHeader,#emailBody {
+                padding: 5px;
+            }
+            #emailHeader h2 {
+                color: orange;
+            }
+            table {
+                width: 100%;
+            }
+            table,
+            th,
+            td {
+                border: 1px solid white;
+                border-collapse: collapse;
+            }
+            th,td{
+                padding: 5px;}
+
+            th {
+                text-align: right;
+            }
+            td {
+                text-align: left;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="bodyContainer">
+            <div id="emailHeader"><h2>Honey Night</h2> </div>
+            <hr />
+            <div id="emailBody">
+                Dear {{name}},
+                <br /><br />
+                Thank you for making a reservation with us. Your reservation
+                details are as follows: <br /><br />
+                <table border="1">
+                    <tbody>
+                        <tr>
+                            <th>Reference:</th>
+                            <td>{{reservation_id}}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Reservation Date:</th>
+                            <td>{{date_of_visit}}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Number of Pax:</th>
+                            <td>{{pax}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                We look forward to seeing you!<br />
+                <br />
+
+                Regards, <br />&nbsp;&nbsp; -Honey Night
+                <br>
+                <img src="cid:honeyNightLogo"/>
+            </div>
+        </div>
+    </body>
+</html>
