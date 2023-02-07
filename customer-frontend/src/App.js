@@ -1,3 +1,5 @@
+
+import React from "react";
 import Navbar from "./components/Navbar";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -9,6 +11,7 @@ import Reserve from "./pages/reserve";
 
 function App() {
   return (
+    <>
     <Router>
       <Navbar />
       <Routes>
@@ -19,6 +22,7 @@ function App() {
         <Route path="reserve" element={<Reserve />} />
       </Routes>
     </Router>
+    </>
   );
 }
 
