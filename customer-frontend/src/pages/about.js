@@ -61,7 +61,7 @@ function About() {
                 </Grid>
 
 
-                <Grid item sm={5} class="hidden-mobile">
+                <Grid item sm={5} className="hidden-mobile">
                   {/* <p>this text is to be replaced with honeynight picture</p> */}
                   <img class="aboutPic" src={aboutPic}></img>
                 </Grid>  

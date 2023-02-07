@@ -11,7 +11,7 @@ no-margin {
     margin: 0px;
 }
 
-@media (max-width: 983px) {
+@media (max-width: 600px) {
     .hidden-mobile {
         display: none;
     }
@@ -19,7 +19,7 @@ no-margin {
 
 .aboutPic {
     z-index: 5;  /* needs this to appear above the bg */
-    margin-top: 100px;
+    margin-top: 50px;
     width: 100%;
     /* don't change this or else pic will break */
     height: auto; 
