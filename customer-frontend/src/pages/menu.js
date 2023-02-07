@@ -1,122 +1,145 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { Grid, Button, Link } from "@mui/material";
+import MenuItem from "../components/menu/MenuItem";
+import MenuPdf from "../documents/menu.pdf";
+import "./menu.css";
 function Menu() {
-  // THIS CODE IS IMPORTANT FROM HERE
-  const { pathname } = useLocation();
-  let location = useLocation();
-  useEffect(() => {
-    if (location.hash) {
-      let elem = document.getElementById(location.hash.slice(1));
-      if (elem) {
-        elem.scrollIntoView({ behavior: "smooth" });
-      }
+    // MenuItem
+    // menuImage --> url of the image
+    // menuItemName --> name of the menu item
+    // menuItemPrice --> price of the menu item
+    // menuItemDescription --> description of the menu item
+
+    const menuItems = [
+        {
+            menuImage:
+                "https://www.thespruceeats.com/thmb/m-tYmUNj3nHdyXsTXdp_xsqH1oM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/kimbap-korean-sushi-rolls-2118795-Hero_01-2453c846edd1449ab87c26761be72064.jpg",
+            menuItemName: "Honey Night Kimbab",
+            menuItemPrice: "$9.90",
+            menuItemDescription:
+                "Seasoning rice roll with egg, pork ham, crabstick, carrot, spinach, burdock, yellow radish.",
+        },
+        {
+            menuImage:
+                "https://assets.bonappetit.com/photos/624f3dc73a6e981591892a9d/master/pass/0407-bibimbap-at-home-lede.jpg",
+            menuItemName: "Bimbimbap",
+            menuItemPrice: "$10",
+            menuItemDescription:
+                "Mixed rice and homemade chill paste sauce with variety of vegetables and Chicken or Tuna. Serve with Soup.",
+        },
+        {
+            menuImage:
+                "https://www.koreanbapsang.com/wp-content/uploads/2014/03/DSC_5089-3.jpg",
+            menuItemName: "Kimchi Stew",
+            menuItemPrice: "$12",
+            menuItemDescription:
+                "Kimchi stew is one of the most loved of all the stews in Korean cuisine. You can choose pork or tuna. Serve with Rice.",
+        },
+        {
+            menuImage:
+                "https://asianinspirations.com.au/wp-content/uploads/2021/09/R00397-Hot-Spicy-Tteokbokki.jpg",
+            menuItemName: "Spicy Rice Cake",
+            menuItemPrice: "$13",
+            menuItemDescription:
+                "popular Korean food made from chewy rice cakes cooked in a red, spicy broth.",
+        },
+        {
+            menuImage:
+                "https://as2.ftcdn.net/v2/jpg/02/67/01/95/1000_F_267019566_2xc1s5VszZCMLXhpDfRlwpaLtuzCBUJ4.jpg",
+            menuItemName: "Stir Fried Baby Octupus",
+            menuItemPrice: "$26",
+            menuItemDescription:
+                "Baby octopus are marinated in a spicy gochujang sauce and seared quickly on the grill",
+        },
+        {
+            menuImage:
+                "https://www.kitchensanctuary.com/wp-content/uploads/2019/08/Korean-Fried-Chicken-foodporn-7373.jpg",
+            menuItemName: "Boneless Chicken",
+            menuItemPrice: "$15",
+            menuItemDescription:
+                "An undeniable Korean favorite loved for its aromatic and irrestible crunch",
+        },
+    ];
+    // THIS CODE IS IMPORTANT FROM HERE
+    const { pathname } = useLocation();
+    let location = useLocation();
+    useEffect(() => {
+        if (location.hash) {
+            let elem = document.getElementById(location.hash.slice(1));
+            if (elem) {
+                elem.scrollIntoView({ behavior: "smooth" });
+            }
+        } else {
+            window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+        }
+    }, [location]);
+    if (pathname === "/reserve") {
+        return <></>;
     } else {
-      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+        return (
+            <>
+                {/* // THIS CODE IS IMPORTANT UNTIL HERE  */}
+                <div className="home-div" id="menu-div">
+                    <Grid container spacing={2}>
+                        {menuItems.map((item, index) => {
+                            const {
+                                menuImage,
+                                menuItemName,
+                                menuItemPrice,
+                                menuItemDescription,
+                            } = item;
+                            return (
+                                <MenuItem
+                                    key={index}
+                                    menuImage={menuImage}
+                                    menuItemName={menuItemName}
+                                    menuItemPrice={menuItemPrice}
+                                    menuItemDescription={menuItemDescription}
+                                />
+                            );
+                        })}
+                        {/* <Grid item xs={12}>
+                    <Link target={"_blank"} href={MenuPdf}>
+                        <Button
+                            variant="filled"
+                            className={"actionButton"}
+                            sx={{
+                                background: "#e19200",
+                                color: "white",
+                                margin: "10px auto",
+                            }}
+                        >
+                            View Full Menu
+                        </Button>
+                    </Link>
+                </Grid> */}
+                    </Grid>
+                    <Link
+                        target={"_blank"}
+                        href={MenuPdf}
+                        sx={{
+                            textDecoration: "none",
+                        }}
+                    >
+                        <Button
+                            variant="filled"
+                            className={"actionButton"}
+                            sx={{
+                                background: "#e19200",
+                                color: "white",
+                                margin: "10px auto",
+                                display: "flex",
+                                padding: "10px",
+                            }}
+                        >
+                            View Full Menu
+                        </Button>
+                    </Link>
+                </div>
+            </>
+        );
     }
-  }, [location]);
-  if (pathname === "/reserve") {
-    return <></>;
-  } else {
-    return (
-      <>
-        {/* // THIS CODE IS IMPORTANT UNTIL HERE  */}
-        <div className="home-div" id="menu-div">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-          ultrices fermentum ornare. Donec eu arcu sit amet velit maximus
-          laoreet eu et velit. Praesent facilisis turpis id congue rutrum.
-          Curabitur sodales felis rutrum auctor luctus. Vivamus est odio,
-          porttitor nec consectetur non, finibus non leo. Vivamus laoreet a ante
-          eu facilisis. Nunc placerat, nisl quis porta dapibus, metus massa
-          sodales nulla, ac eleifend enim turpis in magna. Suspendisse vulputate
-          dui orci, in bibendum enim blandit ac. Sed non orci non leo eleifend
-          euismod id a erat. Integer eleifend odio vitae lorem imperdiet, ut
-          porttitor odio condimentum. Sed quis leo condimentum, convallis dolor
-          nec, sollicitudin est. Aenean lobortis porta massa, ac tempor nisl
-          eleifend ut. Nam consequat pharetra ornare. Donec consectetur tellus
-          quis enim vulputate, quis molestie ex blandit. Donec id posuere augue.
-          Aliquam feugiat diam ut auctor venenatis. Vivamus consequat quam nibh,
-          semper facilisis lorem bibendum auctor. Duis porttitor nisl commodo
-          nisl ultricies euismod. Maecenas quis nulla ante. Integer finibus
-          libero massa, eu tincidunt nisi consequat at. Vivamus ullamcorper odio
-          in nisl interdum vehicula. Etiam auctor ipsum vel est lacinia rhoncus.
-          Vestibulum blandit sed nisl id volutpat. Aliquam at arcu dui. In
-          tempus massa est. Nulla posuere maximus nisi, id gravida mi maximus
-          id. Nunc fermentum euismod magna, nec congue ligula. Aenean in lectus
-          tincidunt, rutrum felis eu, finibus est. Suspendisse semper odio id
-          faucibus lobortis. Morbi eu leo sapien. Curabitur at sem tristique,
-          efficitur turpis quis, volutpat sem. Maecenas in pulvinar lectus, ut
-          imperdiet lectus. Sed fringilla libero non nibh viverra, at bibendum
-          mi finibus. In porttitor luctus felis a congue. Praesent ac nulla sed
-          urna scelerisque cursus a et ligula. Nam placerat tortor nec odio
-          suscipit pellentesque. Curabitur aliquam dignissim justo, quis semper
-          metus vehicula vitae. Nullam consectetur tellus sed arcu sagittis
-          facilisis. Aenean ultrices et lacus dictum pulvinar. Nullam vehicula
-          egestas ex. Donec viverra ante non magna congue cursus. Interdum et
-          malesuada fames ac ante ipsum primis in faucibus. Cras risus ipsum,
-          hendrerit nec semper vitae, pretium eget metus. Nam et turpis eget
-          eros facilisis auctor. Nunc sed sapien vitae felis hendrerit
-          scelerisque. Praesent fringilla molestie sem, non ultricies justo
-          convallis ut. In ac libero molestie, pharetra lorem a, aliquam diam.
-          Pellentesque nulla mauris, fringilla quis eros et, malesuada
-          ullamcorper nibh. Etiam a ullamcorper purus. Mauris bibendum pharetra
-          suscipit. Aliquam eu est eu odio sodales suscipit et id justo.
-          Praesent mollis tincidunt sem non lobortis. Donec sit amet imperdiet
-          dui. Vivamus ut egestas augue, sit amet laoreet ligula. Quisque ac est
-          imperdiet, ornare mi eu, suscipit ligula. Ut at cursus nibh. Aliquam
-          varius est sed risus scelerisque, sit amet cursus dolor condimentum.
-          Donec suscipit diam quis eros lacinia porta. Mauris egestas orci id
-          sagittis accumsan. Suspendisse congue laoreet lacus eget tristique.
-          Fusce diam turpis, mattis ac laoreet sit amet, semper non justo. Lorem
-          ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultrices
-          fermentum ornare. Donec eu arcu sit amet velit maximus laoreet eu et
-          velit. Praesent facilisis turpis id congue rutrum. Curabitur sodales
-          felis rutrum auctor luctus. Vivamus est odio, porttitor nec
-          consectetur non, finibus non leo. Vivamus laoreet a ante eu facilisis.
-          Nunc placerat, nisl quis porta dapibus, metus massa sodales nulla, ac
-          eleifend enim turpis in magna. Suspendisse vulputate dui orci, in
-          bibendum enim blandit ac. Sed non orci non leo eleifend euismod id a
-          erat. Integer eleifend odio vitae lorem imperdiet, ut porttitor odio
-          condimentum. Sed quis leo condimentum, convallis dolor nec,
-          sollicitudin est. Aenean lobortis porta massa, ac tempor nisl eleifend
-          ut. Nam consequat pharetra ornare. Donec consectetur tellus quis enim
-          vulputate, quis molestie ex blandit. Donec id posuere augue. Aliquam
-          feugiat diam ut auctor venenatis. Vivamus consequat quam nibh, semper
-          facilisis lorem bibendum auctor. Duis porttitor nisl commodo nisl
-          ultricies euismod. Maecenas quis nulla ante. Integer finibus libero
-          massa, eu tincidunt nisi consequat at. Vivamus ullamcorper odio in
-          nisl interdum vehicula. Etiam auctor ipsum vel est lacinia rhoncus.
-          Vestibulum blandit sed nisl id volutpat. Aliquam at arcu dui. In
-          tempus massa est. Nulla posuere maximus nisi, id gravida mi maximus
-          id. Nunc fermentum euismod magna, nec congue ligula. Aenean in lectus
-          tincidunt, rutrum felis eu, finibus est. Suspendisse semper odio id
-          faucibus lobortis. Morbi eu leo sapien. Curabitur at sem tristique,
-          efficitur turpis quis, volutpat sem. Maecenas in pulvinar lectus, ut
-          imperdiet lectus. Sed fringilla libero non nibh viverra, at bibendum
-          mi finibus. In porttitor luctus felis a congue. Praesent ac nulla sed
-          urna scelerisque cursus a et ligula. Nam placerat tortor nec odio
-          suscipit pellentesque. Curabitur aliquam dignissim justo, quis semper
-          metus vehicula vitae. Nullam consectetur tellus sed arcu sagittis
-          facilisis. Aenean ultrices et lacus dictum pulvinar. Nullam vehicula
-          egestas ex. Donec viverra ante non magna congue cursus. Interdum et
-          malesuada fames ac ante ipsum primis in faucibus. Cras risus ipsum,
-          hendrerit nec semper vitae, pretium eget metus. Nam et turpis eget
-          eros facilisis auctor. Nunc sed sapien vitae felis hendrerit
-          scelerisque. Praesent fringilla molestie sem, non ultricies justo
-          convallis ut. In ac libero molestie, pharetra lorem a, aliquam diam.
-          Pellentesque nulla mauris, fringilla quis eros et, malesuada
-          ullamcorper nibh. Etiam a ullamcorper purus. Mauris bibendum pharetra
-          suscipit. Aliquam eu est eu odio sodales suscipit et id justo.
-          Praesent mollis tincidunt sem non lobortis. Donec sit amet imperdiet
-          dui. Vivamus ut egestas augue, sit amet laoreet ligula. Quisque ac est
-          imperdiet, ornare mi eu, suscipit ligula. Ut at cursus nibh. Aliquam
-          varius est sed risus scelerisque, sit amet cursus dolor condimentum.
-          Donec suscipit diam quis eros lacinia porta. Mauris egestas orci id
-          sagittis accumsan. Suspendisse congue laoreet lacus eget tristique.
-          Fusce diam turpis, mattis ac laoreet sit amet, semper non justo.
-        </div>
-      </>
-    );
-  }
 }
 export default Menu;
