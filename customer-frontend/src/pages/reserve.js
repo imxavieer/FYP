@@ -31,6 +31,101 @@ const BookTableButton = styled(Button)({
     },
 });
 
+const NumberofPax = styled(FormControl)({
+    '& label': {
+        color: '#F49300',
+    },
+    '& label.Mui-focused': {
+      color: '#F49300',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: '#F49300',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: '#F49300',
+      },
+      '&:hover fieldset': {
+        borderColor: '#F49300',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: '#F49300',
+      },
+    },
+  });
+
+const DatePicker = styled(Grid)({
+    '& label': {
+        color: '#F49300',
+    },
+    '& label.Mui-focused': {
+      color: '#F49300',
+    },
+    // '& .MuiInputBase-root': {
+    //     color: 'green',
+    // },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: '#F49300',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: '#F49300',
+      },
+      '&:hover fieldset': {
+        borderColor: '#F49300',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: '#F49300',
+      },
+    },
+  });
+
+const TimePicker = styled(FormControl)({
+    '& label': {
+        color: '#F49300',
+    },
+    '& label.Mui-focused': {
+        color: '#F49300',
+    },
+    '& .MuiInput-underline': {
+        borderBottomColor: '#F49300',
+    },
+    '& .MuiInput-underline:after': {
+        borderBottomColor: '#F49300',
+    },
+    '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+        borderColor: '#F49300',
+        },
+        '&:hover fieldset': {
+        borderColor: '#F49300',
+        },
+        '&.Mui-focused fieldset': {
+        borderColor: '#F49300',
+        },
+    },
+});
+
+const EmailAddress = styled(TextField)({
+    '& label.Mui-focused': {
+        color: '#F49300',
+    },
+    '& .MuiInput-underline:after': {
+        borderBottomColor: '#F49300',
+    },
+    '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+            borderColor: '#F49300',
+        },
+        '&:hover fieldset': {
+            borderColor: '#F49300',
+        },
+        '&.Mui-focused fieldset': {
+            borderColor: '#F49300',
+        },
+    },
+});
+
 function Reserve() {
     const [numpax, setNumPax] = React.useState("");
     const handleNumPaxChange = (event) => {
@@ -54,7 +149,7 @@ function Reserve() {
     const openConfirmationPaper = () => setShowPaper(true);
 
     return (
-        <React.Fragment>
+        <React.Fragment sx={{color: 'black'}}>
             <Grid container className="reservationText">
                 <Box textAlign={"center"}>
                     <h5>RESERVATION</h5>
@@ -73,14 +168,7 @@ function Reserve() {
             <Box sx={{ minWidth: 120 }}>
                 <Grid container padding={5}>
                     <Grid item xs={3}>
-                        <FormControl
-                            sx={{
-                                minWidth: 300,
-                                border: 2,
-                                borderRadius:1.5,
-                                borderColor: "#F49300",
-                            }}
-                        >
+                        <NumberofPax sx={{ minWidth: 300}}>
                             <InputLabel id="num-pax-label">
                                 Number of People
                             </InputLabel>
@@ -102,18 +190,10 @@ function Reserve() {
                                 <MenuItem value={9}>9 Person</MenuItem>
                                 <MenuItem value={10}>10 Person</MenuItem>
                             </Select>
-                        </FormControl>
+                        </NumberofPax>
                     </Grid>
 
-                    <Grid
-                        item
-                        xs={3}
-                        sx={{
-                            border: 2,
-                            borderRadius:1.5,
-                            borderColor: "#F49300",
-                        }}
-                    >
+                    <DatePicker item xs={3}>
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <Stack spacing={3}>
                                 <DesktopDatePicker
@@ -125,16 +205,14 @@ function Reserve() {
                                     renderInput={(params) => (
                                         <TextField {...params} />
                                     )}
-                                    sx={{
-                                        minWidth: 300,
-                                    }}
+                                    sx={{minWidth: 300}}
                                 />
                             </Stack>
                         </LocalizationProvider>
-                    </Grid>
+                    </DatePicker>
 
                     <Grid item xs={3}>
-                        <FormControl sx={{ minWidth: 300, marginLeft: "40px" }}>
+                        <TimePicker sx={{ minWidth: 300, marginLeft: "40px" }}>
                             <InputLabel id="timeslot-label">Time</InputLabel>
                             <Select
                                 labelId="timeslot-label"
@@ -142,11 +220,6 @@ function Reserve() {
                                 value={timeslot}
                                 label="Time"
                                 onChange={handleTimeslotChange}
-                                sx={{
-                                    border: 2,
-                                    borderRadius:1.5,
-                                    borderColor: "#F49300",
-                                }}
                             >
                                 <MenuItem value={1130}>11:30 AM</MenuItem>
                                 <MenuItem value={1200}>12:00 PM</MenuItem>
@@ -171,7 +244,7 @@ function Reserve() {
                                 <MenuItem value={2130}>9:30 PM</MenuItem>
                                 <MenuItem value={2200}>10:00 PM</MenuItem>
                             </Select>
-                        </FormControl>
+                        </TimePicker>
                     </Grid>
 
                     <Grid item xs={3}>
@@ -210,13 +283,14 @@ function Reserve() {
                             <Grid container>
                                 <Grid item xs={4}></Grid>
                                 <Grid item xs={4}>
-                                    <TextField
+                                    <EmailAddress
                                         required
                                         id="standard-required"
                                         label="Email Address"
                                         defaultValue=""
                                         variant="standard"
-                                    />
+                                        focused
+                                    ></EmailAddress>
                                 </Grid>
                                 <Grid item xs={4}>
                                     <BookTableButton variant="contained">
