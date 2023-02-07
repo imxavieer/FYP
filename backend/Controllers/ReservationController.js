@@ -10,7 +10,7 @@ const {
 const { json } = require("body-parser");
 
 require("dotenv").config();
-const adminInterfaceLink = process.env.ADMIN_INTERFACE
+const adminInterfaceLink = process.env.ADMIN_INTERFACE;
 const t_list = [
     "1200",
     "1230",
@@ -94,7 +94,6 @@ const two_pax_table = [1, 2, 3, 4, 5, 6, 7];
 const four_pax_table = [8, 9, 10, 11, 12, 13, 14, 15, 16];
 
 const getAvailableTiming = async (req, res, next) => {
-    
     /*
     const test = new Reservation({
         email: "shchong.2020@gmail.com",
@@ -110,7 +109,6 @@ const getAvailableTiming = async (req, res, next) => {
     res.json({message: "successful"});
     */
 
-    
     const error = validationResult(req);
 
     if (!error.isEmpty()) {
@@ -154,17 +152,16 @@ const getAvailableTiming = async (req, res, next) => {
     for (let j = 0; j < filtered_rows.length; j++) {
         let filtered_row = filtered_rows[j];
         let array = filtered_row.table_id;
-        array.map(function(element){
-            if(two_pax_table.includes(element)){
+        array.map(function (element) {
+            if (two_pax_table.includes(element)) {
                 filtered_row.table_id = element;
                 first_list.push(filtered_row);
-            }else{
+            } else {
                 filtered_row.table_id = element;
                 second_list.push(filtered_row);
             }
         });
     }
-
 
     //We now have two filtered rows: first_list and second_list
 
@@ -389,7 +386,6 @@ const getAvailableTiming = async (req, res, next) => {
 
         res.json({ return_list });
     }
-    
 };
 
 const createReservation = async (req, res, next) => {
@@ -452,7 +448,12 @@ const createReservation = async (req, res, next) => {
                 // if both succeed, send email
                 const originalReservation = results[0].value;
                 console.log("originalReservation", originalReservation);
-                await sendConfirmation(originalReservation,adminInterfaceLink+"/reservation/cancel/"+originalReservation._id)
+                await sendConfirmation(
+                    originalReservation,
+                    adminInterfaceLink +
+                        "/reservation/cancel/" +
+                        originalReservation._id
+                )
                     .then(() => {
                         return res.json({
                             message: "Reservation created successfully",
@@ -478,15 +479,48 @@ const testEmailConfirmation = async (req, res) => {
         date_of_visit: new Date().toISOString(),
         table_id: "11",
     };
-    await sendConfirmation(fakeReservation,adminInterfaceLink+"/reservation/cancel/"+"reservationId").then(() => {
+    await sendConfirmation(
+        fakeReservation,
+        adminInterfaceLink + "/reservation/cancel/" + "reservationId"
+    ).then(() => {
         return res.status(200).json({
             message: "Email sent",
         });
     });
 };
 
+const cancelReservation = async (req, res) => {
+    const { reservationId } = req.params;
+    try {
+        const existingReservation = await Reservation.findById(reservationId);
+        if (!existingReservation) {
+            return res.status(404).json({
+                message: "Reservation not found.",
+            });
+        }
+        await Reservation.deleteOne(existingReservation)
+            .then(() => {
+                return res.status(200).json({
+                    message: "Reservation deleted",
+                });
+            })
+            .catch((err) => {
+                console.log(err);
+                return res.status(500).json({
+                    message: "Failed to delete",
+                });
+            });
+    } catch (err) {
+        console.warn(err);
+        return res.status(500).json({
+            message: "Failed to delete",
+        });
+    }
+};
+
 module.exports = {
     getAvailableTiming,
     createReservation,
+    cancelReservation,
     testEmailConfirmation,
 };

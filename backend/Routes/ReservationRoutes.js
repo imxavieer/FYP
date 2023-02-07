@@ -14,6 +14,8 @@ router.get(
 
 router.post("/", [], ReservationController.createReservation);
 
-router.post("/confirm",[],ReservationController.testEmailConfirmation)
+router.post("/confirm", [], ReservationController.testEmailConfirmation);
+
+router.delete("/:reservationId", [], ReservationController.cancelReservation);
 
 module.exports = router;
