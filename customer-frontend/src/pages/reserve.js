@@ -32,6 +32,9 @@ const BookTableButton = styled(Button)({
 });
 
 const NumberofPax = styled(FormControl)({
+    '& label': {
+        color: '#F49300',
+    },
     '& label.Mui-focused': {
       color: '#F49300',
     },
@@ -52,9 +55,15 @@ const NumberofPax = styled(FormControl)({
   });
 
 const DatePicker = styled(Grid)({
+    '& label': {
+        color: '#F49300',
+    },
     '& label.Mui-focused': {
       color: '#F49300',
     },
+    // '& .MuiInputBase-root': {
+    //     color: 'green',
+    // },
     '& .MuiInput-underline:after': {
       borderBottomColor: '#F49300',
     },
@@ -72,8 +81,14 @@ const DatePicker = styled(Grid)({
   });
 
 const TimePicker = styled(FormControl)({
+    '& label': {
+        color: '#F49300',
+    },
     '& label.Mui-focused': {
         color: '#F49300',
+    },
+    '& .MuiInput-underline': {
+        borderBottomColor: '#F49300',
     },
     '& .MuiInput-underline:after': {
         borderBottomColor: '#F49300',
@@ -87,6 +102,26 @@ const TimePicker = styled(FormControl)({
         },
         '&.Mui-focused fieldset': {
         borderColor: '#F49300',
+        },
+    },
+});
+
+const EmailAddress = styled(TextField)({
+    '& label.Mui-focused': {
+        color: '#F49300',
+    },
+    '& .MuiInput-underline:after': {
+        borderBottomColor: '#F49300',
+    },
+    '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+            borderColor: '#F49300',
+        },
+        '&:hover fieldset': {
+            borderColor: '#F49300',
+        },
+        '&.Mui-focused fieldset': {
+            borderColor: '#F49300',
         },
     },
 });
@@ -114,7 +149,7 @@ function Reserve() {
     const openConfirmationPaper = () => setShowPaper(true);
 
     return (
-        <React.Fragment>
+        <React.Fragment sx={{color: 'black'}}>
             <Grid container className="reservationText">
                 <Box textAlign={"center"}>
                     <h5>RESERVATION</h5>
@@ -133,11 +168,7 @@ function Reserve() {
             <Box sx={{ minWidth: 120 }}>
                 <Grid container padding={5}>
                     <Grid item xs={3}>
-                        <NumberofPax
-                            sx={{
-                                minWidth: 300,
-                            }}
-                        >
+                        <NumberofPax sx={{ minWidth: 300}}>
                             <InputLabel id="num-pax-label">
                                 Number of People
                             </InputLabel>
@@ -174,9 +205,7 @@ function Reserve() {
                                     renderInput={(params) => (
                                         <TextField {...params} />
                                     )}
-                                    sx={{
-                                        minWidth: 300,
-                                    }}
+                                    sx={{minWidth: 300}}
                                 />
                             </Stack>
                         </LocalizationProvider>
@@ -254,13 +283,14 @@ function Reserve() {
                             <Grid container>
                                 <Grid item xs={4}></Grid>
                                 <Grid item xs={4}>
-                                    <TextField
+                                    <EmailAddress
                                         required
                                         id="standard-required"
                                         label="Email Address"
                                         defaultValue=""
                                         variant="standard"
-                                    />
+                                        focused
+                                    ></EmailAddress>
                                 </Grid>
                                 <Grid item xs={4}>
                                     <BookTableButton variant="contained">
