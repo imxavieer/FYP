@@ -10,14 +10,6 @@ const {
 const { json } = require("body-parser");
 
 const t_list = [
-    "0800",
-    "0830",
-    "0900",
-    "0930",
-    "1000",
-    "1030",
-    "1100",
-    "1130",
     "1200",
     "1230",
     "1300",
@@ -100,22 +92,23 @@ const two_pax_table = [1, 2, 3, 4, 5, 6, 7];
 const four_pax_table = [8, 9, 10, 11, 12, 13, 14, 15, 16];
 
 const getAvailableTiming = async (req, res, next) => {
+    
     /*
     const test = new Reservation({
         email: "shchong.2020@gmail.com",
         name: "sanghil",
-        pax: 4,
-        date_of_visit: "2023-01-24 0800",
-        table_id: 16,
+        pax: 5,
+        date_of_visit: "2023-01-24 1200",
+        table_id: [4,11],
         status: 1
     });
 
     test.save();
     
     res.json({message: "successful"});
-    
     */
 
+    
     const error = validationResult(req);
 
     if (!error.isEmpty()) {
@@ -155,29 +148,21 @@ const getAvailableTiming = async (req, res, next) => {
     let first_list = []; //Stores all the 2 pax table IDs from filtered_rows
     let second_list = []; //Stores all the 4 pax table IDs from filtered rows
 
-    //Loop two_pax_table against the filtered rows and add all the rows that have the table id of 2 pax tables
-    for (let i = 0; i < two_pax_table.length; i++) {
-        let id = two_pax_table[i];
-        for (let j = 0; j < filtered_rows.length; j++) {
-            let filtered_row = filtered_rows[j];
-            let id_fetched = filtered_row.table_id;
-            if (id === id_fetched) {
+    //Loop two_pax_table against the filtered rows and add all the rows that have the table id of 2 pax tables (change)
+    for (let j = 0; j < filtered_rows.length; j++) {
+        let filtered_row = filtered_rows[j];
+        let array = filtered_row.table_id;
+        array.map(function(element){
+            if(two_pax_table.includes(element)){
+                filtered_row.table_id = element;
                 first_list.push(filtered_row);
-            }
-        }
-    }
-
-    //Loop two_pax_table against the filtered rows and add all the rows that have the table id of 4 pax tables
-    for (let i = 0; i < four_pax_table.length; i++) {
-        const id = four_pax_table[i];
-        for (let j = 0; j < filtered_rows.length; j++) {
-            let filtered_row = filtered_rows[j];
-            let table_id = filtered_row.table_id;
-            if (id === table_id) {
+            }else{
+                filtered_row.table_id = element;
                 second_list.push(filtered_row);
             }
-        }
+        });
     }
+
 
     //We now have two filtered rows: first_list and second_list
 
@@ -402,6 +387,7 @@ const getAvailableTiming = async (req, res, next) => {
 
         res.json({ return_list });
     }
+    
 };
 
 const createReservation = async (req, res, next) => {
