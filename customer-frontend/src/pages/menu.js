@@ -82,8 +82,8 @@ function Menu() {
         return (
             <>
                 {/* // THIS CODE IS IMPORTANT UNTIL HERE  */}
-                <div className="home-div" id="menu-div">
-                    <Grid container spacing={2} pt={5}>
+                <div className="menu-div" id="menu-div">
+                    <Grid container spacing={2} pt={5} mb={2} >
                         {menuItems.map((item, index) => {
                             const {
                                 menuImage,
@@ -131,8 +131,8 @@ function Menu() {
                                 background: "#e19200",
                                 color: "white",
                                 margin: "10px auto",
-                                mt: "37px",
-                                mb: "0px",
+                                mt: "30px",
+                                mb: "37px",
                                 display: "flex",
                                 padding: "10px",
                             }}
