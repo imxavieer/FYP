@@ -43,7 +43,7 @@ function Contact() {
       <>
         {/* // THIS CODE IS IMPORTANT UNTIL HERE  */}
 
-        <div id="contact-div" >
+        <div id="contact-div">
           <Grid
             container
             justifyContent={"center"}
@@ -51,7 +51,7 @@ function Contact() {
             padding={"0px 50px 50px 0px"}
             style={{ backgroundColor: "#d5dde8" }}>
             
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} mt={6}>
               <Box textAlign={"center"}>
                 <h2>Locate Us</h2>
                 <p>Kindly refer to the interactive map below to find us!</p>
@@ -62,7 +62,7 @@ function Contact() {
               </Box>
             </Grid>
 
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} mt={6}>
               <Box textAlign={"center"}>
                 <h2>More Information</h2>
                 <p>
