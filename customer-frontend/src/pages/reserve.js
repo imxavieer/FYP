@@ -1,6 +1,6 @@
 import * as React from "react";
 import { styled } from "@mui/material/styles";
-import "./reserve.css";
+import "./reserve.css"
 
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
