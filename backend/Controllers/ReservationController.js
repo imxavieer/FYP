@@ -9,6 +9,8 @@ const {
 } = require("../HelperFunctions/DateTimeFormattingFunctions");
 const { json } = require("body-parser");
 
+require("dotenv").config();
+const adminInterfaceLink = process.env.ADMIN_INTERFACE
 const t_list = [
     "1200",
     "1230",
@@ -450,7 +452,7 @@ const createReservation = async (req, res, next) => {
                 // if both succeed, send email
                 const originalReservation = results[0].value;
                 console.log("originalReservation", originalReservation);
-                await sendConfirmation(originalReservation)
+                await sendConfirmation(originalReservation,adminInterfaceLink+"/reservation/cancel/"+originalReservation._id)
                     .then(() => {
                         return res.json({
                             message: "Reservation created successfully",
@@ -476,7 +478,7 @@ const testEmailConfirmation = async (req, res) => {
         date_of_visit: new Date().toISOString(),
         table_id: "11",
     };
-    await sendConfirmation(fakeReservation).then(() => {
+    await sendConfirmation(fakeReservation,adminInterfaceLink+"/reservation/cancel/"+"reservationId").then(() => {
         return res.status(200).json({
             message: "Email sent",
         });

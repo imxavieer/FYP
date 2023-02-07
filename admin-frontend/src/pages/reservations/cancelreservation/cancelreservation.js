@@ -8,7 +8,7 @@ function CancelReservation() {
     const cancelReservation = async () => {
         await axios
             .delete(
-                `${process.env.REACT_APP_BACKEND_URL}/reservation/${reservationId}`
+                `${process.env.REACT_APP_BACKEND_URL}reservation/${reservationId}`
             )
             .then(() => {
                 setLoading(false);
