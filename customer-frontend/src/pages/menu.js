@@ -1,10 +1,11 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { Grid, Button, Link } from "@mui/material";
+import { Grid, Button, Link, Box } from "@mui/material";
 import MenuItem from "../components/menu/MenuItem";
 import MenuPdf from "../documents/menu.pdf";
 import "./menu.css";
+
 function Menu() {
     // MenuItem
     // menuImage --> url of the image
@@ -79,10 +80,31 @@ function Menu() {
         return <></>;
     } else {
         return (
-            <>
-                {/* // THIS CODE IS IMPORTANT UNTIL HERE  */}
-                <div className="home-div" id="menu-div">
-                    <Grid container spacing={2}>
+            <div className="menu-div" id="menu-div">
+                <h1 className="menuTitle">Menu</h1>
+                <Box
+                    sx={{
+                        width:{
+                            xs:"100%",
+                            sm:"80%"
+                        },
+                        margin:"10px auto"
+                        // margin: {
+                        //     xs: "0 auto",
+                        //     sm: "10px",
+                        // },
+                        // background: {
+                        //     xs: "red",
+                        //     sm: "blue",
+                        // },
+                        // padding:{
+                        //     xs:"0",
+                        //     sm:"10"
+                        // }
+                    }}
+                >
+                    <Grid container spacing={2} id="menuItems" 
+                    >
                         {menuItems.map((item, index) => {
                             const {
                                 menuImage,
@@ -100,45 +122,30 @@ function Menu() {
                                 />
                             );
                         })}
-                        {/* <Grid item xs={12}>
-                    <Link target={"_blank"} href={MenuPdf}>
-                        <Button
-                            variant="filled"
-                            className={"actionButton"}
-                            sx={{
-                                background: "#e19200",
-                                color: "white",
-                                margin: "10px auto",
-                            }}
-                        >
-                            View Full Menu
-                        </Button>
-                    </Link>
-                </Grid> */}
                     </Grid>
-                    <Link
-                        target={"_blank"}
-                        href={MenuPdf}
+                </Box>
+                <Link
+                    target={"_blank"}
+                    href={MenuPdf}
+                    sx={{
+                        textDecoration: "none",
+                    }}
+                >
+                    <Button
+                        variant="filled"
+                        className={"actionButton"}
                         sx={{
-                            textDecoration: "none",
+                            background: "#e19200",
+                            color: "white",
+                            margin: "10px auto",
+                            display: "flex",
+                            padding: "10px",
                         }}
                     >
-                        <Button
-                            variant="filled"
-                            className={"actionButton"}
-                            sx={{
-                                background: "#e19200",
-                                color: "white",
-                                margin: "10px auto",
-                                display: "flex",
-                                padding: "10px",
-                            }}
-                        >
-                            View Full Menu
-                        </Button>
-                    </Link>
-                </div>
-            </>
+                        View Full Menu
+                    </Button>
+                </Link>
+            </div>
         );
     }
 }

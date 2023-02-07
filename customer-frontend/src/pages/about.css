@@ -19,14 +19,14 @@ no-margin {
 
 .aboutPic {
     z-index: 5;  /* needs this to appear above the bg */
-    margin-top: 50px;
+    /* margin-top: 50px; */
     width: 100%;
     /* don't change this or else pic will break */
     height: auto; 
 }
 
 .about-div {
-    top: -70px;
+    /* top: -70px; */
     position: relative;
     margin-left: auto;
     margin-right: auto;

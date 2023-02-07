@@ -3,12 +3,14 @@ import Footer from "../components/Footer";
 import { useLocation } from "react-router-dom";
 import "./about.css";
 import { useEffect } from "react";
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import aboutPic from '../HoneyNightBG.png';
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import aboutPic from "../HoneyNightBG.png";
 
-
+function scrollToMenu() {
+  document.getElementById("menu-div").scrollIntoView({ behavior: "smooth" });
+}
 
 function About() {
   // THIS CODE IS IMPORTANT FROM HERE
@@ -49,25 +51,34 @@ function About() {
               >
                 <Grid item xs={12} sm={5} mt={5}>
                   <p class="small-text">
-                    <u>Our Story  </u>
+                    <u>Our Story </u>
                   </p>
                   <h1>Honey Night</h1>
-                  <p>We intend to spread korean cuisine and make it accessible for everyone</p>
+                  <p>
+                    We intend to spread korean cuisine and make it accessible
+                    for everyone
+                  </p>
                   <p>
                     <span style={{ color: "#e00202" }}>
                       No GST. No Service Charge.
                     </span>
                   </p>
                   <p class="small-text">Enquire now: 6677 2946</p>
-                  <Button variant="outlined" color="warning"><a href="/#menu-div">View Menu</a></Button>
+                  <Button
+                    variant="outlined"
+                    color="warning"
+                    onClick={() => {
+                      scrollToMenu();
+                    }}
+                  >
+                    View Menu
+                  </Button>
                 </Grid>
-
 
                 <Grid item sm={5} className="hidden-mobile" mt={5}>
                   {/* <p>this text is to be replaced with honeynight picture</p> */}
                   <img class="aboutPic" src={aboutPic}></img>
-                </Grid>  
-
+                </Grid>
               </Grid>
             </Box>
             {/* <p>
