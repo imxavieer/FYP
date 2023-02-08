@@ -6,6 +6,7 @@ const { sendConfirmation } = require("../HelperFunctions/EmailFunctions");
 const Reservation = require("../Models/ReservationModel");
 const {
     convertToDateTimeFormat,
+    convertToDateTimeObject,
 } = require("../HelperFunctions/DateTimeFormattingFunctions");
 const { json } = require("body-parser");
 
@@ -516,18 +517,34 @@ const cancelReservation = async (req, res) => {
                 message: "Reservation not found.",
             });
         }
-        await Reservation.deleteOne(existingReservation)
-            .then(() => {
-                return res.status(200).json({
-                    message: "Reservation deleted",
-                });
+        const currentDate = new Date();
+        const reservationDate = convertToDateTimeObject(
+            existingReservation.date_of_visit
+        );
+        if(currentDate >= reservationDate){
+            return res.status(500).json({
+                message:"Too late to cancel"
             })
-            .catch((err) => {
-                console.log(err);
-                return res.status(500).json({
-                    message: "Failed to delete",
-                });
-            });
+        }
+        // return res.json({
+        //     original: existingReservation.date_of_visit,
+        //     reservationDate,
+        //     reservationDateFlip,
+        // });
+
+
+        // await Reservation.deleteOne(existingReservation)
+        //     .then(() => {
+        //         return res.status(200).json({
+        //             message: "Reservation deleted",
+        //         });
+        //     })
+        //     .catch((err) => {
+        //         console.log(err);
+        //         return res.status(500).json({
+        //             message: "Failed to delete",
+        //         });
+        //     });
     } catch (err) {
         console.warn(err);
         return res.status(500).json({
