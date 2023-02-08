@@ -6,6 +6,7 @@ const changeSingleDigit = (number) => {
 };
 
 const convertToDateTimeFormat = (dateTimeObject) => {
+    console.log("dateTimeObject",dateTimeObject)
     const year = dateTimeObject.getFullYear();
     const month = changeSingleDigit(dateTimeObject.getMonth() + 1);
     const day = changeSingleDigit(dateTimeObject.getDate());
