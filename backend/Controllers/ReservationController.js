@@ -6,6 +6,7 @@ const { sendConfirmation } = require("../HelperFunctions/EmailFunctions");
 const Reservation = require("../Models/ReservationModel");
 const {
     convertToDateTimeFormat,
+    convertToDateTimeObject,
 } = require("../HelperFunctions/DateTimeFormattingFunctions");
 const { json } = require("body-parser");
 
@@ -405,17 +406,9 @@ const createReservation = async (req, res, next) => {
             Date.parse(date_of_visit) - 8 * 60 * 60 * 1000;
         // first 30 min
         const originalDateTime = new Date(originalDateTimeInMs);
-        console.log("originalDateTime", originalDateTime);
         // second 30 min
         const dummyDateTimeInMs = originalDateTimeInMs + 30 * 60 * 1000;
         const dummyDateTime = new Date(dummyDateTimeInMs);
-
-        // for testing only
-        // return res.json({
-        //     message: "OK",
-        //     originalDateTime: originalDateTime.toUTCString(),
-        //     dummyDateTime,
-        // });
 
         const newReservation = new Reservation({
             email,
@@ -516,7 +509,32 @@ const cancelReservation = async (req, res) => {
                 message: "Reservation not found.",
             });
         }
-        await Reservation.deleteOne(existingReservation)
+        const { email, name, pax, date_of_visit, table_id } =
+            existingReservation;
+        const currentDate = new Date();
+        const reservationDate = convertToDateTimeObject(date_of_visit);
+        if (currentDate >= reservationDate) {
+            return res.status(500).json({
+                message: "Too late to cancel",
+            });
+        }
+        const dummyReservation = await Reservation.findOne({
+            email,
+            name,
+            pax,
+            date_of_visit: convertToDateTimeFormat(
+                new Date(Date.parse(reservationDate) + 30 * 60 * 1000)
+            ),
+            table_id,
+        });
+        const deleteOriginalReservation = await Reservation.deleteOne(
+            existingReservation
+        );
+        const deleteDummyReservation = await Reservation.deleteOne(
+            dummyReservation
+        );
+
+        Promise.allSettled([deleteOriginalReservation, deleteDummyReservation])
             .then(() => {
                 return res.status(200).json({
                     message: "Reservation deleted",
@@ -528,6 +546,7 @@ const cancelReservation = async (req, res) => {
                     message: "Failed to delete",
                 });
             });
+
     } catch (err) {
         console.warn(err);
         return res.status(500).json({
