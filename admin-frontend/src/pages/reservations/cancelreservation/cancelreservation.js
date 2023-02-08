@@ -1,6 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import {
+    Card,
+    Typography,
+    Table,
+    TableBody,
+    TableContainer,
+    TableHead,
+    TableRow,
+    TableCell,
+    Paper,
+    Button,
+} from "@mui/material";
+import "./cancelreservation.css";
 function CancelReservation() {
     const [loading, setLoading] = useState(true);
     // 2 successes --> loading & deleting
@@ -8,6 +21,8 @@ function CancelReservation() {
     const [loadSuccess, setLoadSuccess] = useState(false);
     // delete success --> to delete reservation
     const [deleteSuccess, setDeleteSuccess] = useState(false);
+
+    const [triggeredDelete, setTriggeredDelete] = useState(false);
     const { reservationId } = useParams();
     const [reservation, setReservation] = useState(null);
 
@@ -19,7 +34,8 @@ function CancelReservation() {
                 `${process.env.REACT_APP_BACKEND_URL}reservation/${reservationId}`
             )
             .then((result) => {
-                setReservation(result);
+                console.log(result);
+                setReservation(result.data);
                 setLoading(false);
                 setLoadSuccess(true);
             })
@@ -35,35 +51,151 @@ function CancelReservation() {
                 `${process.env.REACT_APP_BACKEND_URL}reservation/${reservationId}`
             )
             .then(() => {
+                setTriggeredDelete(true);
                 setDeleteSuccess(true);
             })
             .catch(() => {
-                setDeleteSuccess(false)
+                setTriggeredDelete(false);
+                setDeleteSuccess(false);
+                alert("Failed to delete. Please try again later.");
             });
     };
     useEffect(() => {
         getReservationById();
     }, []);
     return (
-        <div>
+        <Card
+            sx={{
+                margin: "10px auto",
+                padding: "10px",
+                width: {
+                    xs: "100vw",
+                    sm: "80vw",
+                    md: "70vw",
+                    lg: "50vw",
+                },
+                background: "black",
+                color: "white",
+            }}
+        >
             {loading ? (
                 <>
                     <h1>Loading ...</h1>
                 </>
             ) : (
                 <>
-                    {loadSuccess ? (
+                    {loadSuccess && !triggeredDelete ? (
                         <>
-                            <h1>Reservation found</h1>
+                            <Typography variant="h4">Reservation</Typography>
+                            <Typography variant="h5">
+                                Below contains the details of your current
+                                Reservation
+                            </Typography>
+                            <TableContainer
+                                component={Paper}
+                                sx={{ margin: "10px auto" }}
+                            >
+                                <Table>
+                                    <TableBody>
+                                        {/* name */}
+                                        <TableRow>
+                                            <TableCell align="right">
+                                                Customer Name
+                                            </TableCell>
+                                            <TableCell align="left">
+                                                {reservation.name}
+                                            </TableCell>
+                                        </TableRow>
+
+                                        {/* reference ID */}
+                                        <TableRow>
+                                            <TableCell align="right">
+                                                Reference ID
+                                            </TableCell>
+                                            <TableCell align="left">
+                                                {reservation._id}
+                                            </TableCell>
+                                        </TableRow>
+
+                                        {/* reference ID */}
+                                        <TableRow>
+                                            <TableCell align="right">
+                                                Reservation Date
+                                            </TableCell>
+                                            <TableCell align="left">
+                                                {reservation.date_of_visit}
+                                            </TableCell>
+                                        </TableRow>
+
+                                        {/* pax */}
+                                        <TableRow>
+                                            <TableCell align="right">
+                                                Pax
+                                            </TableCell>
+                                            <TableCell align="left">
+                                                {reservation.pax}
+                                            </TableCell>
+                                        </TableRow>
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                            <Typography variant="h6">
+                                Are you sure you want to delete your
+                                reservation? This cannot be undone.
+                            </Typography>
+                            <Button
+                                variant="filled"
+                                sx={{
+                                    background: "#F49300",
+                                    display: "flex",
+                                    margin: "10px auto",
+                                    padding: "5px",
+                                    width: "50%",
+                                }}
+                                onClick={() => {
+                                    cancelReservation();
+                                }}
+                            >
+                                Delete
+                            </Button>
+                            <Typography
+                                variant="subtitle1"
+                                sx={{
+                                    margin: "10px auto",
+                                    padding: "5px",
+                                    width: "100%",
+                                }}
+                                textAlign="center"
+                            >
+                                Close this tab to cancel
+                            </Typography>
                         </>
                     ) : (
+                        <></>
+                    )}
+                    {!loadSuccess && !triggeredDelete ? (
                         <>
-                            <h1>Reservation Not found</h1>
+                            {" "}
+                            <Typography variant="h4">
+                                Reservation not found.
+                            </Typography>
                         </>
+                    ) : (
+                        <></>
+                    )}
+
+                    {triggeredDelete && deleteSuccess ? (
+                        <>
+                            <Typography variant="h4">
+                                Deleted successfully. You may close this tab
+                            </Typography>
+                        </>
+                    ) : (
+                        <></>
                     )}
                 </>
             )}
-        </div>
+        </Card>
     );
 }
 
