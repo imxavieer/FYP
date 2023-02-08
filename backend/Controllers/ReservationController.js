@@ -11,6 +11,7 @@ const { json } = require("body-parser");
 
 require("dotenv").config();
 const adminInterfaceLink = process.env.ADMIN_INTERFACE;
+
 const t_list = [
     "1200",
     "1230",
@@ -92,6 +93,8 @@ const combine_rule = {
 const two_pax_table = [1, 2, 3, 4, 5, 6, 7];
 
 const four_pax_table = [8, 9, 10, 11, 12, 13, 14, 15, 16];
+
+// ========================main functions========================
 
 const getAvailableTiming = async (req, res, next) => {
     /*
@@ -471,6 +474,21 @@ const createReservation = async (req, res, next) => {
     }
 };
 
+const getReservationById = async (req, res, next) => {
+    const { reservationId } = req.params;
+    try {
+        result = await Reservation.findById(reservationId);
+        if (!result) {
+            return res.status(404).json({ message: "not found" });
+        }
+        return res.status(200).json(result);
+    } catch (err) {
+        return res.status(500).json({
+            message: err,
+        });
+    }
+};
+
 const testEmailConfirmation = async (req, res) => {
     const fakeReservation = {
         email: "sm.lee.2020@smu.edu.sg",
@@ -523,4 +541,5 @@ module.exports = {
     createReservation,
     cancelReservation,
     testEmailConfirmation,
+    getReservationById,
 };
