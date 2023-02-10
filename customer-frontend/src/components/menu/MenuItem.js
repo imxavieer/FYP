@@ -50,7 +50,7 @@ function MenuItem({ menuImage, menuItemName, menuItemPrice }) {
                     height,
                     margin: "0 auto",
                     display: "flex",
-                    alignItems: "end",
+                    alignItems: "start",
                 }}
                 onMouseEnter={() => {
                     setIsHovered(true);
@@ -66,7 +66,6 @@ function MenuItem({ menuImage, menuItemName, menuItemPrice }) {
                 >
                     {isHovered ? (
                         <>
-                            {" "}
                             <Typography
                                 variant={"h6"}
                                 textAlign={"center"}
@@ -75,7 +74,17 @@ function MenuItem({ menuImage, menuItemName, menuItemPrice }) {
                                     // background: "rgba(0,0,0,0.5)",
                                 }}
                             >
-                                {menuItemName} {menuItemPrice}
+                                {menuItemName}
+                            </Typography>
+                            <Typography
+                                variant={"h6"}
+                                textAlign={"center"}
+                                style={{
+                                    width: "100%",
+                                    // background: "rgba(0,0,0,0.5)",
+                                }}
+                            >
+                                {menuItemPrice}
                             </Typography>
                         </>
                     ) : (
