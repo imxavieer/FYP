@@ -1,7 +1,7 @@
 .popupContainer {
     position: fixed;
     bottom: 30vh;
-    right: 0px;
+    right: -80px;
     padding: 20px;
     background: rgb(141, 95, 8);
     color: white;
@@ -9,11 +9,22 @@
     border-radius: 5px 0px 0px 5px;
     opacity: 0.7;
     transition: 0.3s;
+    width: 150px;
+    height: 300px;
+    writing-mode: vertical-lr;
+    text-orientation: sideways;
+    text-align: center;
+    font-size:25px;
 }
-.popupContainer:hover{
-    opacity: 1;
-    cursor:pointer;
+
+.popupContainer:hover {
+    cursor: pointer;
+    right: 0px;
+    writing-mode: horizontal-tb;
+    text-orientation: sideways;
+    /* width:250px; */
 }
+
 .iconContainer {
     width: 100%;
 }

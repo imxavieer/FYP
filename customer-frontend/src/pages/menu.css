@@ -4,13 +4,13 @@
 
 .menuTitle {
     text-align: center;
+    font-family: 'SeoulHangangC';
 }
 
-
-.menu h1 {
+#menu-div h1 {
     text-align: center;
-    font-family: 'Quicksand', sans-serif;
-    font-size: 40px;
+    font-family: 'SeoulHangangC';
+    font-size: 50px;
 }
 
 .home-div {
