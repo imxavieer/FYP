@@ -96,6 +96,9 @@ function Menu() {
                         rowSpacing={2}
                         columnSpacing={2}
                         id="menuItems"
+                        sx = {{
+                            padding:"10px"
+                        }}
                     >
                         {menuItems.map((item, index) => {
                             const {
