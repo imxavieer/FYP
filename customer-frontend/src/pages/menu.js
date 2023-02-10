@@ -89,10 +89,12 @@ function Menu() {
                         padding: "10px",
                     }}
                 >
-                    <Grid container 
-                    rowSpacing={2} 
-                    columnSpacing={2}
-                    id="menuItems">
+                    <Grid
+                        container
+                        rowSpacing={2}
+                        columnSpacing={2}
+                        id="menuItems"
+                    >
                         {menuItems.map((item, index) => {
                             const {
                                 menuImage,

@@ -14,26 +14,61 @@ import "./MenuItem.css";
 // menuItemPrice --> price of the menu item
 // menuItemDescription --> description of the menu item
 
+const imageProperties = {
+    backgroundSize: {
+        xs: "100% 400px",
+        sm: "100% 300px",
+        md: "100% 400px",
+        lg: "100% 450px",
+    },
+    height: {
+        xs: "400px",
+        sm: "300px",
+        md: "400px",
+        lg: "450px",
+    },
+};
+
 function MenuItem({ menuImage, menuItemName, menuItemPrice }) {
+    const { backgroundSize, height } = imageProperties;
     return (
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={6} md={4}>
             <Card
                 className="menuItemContainer"
                 sx={{
-                    background: "#2f3133",
+                    backgroundImage: `url(${menuImage})`,
                     transition: "background 0.3s, color 0.3s",
                     "&:hover": {
-                        background: "#F49300",
+                        background: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),url(${menuImage}) `,
                         color: "white",
-                        // boxShadow:"8px 8px 8px #808080"
+                        backgroundSize,
+                        height,
                     },
+                    backgroundSize,
+                    height,
                     margin: "0 auto",
+                    display: "flex",
+                    alignItems: "end",
+                    color: "orange",
                 }}
             >
-                <CardMedia  src={menuImage} >
-                  <img src={menuImage} className="menuItemImage" />
-                </CardMedia>
-                <CardContent></CardContent>
+                <CardContent
+                    sx={{
+                        width: "100%",
+                    }}
+                >
+                    <Typography
+                        variant={"h6"}
+                        textAlign={"center"}
+                        style={{
+                            width: "100%",
+                            background: "rgba(0,0,0,0.5)",
+
+                        }}
+                    >
+                        {menuItemName}
+                    </Typography>
+                </CardContent>
                 {/* <Grid container>
                     <Grid item xs={12} md={6}>
                         <img src={menuImage} className="menuItemImage" />
