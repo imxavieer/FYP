@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { Grid, Button, Link, Box } from "@mui/material";
+import { Grid, Button, Link, Box, Toolbar } from "@mui/material";
 import MenuItem from "../components/menu/MenuItem";
 import MenuPdf from "../documents/menu.pdf";
 import "./menu.css";
@@ -81,30 +81,18 @@ function Menu() {
     } else {
         return (
             <div className="menu-div" id="menu-div">
+                <Toolbar />
+                <h2 className="menuTitle"> Top 6 items </h2>
                 <h1 className="menuTitle">Menu</h1>
                 <Box
                     sx={{
-                        width:{
-                            xs:"100%",
-                            sm:"80%"
-                        },
-                        margin:"10px auto"
-                        // margin: {
-                        //     xs: "0 auto",
-                        //     sm: "10px",
-                        // },
-                        // background: {
-                        //     xs: "red",
-                        //     sm: "blue",
-                        // },
-                        // padding:{
-                        //     xs:"0",
-                        //     sm:"10"
-                        // }
+                        padding: "10px",
                     }}
                 >
-                    <Grid container spacing={2} id="menuItems" 
-                    >
+                    <Grid container 
+                    rowSpacing={2} 
+                    columnSpacing={2}
+                    id="menuItems">
                         {menuItems.map((item, index) => {
                             const {
                                 menuImage,

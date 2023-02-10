@@ -2,15 +2,15 @@
     padding: 10px;
 }
 
-.menuTitle {
-    text-align: center;
-}
-
 
 .menu h1 {
     text-align: center;
     font-family: 'Quicksand', sans-serif;
     font-size: 40px;
+}
+.menuTitle {
+    text-align: center;
+    font-family: 'SeoulHangangC';
 }
 
 .home-div {
