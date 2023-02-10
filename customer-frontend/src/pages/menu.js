@@ -82,7 +82,9 @@ function Menu() {
         return (
             <div className="menu-div" id="menu-div">
                 <Toolbar />
-                <h2 className="menuTitle"> Top 6 items </h2>
+                <h2 className="menuTitle" style = {{
+                    color:"orange"
+                }}> Top 6 Items </h2>
                 <h1 className="menuTitle">Menu</h1>
                 <Box
                     sx={{
