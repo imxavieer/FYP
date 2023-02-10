@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     Grid,
     Card,
@@ -31,6 +31,8 @@ const imageProperties = {
 
 function MenuItem({ menuImage, menuItemName, menuItemPrice }) {
     const { backgroundSize, height } = imageProperties;
+    const [isHovered, setIsHovered] = useState(false);
+
     return (
         <Grid item xs={12} sm={6} md={4}>
             <Card
@@ -49,7 +51,12 @@ function MenuItem({ menuImage, menuItemName, menuItemPrice }) {
                     margin: "0 auto",
                     display: "flex",
                     alignItems: "end",
-                    color: "orange",
+                }}
+                onMouseEnter={() => {
+                    setIsHovered(true);
+                }}
+                onMouseLeave={() => {
+                    setIsHovered(false);
                 }}
             >
                 <CardContent
@@ -57,17 +64,23 @@ function MenuItem({ menuImage, menuItemName, menuItemPrice }) {
                         width: "100%",
                     }}
                 >
-                    <Typography
-                        variant={"h6"}
-                        textAlign={"center"}
-                        style={{
-                            width: "100%",
-                            background: "rgba(0,0,0,0.5)",
-
-                        }}
-                    >
-                        {menuItemName}
-                    </Typography>
+                    {isHovered ? (
+                        <>
+                            {" "}
+                            <Typography
+                                variant={"h6"}
+                                textAlign={"center"}
+                                style={{
+                                    width: "100%",
+                                    // background: "rgba(0,0,0,0.5)",
+                                }}
+                            >
+                                {menuItemName} {menuItemPrice}
+                            </Typography>
+                        </>
+                    ) : (
+                        <></>
+                    )}
                 </CardContent>
                 {/* <Grid container>
                     <Grid item xs={12} md={6}>
