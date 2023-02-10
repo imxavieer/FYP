@@ -63,7 +63,7 @@ function Contact() {
               <Grid item xs={12} sm={8} mt={6}>
                 <Box textAlign={"center"}>
                   <div id="Map">
-                        <iframe title="Googlemap" style={{ width: "95%", height: "565px"}} src="https://maps.google.com/maps?q=Honey%20Night&t=k&z=17&ie=UTF8&iwloc=&output=embed" frameborder="0"  marginheight="0" marginwidth="0">
+                        <iframe title="Googlemap" style={{ width: "95%", minHeight: "565px"}} src="https://maps.google.com/maps?q=Honey%20Night&t=k&z=17&ie=UTF8&iwloc=&output=embed" frameborder="0"  marginheight="0" marginwidth="0">
                         </iframe>
                   </div>
                 </Box>
