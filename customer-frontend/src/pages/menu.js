@@ -82,43 +82,56 @@ function Menu() {
         return (
             <div className="menu-div" id="menu-div">
                 <Toolbar />
-                <h2 className="menuTitle" style = {{
-                    color:"orange"
-                }}> Top 6 Items </h2>
-                <h1 className="menuTitle">Menu</h1>
-                <Box
-                    sx={{
-                        padding: "10px",
+                <h2
+                    className="menuTitle"
+                    style={{
+                        color: "orange",
                     }}
                 >
-                    <Grid
-                        container
-                        rowSpacing={2}
-                        columnSpacing={2}
-                        id="menuItems"
-                        sx = {{
-                            padding:"10px"
-                        }}
-                    >
-                        {menuItems.map((item, index) => {
-                            const {
-                                menuImage,
-                                menuItemName,
-                                menuItemPrice,
-                                menuItemDescription,
-                            } = item;
-                            return (
-                                <MenuItem
-                                    key={index}
-                                    menuImage={menuImage}
-                                    menuItemName={menuItemName}
-                                    menuItemPrice={menuItemPrice}
-                                    menuItemDescription={menuItemDescription}
-                                />
-                            );
-                        })}
+                    {" "}
+                    Top 6 Items{" "}
+                </h2>
+                <h1 className="menuTitle">Menu</h1>
+                <Grid container justifyContent="space-evenly">
+                    <Grid item xs={12} sm={11} md={11} lg={11.2}>
+                        <Box
+                            sx={{
+                                padding: "10px",
+                            }}
+                        >
+                            <Grid
+                                container
+                                rowSpacing={2}
+                                columnSpacing={2}
+                                id="menuItems"
+                                sx={{
+                                    padding: "10px",
+                                }}
+                            >
+                                {menuItems.map((item, index) => {
+                                    const {
+                                        menuImage,
+                                        menuItemName,
+                                        menuItemPrice,
+                                        menuItemDescription,
+                                    } = item;
+                                    return (
+                                        <MenuItem
+                                            key={index}
+                                            menuImage={menuImage}
+                                            menuItemName={menuItemName}
+                                            menuItemPrice={menuItemPrice}
+                                            menuItemDescription={
+                                                menuItemDescription
+                                            }
+                                        />
+                                    );
+                                })}
+                            </Grid>
+                        </Box>
                     </Grid>
-                </Box>
+                </Grid>
+
                 <Link
                     target={"_blank"}
                     href={MenuPdf}
