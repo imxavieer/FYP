@@ -1,54 +1,57 @@
 .center-text {
-    text-align: center;
+  text-align: center;
 }
 
 .copyright {
-    color: white;
+  color: white;
 }
 
 .company-logo {
-    top: -8px;
-    position: relative;
+  top: -8px;
+  position: relative;
 }
 
 .home-div {
-    /* top: -70px; */
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
+  /* top: -70px; */
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
 }
 
 .home-background {
-    display: block;
-    margin: auto;
-    height: 100%;
-    width: 100%;
-    /* opacity: 0.6; */
-    filter: brightness(40%);
-    position: relative;
+  display: block;
+  margin: auto;
+  height: 100%;
+  width: 100%;
+  filter: brightness(40%);
+  position: relative;
 }
 
 .home-centered-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: 'SeoulHangangC';
-    font-size: 4.6vw;
-    /* color: black; */
-    color: white;
-    text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "SeoulHangangC";
+  font-size: 4.6vw;
+  /* color: black; */
+  color: white;
+  text-align: center;
 }
 
 @font-face {
-    font-family: 'SeoulHangangC';
-    font-weight: 800;
-    font-style: normal;
-    src: url('https://cdn.jsdelivr.net/gh/webfontworld/seoulhangang/SeoulHangangCExtraBold.eot');
-    src: url('https://cdn.jsdelivr.net/gh/webfontworld/seoulhangang/SeoulHangangCExtraBold.eot?#iefix') format('embedded-opentype'),
-        url('https://cdn.jsdelivr.net/gh/webfontworld/seoulhangang/SeoulHangangCExtraBold.woff2') format('woff2'),
-        url('https://cdn.jsdelivr.net/gh/webfontworld/seoulhangang/SeoulHangangCExtraBold.woff') format('woff'),
-        url('https://cdn.jsdelivr.net/gh/webfontworld/seoulhangang/SeoulHangangCExtraBold.ttf') format("truetype");
-    font-display: swap;
+  font-family: "SeoulHangangC";
+  font-weight: 800;
+  font-style: normal;
+  src: url("https://cdn.jsdelivr.net/gh/webfontworld/seoulhangang/SeoulHangangCExtraBold.eot");
+  src: url("https://cdn.jsdelivr.net/gh/webfontworld/seoulhangang/SeoulHangangCExtraBold.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://cdn.jsdelivr.net/gh/webfontworld/seoulhangang/SeoulHangangCExtraBold.woff2")
+      format("woff2"),
+    url("https://cdn.jsdelivr.net/gh/webfontworld/seoulhangang/SeoulHangangCExtraBold.woff")
+      format("woff"),
+    url("https://cdn.jsdelivr.net/gh/webfontworld/seoulhangang/SeoulHangangCExtraBold.ttf")
+      format("truetype");
+  font-display: swap;
 }

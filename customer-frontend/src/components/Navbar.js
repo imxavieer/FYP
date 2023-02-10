@@ -49,10 +49,11 @@ const StyledLink = styled(Link)({
   color: "white",
   fontSize: "1.8vw",
   fontWeight: "bold",
-  marginLeft: 40,
-  marginRight: 40,
+  marginLeft: 83,
+  // marginRight: 40,
   "&:hover": {
-    color: "black",
+    // color: "black",
+    color: "#F49300",
     borderBottom: "1px solid black",
   },
 });
@@ -62,8 +63,8 @@ const StyledLinkTwo = styled(LinkMui)({
   backgroundColor: "#F49300",
   fontSize: "1.8vw",
   fontWeight: "bold",
-  marginLeft: 40,
-  marginRight: 40,
+  marginLeft: 83,
+  // marginRight: 40,
   "&:hover": {
     color: "black",
     borderBottom: "1px solid black",
@@ -112,8 +113,8 @@ function Navbar() {
       <AppBar
         position="sticky"
         style={{
-          background: colorChange ? "#f9d230" : "transparent",
-          boxShadow: "none",
+          background: "#000000",
+          // boxShadow: "none",
         }}
       >
         <CssBaseline />

@@ -28,10 +28,11 @@ function Home() {
         <div className="home-div" id="home-div">
           <img
             src="https://lh3.googleusercontent.com/p/AF1QipM2-1q3y02OLtQRglRivhdYtyLJzKASZgslUM2M=w1080-h608-p-no-v0"
+            // src="../Homepage.jpg"
             alt="honeyNightfood"
             className="home-background"
           />
-          <div class="home-centered-text">
+          <div className="home-centered-text">
             Delivering the most authentic Korean taste
           </div>
         </div>
