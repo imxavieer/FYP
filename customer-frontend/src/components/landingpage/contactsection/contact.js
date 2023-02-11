@@ -1,10 +1,9 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import {Typography,CardContent,Grid,Card,Box} from "@mui/material";
+import { Typography, CardContent, Grid, Card, Box } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import "./contact.css";
-
 
 const darkTheme = createTheme({
     palette: {
@@ -98,6 +97,9 @@ function Contact() {
                                                 variant="h5"
                                                 component="div"
                                                 textAlign={"left"}
+                                                sx={{
+                                                    fontFamily: "SeoulHangangC",
+                                                }}
                                             >
                                                 <b>Business Hours</b>
                                             </Typography>
@@ -119,36 +121,39 @@ function Contact() {
                                                     <u>11:30pm</u>
                                                 </b>{" "}
                                             </Typography>
-
                                             <Typography
-                                                sx={{ mb: 0, mt: 3 }}
                                                 variant="h6"
                                                 component="div"
                                                 textAlign={"left"}
                                             >
                                                 <b>*Note: Closed on Tuesdays</b>
                                             </Typography>
-                                            <hr></hr>
-
+                                            <br />
+                                            <hr />
+                                            <br />
                                             <Typography
                                                 variant="h5"
                                                 component="div"
                                                 textAlign={"left"}
+                                                sx={{
+                                                    fontFamily: "SeoulHangangC",
+                                                }}
                                             >
                                                 <b>Contact Us:</b>
                                             </Typography>
-
                                             <Typography
                                                 sx={{ mt: 1 }}
                                                 variant="h6"
                                                 color="text.primary"
                                                 textAlign={"left"}
+                                                sx={{
+                                                    fontFamily: "SeoulHangangC",
+                                                }}
                                             >
                                                 <b>Email:</b>
                                             </Typography>
-
                                             <Typography
-                                                sx={{ mb: 1}}
+                                                sx={{ mb: 1 }}
                                                 color="text.secondary"
                                                 textAlign={"left"}
                                             >
@@ -165,12 +170,14 @@ function Contact() {
                                                 variant="h6"
                                                 color="text.primary"
                                                 textAlign={"left"}
+                                                sx={{
+                                                    fontFamily: "SeoulHangangC",
+                                                }}
                                             >
                                                 <b>Call/WhatsApp Us:</b>
                                             </Typography>
-
                                             <Typography
-                                                sx={{ mb: 1}}
+                                                sx={{ mb: 1 }}
                                                 color="text.secondary"
                                                 textAlign={"left"}
                                             >
