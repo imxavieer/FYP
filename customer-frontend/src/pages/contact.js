@@ -106,12 +106,14 @@ function Contact() {
                                             <Typography
                                                 variant="h5"
                                                 component="div"
+                                                textAlign={"left"}
                                             >
                                                 <b>Business Hours</b>
                                             </Typography>
                                             <Typography
                                                 sx={{ mb: 1, mt: 1 }}
                                                 color="text.secondary"
+                                                textAlign={"left"}
                                             >
                                                 Monday: 11:30am - 11:00pm
                                                 <br></br>
@@ -131,6 +133,7 @@ function Contact() {
                                                 sx={{ mb: 0, mt: 3 }}
                                                 variant="h6"
                                                 component="div"
+                                                textAlign={"left"}
                                             >
                                                 <b>*Note: Closed on Tuesdays</b>
                                             </Typography>
@@ -139,6 +142,7 @@ function Contact() {
                                             <Typography
                                                 variant="h5"
                                                 component="div"
+                                                textAlign={"left"}
                                             >
                                                 <b>Contact Us:</b>
                                             </Typography>
@@ -147,6 +151,7 @@ function Contact() {
                                                 sx={{ mt: 1 }}
                                                 variant="h6"
                                                 color="text.primary"
+                                                textAlign={"left"}
                                             >
                                                 <b>Email:</b>
                                             </Typography>
@@ -154,11 +159,12 @@ function Contact() {
                                             <Typography
                                                 sx={{ mb: 1, mt: 1 }}
                                                 color="text.secondary"
+                                                textAlign={"left"}
                                             >
                                                 <a
                                                     target="_blank"
                                                     href="mailto:honeynight.business@gmail.com"
-                                                    style = {{color:"white"}}
+                                                    style={{ color: "white" }}
                                                 >
                                                     honeynight.business@gmail.com
                                                 </a>
@@ -167,6 +173,7 @@ function Contact() {
                                             <Typography
                                                 variant="h6"
                                                 color="text.primary"
+                                                textAlign={"left"}
                                             >
                                                 <b>Call/WhatsApp Us:</b>
                                             </Typography>
@@ -174,6 +181,7 @@ function Contact() {
                                             <Typography
                                                 sx={{ mb: 1, mt: 1 }}
                                                 color="text.secondary"
+                                                textAlign={"left"}
                                             >
                                                 Call: 6677 2946
                                                 <br></br>
