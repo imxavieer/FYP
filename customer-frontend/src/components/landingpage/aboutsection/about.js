@@ -65,31 +65,14 @@ function About() {
                                     // rowSpacing={1.5}
                                     // columnSpacing={1.5}
                                 >
-                                    <p class="small-text">
-                                        <u>Our Story </u>
+                                    <h3 className="SeoulHangangC">Our Story</h3>
+                                    <p className="description">
+                                    Looking for a taste of Korean cuisine that will tantalize your taste buds? Look no further than Honey Night, the premier Korean restaurant in town!
+                                    Whether you're in the mood for savory bibimbap, spicy kimchi stew, or the delicious flavors of Korean barbecue, we have something for everyone.
                                     </p>
-                                    <h1>Honey Night</h1>
-                                    <p>
-                                        We intend to spread korean cuisine and
-                                        make it accessible for everyone
+                                    <p className="description">
+                                    안녕하세요! 우리 식당은 한국의 맛있는 음식을 제공하는 곳입니다. 저희는 다양한 한국적 요리, 예를 들어 비빔밥, 삼겹살, 김치찌개 등을 제공합니다. 또한 저희는 고객의 요구에 맞춰 적절한 음식을 추천하고, 최고의 서비스를 제공하겠습니다. 언제든지 저희 식당에 찾아주세요!
                                     </p>
-                                    <p>
-                                        <span style={{ color: "#e00202" }}>
-                                            No GST. No Service Charge.
-                                        </span>
-                                    </p>
-                                    <p class="small-text">
-                                        Enquire now: 6677 2946
-                                    </p>
-                                    <Button
-                                        variant="outlined"
-                                        color="warning"
-                                        onClick={() => {
-                                            scrollToMenu();
-                                        }}
-                                    >
-                                        View Menu
-                                    </Button>
                                 </Grid>
 
                                 <Grid

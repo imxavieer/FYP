@@ -2,6 +2,11 @@
     text-align: center;
 }
 
+.description {
+    font-size: x-large;
+    margin-right: 80px;
+}
+
 .small-text {
     font-size: 2vw;
     color: rgb(255, 213, 0)
@@ -54,7 +59,21 @@ no-margin {
     font-weight: 100;
     font-size: 2.5vw;
     color: rgb(213, 213, 213);
-    text-align: center;
 }
 
 
+@font-face {
+    font-family: "SeoulHangangC";
+    font-weight: 800;
+    font-style: normal;
+    src: url("https://cdn.jsdelivr.net/gh/webfontworld/seoulhangang/SeoulHangangCExtraBold.eot");
+    src: url("https://cdn.jsdelivr.net/gh/webfontworld/seoulhangang/SeoulHangangCExtraBold.eot?#iefix")
+        format("embedded-opentype"),
+      url("https://cdn.jsdelivr.net/gh/webfontworld/seoulhangang/SeoulHangangCExtraBold.woff2")
+        format("woff2"),
+      url("https://cdn.jsdelivr.net/gh/webfontworld/seoulhangang/SeoulHangangCExtraBold.woff")
+        format("woff"),
+      url("https://cdn.jsdelivr.net/gh/webfontworld/seoulhangang/SeoulHangangCExtraBold.ttf")
+        format("truetype");
+    font-display: swap;
+  }
