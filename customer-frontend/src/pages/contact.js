@@ -78,7 +78,7 @@ function Contact() {
                                             title="Googlemap"
                                             style={{
                                                 width: "100%",
-                                                minHeight:"400px",
+                                                minHeight: "400px",
                                                 height: "100%",
                                             }}
                                             src="https://maps.google.com/maps?q=Honey%20Night&t=k&z=17&ie=UTF8&iwloc=&output=embed"
@@ -109,15 +109,6 @@ function Contact() {
                                             >
                                                 <b>Business Hours</b>
                                             </Typography>
-
-                                            <Typography
-                                                sx={{ mt: 1 }}
-                                                variant="h6"
-                                                color="text.primary"
-                                            >
-                                                <b>Normal Hours </b>
-                                            </Typography>
-
                                             <Typography
                                                 sx={{ mb: 1, mt: 1 }}
                                                 color="text.secondary"
@@ -130,21 +121,10 @@ function Contact() {
                                                 <br></br>
                                                 Sunday: 11:30am - 11:00pm
                                                 <br></br>
-                                            </Typography>
-
-                                            <Typography
-                                                variant="h6"
-                                                color="text.primary"
-                                            >
-                                                <b>Extended Hours</b>
-                                            </Typography>
-
-                                            <Typography color="text.secondary">
                                                 Friday and Saturday: 11:30am -{" "}
                                                 <b>
                                                     <u>11:30pm</u>
                                                 </b>{" "}
-                                                🍺
                                             </Typography>
 
                                             <Typography
@@ -152,18 +132,15 @@ function Contact() {
                                                 variant="h6"
                                                 component="div"
                                             >
-                                                <b>
-                                                    *Note: Closed on Tuesdays
-                                                    💤😴
-                                                </b>
-                                                <hr></hr>
+                                                <b>*Note: Closed on Tuesdays</b>
                                             </Typography>
+                                            <hr></hr>
 
                                             <Typography
                                                 variant="h5"
                                                 component="div"
                                             >
-                                                <b>Contact Details</b>
+                                                <b>Contact Us:</b>
                                             </Typography>
 
                                             <Typography
@@ -171,21 +148,27 @@ function Contact() {
                                                 variant="h6"
                                                 color="text.primary"
                                             >
-                                                <b>Email Us 💌</b>
+                                                <b>Email:</b>
                                             </Typography>
 
                                             <Typography
                                                 sx={{ mb: 1, mt: 1 }}
                                                 color="text.secondary"
                                             >
-                                                honeynight.business@gmail.com
+                                                <a
+                                                    target="_blank"
+                                                    href="mailto:honeynight.business@gmail.com"
+                                                    style = {{color:"white"}}
+                                                >
+                                                    honeynight.business@gmail.com
+                                                </a>
                                             </Typography>
-
+                                            <br />
                                             <Typography
                                                 variant="h6"
                                                 color="text.primary"
                                             >
-                                                <b>Call/WhatsApp Us 📞</b>
+                                                <b>Call/WhatsApp Us:</b>
                                             </Typography>
 
                                             <Typography
