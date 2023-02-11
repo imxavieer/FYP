@@ -19,6 +19,7 @@ import Menu from "../pages/menu";
 import Contact from "../pages/contact";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
+import "@fontsource/roboto/300.css";
 
 import { Link } from "react-router-dom";
 import AnchorLink from "react-anchor-link-smooth-scroll-v2";
@@ -47,9 +48,9 @@ const StyledTab = styled(Tab)({
 const StyledLink = styled(Link)({
   textDecoration: "none",
   color: "white",
-  fontSize: "1.8vw",
+  fontSize: "1.1vw",
   fontWeight: "bold",
-  marginLeft: 83,
+  marginLeft: 78,
   // marginRight: 40,
   "&:hover": {
     // color: "black",
@@ -61,9 +62,10 @@ const StyledLinkTwo = styled(LinkMui)({
   textDecoration: "none",
   color: "white",
   backgroundColor: "#F49300",
-  fontSize: "1.8vw",
+  fontSize: "1.5vw",
   fontWeight: "bold",
-  marginLeft: 83,
+  marginLeft: 60,
+  borderRadius: "5px",
   // marginRight: 40,
   "&:hover": {
     color: "black",
@@ -114,54 +116,57 @@ function Navbar() {
         position="sticky"
         style={{
           background: "#000000",
+          borderBottom: "1px solid grey",
           // boxShadow: "none",
         }}
       >
         <CssBaseline />
         <Toolbar style={{ justifyContent: "space-between" }}>
           <Grid container spacing={0}>
-            <Grid item xs={5} lg={3}>
-              <img
-                src={HoneyNightLogo}
-                alt="honeynightlogo"
-                className="honeynight-logo"
-              />
-              <HoneyNightKorean to="/" className="seoul-hangang">
-                HONEY NIGHT 꿀밤
-              </HoneyNightKorean>{" "}
+            <Grid item xs={5} lg={5}>
+              <div className="nav-title">
+                <img
+                  src={HoneyNightLogo}
+                  alt="honeynightlogo"
+                  className="honeynight-logo"
+                />
+                <HoneyNightKorean to="/" className="seoul-hangang ">
+                  HONEY NIGHT 꿀밤
+                </HoneyNightKorean>{" "}
+              </div>
             </Grid>
-            <Grid item xs={7} lg={9}>
+            <Grid item xs={7} lg={7}>
               {isMobile ? (
                 <DrawerComponent />
               ) : (
-                <div>
-                  <StyledLink to="/#home-div" className="seoul-hangang">
+                <div className="nav-links">
+                  <StyledLink to="/#home-div" className="roboto">
                     Home{" "}
                   </StyledLink>{" "}
-                  <StyledLink to="/#about-div" className="seoul-hangang">
+                  <StyledLink to="/#about-div" className="roboto">
                     About{" "}
                   </StyledLink>
-                  <StyledLink to="/#menu-div" className="seoul-hangang">
+                  <StyledLink to="/#menu-div" className="roboto">
                     Menu{" "}
                   </StyledLink>{" "}
-                  <StyledLink to="/#contact-div" className="seoul-hangang">
+                  <StyledLink to="/#contact-div" className="roboto">
                     Contact Us{" "}
                   </StyledLink>
-                  <StyledLinkTwo
+                  <StyledLink
                     onClick={() =>
                       window.open("https://qashiereats.com/honeynight")
                     }
                     to={window.location.href}
-                    className="seoul-hangang padding-navitem-order hover-effect-class"
+                    className="roboto padding-navitem-order hover-effect-class"
                   >
                     Order{" "}
-                  </StyledLinkTwo>{" "}
-                  <StyledLinkTwo
+                  </StyledLink>{" "}
+                  <StyledLink
                     to="/reserve"
-                    className="seoul-hangang padding-navitem-reserve "
+                    className="roboto padding-navitem-reserve "
                   >
                     Reserve{" "}
-                  </StyledLinkTwo>{" "}
+                  </StyledLink>{" "}
                 </div>
               )}{" "}
             </Grid>
