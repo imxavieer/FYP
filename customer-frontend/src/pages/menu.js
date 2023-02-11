@@ -92,22 +92,22 @@ function Menu() {
                     Top 6 Items{" "}
                 </h2>
                 <h1 className="menuTitle">Menu</h1>
-                <Grid container justifyContent="space-evenly">
-                    <Grid item xs={12} sm={11} md={11} lg={11.2}>
-                        <Box
-                            sx={{
-                                padding: "10px",
-                            }}
-                        >
-                            <Grid
-                                container
-                                rowSpacing={2}
-                                columnSpacing={2}
-                                id="menuItems"
-                                sx={{
-                                    padding: "10px",
-                                }}
-                            >
+                <Grid
+                    container
+                    justifyContent="space-evenly"
+                    spacing={1}
+                    sx={{
+                        padding: {
+                            xs: "10px",
+                            sm: "25px",
+                            md: "50px",
+                        },
+                    }}
+                >
+                    <Grid item xs={12}
+                    sx = {{padding:"0"}}>
+                        <Box>
+                            <Grid container spacing={2} id="menuItems">
                                 {menuItems.map((item, index) => {
                                     const {
                                         menuImage,
