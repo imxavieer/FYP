@@ -88,7 +88,7 @@ function Menu() {
                     }}
                 >
                     {" "}
-                    Top 6 Items{" "}
+                    Top 6{" "}
                 </h2>
                 <h1 className="menuTitle">Menu</h1>
                 <Grid

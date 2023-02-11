@@ -11,7 +11,7 @@ function SocialMedia({ classes }) {
         // From 600-690px wide (tablets), I take up 6 out of 12 columns, so 2 columns fit the screen.
         // From 960px wide and above, I take up 25% of the device (3/12), so 4 columns fit the screen.
         <Grid item xs={12} sm={6} md={4}>
-            <div className="center-text">
+            <div className="center-text three-icons">
                 <IconButton
                     color="primary"
                     aria-label="upload picture"

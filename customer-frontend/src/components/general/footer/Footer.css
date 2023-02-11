@@ -1,19 +1,18 @@
 .center-text {
-    text-align: center;
+    text-align: left;
     font-size: large;
 }
 
 .copyright {
-    color: white;
+    font-size: 15px;
 }
 
-.company-logo {
-    top: -8px;
-    position: relative;
-}
+.company-logo {}
+
+.three-icons {}
 
 .footer-bg {
     background-color: #f9d230;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 70px;
+    padding-bottom: 50px;
 }
