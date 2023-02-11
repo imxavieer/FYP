@@ -3,8 +3,6 @@ import {
     Grid,
     Card,
     Typography,
-    Box,
-    CardMedia,
     CardContent,
 } from "@mui/material";
 import "./MenuItem.css";

@@ -1,23 +1,23 @@
 import * as React from "react";
 import { styled } from "@mui/material/styles";
-import "./reserve.css"
+import "./reserve.css";
 
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
+import {
+    Paper,
+    TextField,
+    Stack,
+    Grid,
+    Button,
+    Box,
+    InputLabel,
+    MenuItem,
+    FormControl,
+    Select,
+} from "@mui/material";
 
-import Grid from "@mui/material/Grid";
-import Button from "@mui/material/Button";
-
-import TextField from "@mui/material/TextField";
-import Stack from "@mui/material/Stack";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
-
-import Paper from "@mui/material/Paper";
 
 const BookTableButton = styled(Button)({
     padding: "12px 40px",
@@ -32,96 +32,96 @@ const BookTableButton = styled(Button)({
 });
 
 const NumberofPax = styled(FormControl)({
-    '& label': {
-        color: '#F49300',
+    "& label": {
+        color: "#F49300",
     },
-    '& label.Mui-focused': {
-      color: '#F49300',
+    "& label.Mui-focused": {
+        color: "#F49300",
     },
-    '& .MuiInput-underline:after': {
-      borderBottomColor: '#F49300',
+    "& .MuiInput-underline:after": {
+        borderBottomColor: "#F49300",
     },
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: '#F49300',
-      },
-      '&:hover fieldset': {
-        borderColor: '#F49300',
-      },
-      '&.Mui-focused fieldset': {
-        borderColor: '#F49300',
-      },
+    "& .MuiOutlinedInput-root": {
+        "& fieldset": {
+            borderColor: "#F49300",
+        },
+        "&:hover fieldset": {
+            borderColor: "#F49300",
+        },
+        "&.Mui-focused fieldset": {
+            borderColor: "#F49300",
+        },
     },
-  });
+});
 
 const DatePicker = styled(Grid)({
-    '& label': {
-        color: '#F49300',
+    "& label": {
+        color: "#F49300",
     },
-    '& label.Mui-focused': {
-      color: '#F49300',
+    "& label.Mui-focused": {
+        color: "#F49300",
     },
     // '& .MuiInputBase-root': {
     //     color: 'green',
     // },
-    '& .MuiInput-underline:after': {
-      borderBottomColor: '#F49300',
+    "& .MuiInput-underline:after": {
+        borderBottomColor: "#F49300",
     },
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: '#F49300',
-      },
-      '&:hover fieldset': {
-        borderColor: '#F49300',
-      },
-      '&.Mui-focused fieldset': {
-        borderColor: '#F49300',
-      },
+    "& .MuiOutlinedInput-root": {
+        "& fieldset": {
+            borderColor: "#F49300",
+        },
+        "&:hover fieldset": {
+            borderColor: "#F49300",
+        },
+        "&.Mui-focused fieldset": {
+            borderColor: "#F49300",
+        },
     },
-  });
+});
 
 const TimePicker = styled(FormControl)({
-    '& label': {
-        color: '#F49300',
+    "& label": {
+        color: "#F49300",
     },
-    '& label.Mui-focused': {
-        color: '#F49300',
+    "& label.Mui-focused": {
+        color: "#F49300",
     },
-    '& .MuiInput-underline': {
-        borderBottomColor: '#F49300',
+    "& .MuiInput-underline": {
+        borderBottomColor: "#F49300",
     },
-    '& .MuiInput-underline:after': {
-        borderBottomColor: '#F49300',
+    "& .MuiInput-underline:after": {
+        borderBottomColor: "#F49300",
     },
-    '& .MuiOutlinedInput-root': {
-        '& fieldset': {
-        borderColor: '#F49300',
+    "& .MuiOutlinedInput-root": {
+        "& fieldset": {
+            borderColor: "#F49300",
         },
-        '&:hover fieldset': {
-        borderColor: '#F49300',
+        "&:hover fieldset": {
+            borderColor: "#F49300",
         },
-        '&.Mui-focused fieldset': {
-        borderColor: '#F49300',
+        "&.Mui-focused fieldset": {
+            borderColor: "#F49300",
         },
     },
 });
 
 const EmailAddress = styled(TextField)({
-    '& label.Mui-focused': {
-        color: '#F49300',
+    "& label.Mui-focused": {
+        color: "#F49300",
     },
-    '& .MuiInput-underline:after': {
-        borderBottomColor: '#F49300',
+    "& .MuiInput-underline:after": {
+        borderBottomColor: "#F49300",
     },
-    '& .MuiOutlinedInput-root': {
-        '& fieldset': {
-            borderColor: '#F49300',
+    "& .MuiOutlinedInput-root": {
+        "& fieldset": {
+            borderColor: "#F49300",
         },
-        '&:hover fieldset': {
-            borderColor: '#F49300',
+        "&:hover fieldset": {
+            borderColor: "#F49300",
         },
-        '&.Mui-focused fieldset': {
-            borderColor: '#F49300',
+        "&.Mui-focused fieldset": {
+            borderColor: "#F49300",
         },
     },
 });
@@ -149,7 +149,7 @@ function Reserve() {
     const openConfirmationPaper = () => setShowPaper(true);
 
     return (
-        <React.Fragment sx={{color: 'black'}}>
+        <React.Fragment sx={{ color: "black" }}>
             <Grid container className="reservationText">
                 <Box textAlign={"center"}>
                     <h5>RESERVATION</h5>
@@ -168,7 +168,7 @@ function Reserve() {
             <Box sx={{ minWidth: 120 }}>
                 <Grid container padding={5}>
                     <Grid item xs={3}>
-                        <NumberofPax sx={{ minWidth: 300}}>
+                        <NumberofPax sx={{ minWidth: 300 }}>
                             <InputLabel id="num-pax-label">
                                 Number of People
                             </InputLabel>
@@ -205,7 +205,7 @@ function Reserve() {
                                     renderInput={(params) => (
                                         <TextField {...params} />
                                     )}
-                                    sx={{minWidth: 300}}
+                                    sx={{ minWidth: 300 }}
                                 />
                             </Stack>
                         </LocalizationProvider>

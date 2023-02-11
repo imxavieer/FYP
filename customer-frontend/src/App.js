@@ -1,12 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-
-import { browserHistory } from "react-router";
-import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 import Navbar from "./components/general/navbar/Navbar";
 import PopupPrompt from "./components/general/popupprompt/PopupPrompt";
@@ -33,8 +27,6 @@ function App() {
             </Router>
         </>
     );
-    const location = useLocation();
-    const [showFilter, setShowFilter] = useState(false);
 }
 
 export default App;

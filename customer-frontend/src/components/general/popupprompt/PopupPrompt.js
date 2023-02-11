@@ -4,12 +4,11 @@ import "./PopupPrompt.css";
 import "../../../index.css";
 import DiningIcon from "@mui/icons-material/Dining";
 import { useLocation } from "react-router-dom";
+
 function PopupPrompt() {
     const { pathname } = useLocation();
     const [hovered, setHovered] = useState(false);
-    const redirectToOrder = () => {
-        window.location.href = "https://qashiereats.com/honeynight";
-    };
+
     if (pathname === "/reserve") {
         return <></>;
     } else {

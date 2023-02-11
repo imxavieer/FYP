@@ -1,19 +1,10 @@
-import React from "react";
-import Footer from "../../general/footer/Footer"
+import React,{useEffect} from "react";
 import { useLocation } from "react-router-dom";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-
-import "./contact.css";
-import { useEffect } from "react";
-
+import {Typography,CardContent,Grid,Card,Box} from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import "./contact.css";
+
 
 const darkTheme = createTheme({
     palette: {

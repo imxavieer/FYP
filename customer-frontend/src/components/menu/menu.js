@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
 import { Grid, Button, Link, Box, Toolbar } from "@mui/material";
-import MenuItem from "./MenuItem"
-import MenuPdf from "../../documents/menu.pdf"
+import MenuItem from "./MenuItem";
+import MenuPdf from "../../documents/menu.pdf";
 import "./menu.css";
 
 function Menu() {
@@ -104,8 +103,7 @@ function Menu() {
                         },
                     }}
                 >
-                    <Grid item xs={12}
-                    sx = {{padding:"0"}}>
+                    <Grid item xs={12} sx={{ padding: "0" }}>
                         <Box>
                             <Grid container spacing={2} id="menuItems">
                                 {menuItems.map((item, index) => {
