@@ -47,13 +47,17 @@ function About() {
                                 // justifyContent="space-around"
                                 // justifyContent="center"
                                 // justifyContent="space-evenly"
-                                alignItems="center"
+                                // alignItems="center"
                                 // sx={{ margin: "10px auto" }}
                                 sx={{
                                     padding: {
                                         xs: "10px",
                                         sm: "25px",
                                         md: "50px",
+                                    },
+                                    width: {
+                                        xs: "100vw",
+                                        sm: "auto",
                                     },
                                 }}
                             >
@@ -94,6 +98,7 @@ function About() {
 
                                 <Grid
                                     item
+                                    xs={12}
                                     sm={6}
                                     className="hidden-mobile"
                                     mt={5}
