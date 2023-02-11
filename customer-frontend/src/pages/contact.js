@@ -157,7 +157,7 @@ function Contact() {
                                             </Typography>
 
                                             <Typography
-                                                sx={{ mb: 1, mt: 1 }}
+                                                sx={{ mb: 1}}
                                                 color="text.secondary"
                                                 textAlign={"left"}
                                             >
@@ -179,7 +179,7 @@ function Contact() {
                                             </Typography>
 
                                             <Typography
-                                                sx={{ mb: 1, mt: 1 }}
+                                                sx={{ mb: 1}}
                                                 color="text.secondary"
                                                 textAlign={"left"}
                                             >
