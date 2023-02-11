@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Box } from "@mui/material";
 import "./PopupPrompt.css";
-import "../index.css";
+import "../../../index.css";
 import DiningIcon from "@mui/icons-material/Dining";
 import { useLocation } from "react-router-dom";
 function PopupPrompt() {

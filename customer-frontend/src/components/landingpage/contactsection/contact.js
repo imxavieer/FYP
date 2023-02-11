@@ -1,5 +1,5 @@
 import React from "react";
-import Footer from "../components/Footer";
+import Footer from "../../general/footer/Footer"
 import { useLocation } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -200,7 +200,7 @@ function Contact() {
             <script src="./googlemap.js"></script> */}
                     </div>
                 </ThemeProvider>
-                <Footer></Footer>
+                {/* <Footer></Footer> */}
             </>
         );
     }

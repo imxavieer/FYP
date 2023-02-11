@@ -1,12 +1,12 @@
 import React from "react";
-import Footer from "../components/Footer";
+
 import { useLocation } from "react-router-dom";
 import "./about.css";
 import { useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import aboutPic from "../HoneyNightBG.png";
+import aboutPic from "../../../images/HoneyNightBG.png" 
 
 function scrollToMenu() {
     document.getElementById("menu-div").scrollIntoView({ behavior: "smooth" });

@@ -8,15 +8,12 @@ import { styled } from "@mui/system";
 import { Link as LinkMui } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import HoneyNightLogo from "../honeynightlogo.PNG";
+import HoneyNightLogo from "../../../images/honeynightlogo.PNG";
 import DrawerComponent from "./DrawerComponent";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import "./Navbar.css";
-import Home from "../pages/home";
-import About from "../pages/about";
-import Menu from "../pages/menu";
-import Contact from "../pages/contact";
+
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
 
