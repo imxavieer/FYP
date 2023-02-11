@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid, IconButton } from "@mui/material";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import "./Footer.css";
 
@@ -20,6 +21,16 @@ function SocialMedia({ classes }) {
                     }
                 >
                     <InstagramIcon color="warning" fontSize="large" />
+                </IconButton>
+                <IconButton
+                    color="primary"
+                    aria-label="upload picture"
+                    component="label"
+                    onClick={() =>
+                        window.open("https://wa.me/86711443")
+                    }
+                >
+                    <WhatsAppIcon color="warning" fontSize="large" />
                 </IconButton>
                 <IconButton
                     color="primary"
