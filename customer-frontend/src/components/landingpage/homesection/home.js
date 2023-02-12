@@ -76,7 +76,7 @@ function Home() {
                                 xs: "40vh",
                                 sm: "50vh",
                                 md: "80vh",
-                                lg: "90vh",
+                                lg: "100vh",
                             },
                             opacity: opacity,
                         }}
