@@ -157,16 +157,8 @@ function Reserve() {
         const timeSlotString = timeslot.toString();
         const hour = timeSlotString.substring(0, 2);
         const minutes = timeSlotString.substring(2, 4);
-        console.log({
-            day,
-            month,
-            year,
-            timeSlotString,
-            hour,
-            minutes,
-        });
         const currDate = new Date(year, month + 1, day, hour, minutes, 0, 0);
-        console.log(currDate);
+
         await axios
             .post(`${process.env.REACT_APP_BACKEND_URL}reservation`, {
                 name: "Michiru Sama",
