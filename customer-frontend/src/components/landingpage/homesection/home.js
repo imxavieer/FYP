@@ -25,12 +25,12 @@ function Home() {
         }
     }, [location]);
 
-    // useEffect(() => {
-    //     const timer = setTimeout(() => {
-    //         changePictureOnRight();
-    //     }, 2000);
-    //     return () => clearTimeout(timer);
-    // });
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            changePictureOnRight();
+        }, 2000);
+        return () => clearTimeout(timer);
+    });
 
     const changePictureOnRight = () => {
         if (currentPicture == pictures.length - 1) {
@@ -72,7 +72,12 @@ function Home() {
                         src={pictures[currentPicture]}
                         className="home-background"
                         sx={{
-                            height: { xs: "40vh", sm: "50vh", md: "80vh" },
+                            height: {
+                                xs: "40vh",
+                                sm: "50vh",
+                                md: "80vh",
+                                lg: "90vh",
+                            },
                             opacity: opacity,
                         }}
                     />
