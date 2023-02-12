@@ -87,10 +87,10 @@ function Menu() {
                         color: "orange",
                     }}
                 >
-                    {" "}
-                    Top 6{" "}
+                    Top 6
                 </h2>
                 <h1 className="menuTitle">Menu</h1>
+                
                 <Grid
                     container
                     justifyContent="space-evenly"
