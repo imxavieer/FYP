@@ -285,59 +285,71 @@ function Reserve() {
                         </BookTableButton>
                     </Grid>
                 </Grid>
-
-                {showConfirmationPaper && (
-                    <Grid>
-                        <Paper elevation={3} className="confirmation-paper">
-                            <h2>
-                                {JSON.stringify(reserveDate).substring(9, 11)}/
-                                {JSON.stringify(reserveDate).substring(6, 8)}/
-                                {JSON.stringify(reserveDate).substring(1, 5)} -{" "}
-                                {timeslot}
-                            </h2>
-                            <p>Number of People: {numpax}</p>
-                            <b>
-                                <p>
-                                    Please confirm your reservation by entering
-                                    your email address.
-                                </p>
-                            </b>
-                            <b>
-                                <p>
-                                    You will receive a confirmation email upon
-                                    booking.
-                                </p>
-                            </b>
-                            <Grid container>
-                                <Grid item xs={4}></Grid>
-                                <Grid item xs={4}>
-                                    <EmailAddress
-                                        required
-                                        id="standard-required"
-                                        label="Email Address"
-                                        defaultValue=""
-                                        variant="standard"
-                                        focused
-                                        value={email}
-                                        onChange={(e) => {
-                                            setEmail(e.target.value);
-                                        }}
-                                    ></EmailAddress>
+                <Box sx={{ minHeight: "100vh" }}>
+                    {showConfirmationPaper && (
+                        <Grid>
+                            <Paper elevation={3} className="confirmation-paper">
+                                <h2>
+                                    {JSON.stringify(reserveDate).substring(
+                                        9,
+                                        11
+                                    )}
+                                    /
+                                    {JSON.stringify(reserveDate).substring(
+                                        6,
+                                        8
+                                    )}
+                                    /
+                                    {JSON.stringify(reserveDate).substring(
+                                        1,
+                                        5
+                                    )}{" "}
+                                    - {timeslot}
+                                </h2>
+                                <p>Number of People: {numpax}</p>
+                                <b>
+                                    <p>
+                                        Please confirm your reservation by
+                                        entering your email address.
+                                    </p>
+                                </b>
+                                <b>
+                                    <p>
+                                        You will receive a confirmation email
+                                        upon booking.
+                                    </p>
+                                </b>
+                                <Grid container>
+                                    <Grid item xs={4}></Grid>
+                                    <Grid item xs={4}>
+                                        <EmailAddress
+                                            required
+                                            id="standard-required"
+                                            label="Email Address"
+                                            defaultValue=""
+                                            variant="standard"
+                                            focused
+                                            value={email}
+                                            onChange={(e) => {
+                                                setEmail(e.target.value);
+                                            }}
+                                        ></EmailAddress>
+                                    </Grid>
+                                    <Grid item xs={4}>
+                                        <BookTableButton
+                                            variant="contained"
+                                            onClick={() => {
+                                                bookTable();
+                                            }}
+                                        >
+                                            BOOK A TABLE
+                                        </BookTableButton>
+                                    </Grid>
                                 </Grid>
-                                <Grid item xs={4}>
-                                    <BookTableButton
-                                        variant="contained"
-                                        onClick={() => {
-                                            bookTable();
-                                        }}
-                                    >
-                                        BOOK A TABLE
-                                    </BookTableButton>
-                                </Grid>
-                            </Grid>
-                        </Paper>
-                    </Grid>
-                )}
+                            </Paper>
+                        </Grid>
+                    )}
+                </Box>
             </Box>
         </React.Fragment>
     );
