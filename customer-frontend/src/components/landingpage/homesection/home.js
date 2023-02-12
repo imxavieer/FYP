@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { Button } from "@mui/material";
 import "./home.css";
 
 function Home() {
@@ -23,28 +25,37 @@ function Home() {
         }
     }, [location]);
 
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            changePictureOnRight();
-        }, 3000);
-        return () => clearTimeout(timer);
-    });
+    // useEffect(() => {
+    //     const timer = setTimeout(() => {
+    //         changePictureOnRight();
+    //     }, 3000);
+    //     return () => clearTimeout(timer);
+    // });
 
     // triggered via timeout
     const changePictureOnRight = () => {
         if (currentPicture == pictures.length - 1) {
-            setCurrentPicture(0);
+            // setCurrentPicture(0);
+            changePicture(0);
         } else {
-            setCurrentPicture(currentPicture + 1);
+            // setCurrentPicture(currentPicture + 1);
+            changePicture(currentPicture + 1);
         }
     };
 
     const changePictureOnLeft = () => {
-        if (currentPicture == -1) {
-            setCurrentPicture(pictures.length - 1);
+        if (currentPicture == 0) {
+            // setCurrentPicture(pictures.length - 1);
+            changePicture(pictures.length - 1);
         } else {
-            setCurrentPicture(currentPicture - 1);
+            // setCurrentPicture(currentPicture - 1);
+            changePicture(currentPicture - 1);
         }
+    };
+
+    // to add animation
+    const changePicture = (newPicture) => {
+        setCurrentPicture(newPicture);
     };
 
     const { pathname } = useLocation();
@@ -62,6 +73,24 @@ function Home() {
                     />
                     <div className="home-centered-text">
                         Delivering the most authentic Korean taste
+                    </div>
+                    <div className="arrowButtonContainer">
+                        <Button
+                            sx={{ color: "white" }}
+                            onClick={() => {
+                                changePictureOnLeft();
+                            }}
+                        >
+                            <ArrowBackIosIcon />
+                        </Button>
+                        <Button
+                            sx={{ color: "white" }}
+                            onClick={() => {
+                                changePictureOnRight();
+                            }}
+                        >
+                            <ArrowForwardIosIcon />
+                        </Button>
                     </div>
                 </div>
             </>
