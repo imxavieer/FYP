@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 import "./home.css";
@@ -6,6 +6,12 @@ import "./home.css";
 function Home() {
     // THIS CODE IS IMPORTANT FROM HERE
     let location = useLocation();
+    const pictures = [
+        "https://i.imgur.com/3hoca6H.jpg",
+        "https://insanelygoodrecipes.com/wp-content/uploads/2020/12/Korean-Side-Dishes.png",
+        "https://media.timeout.com/images/105303587/image.jpg",
+    ];
+    const [currentPicture, setCurrentPicture] = useState(0);
     useEffect(() => {
         if (location.hash) {
             let elem = document.getElementById(location.hash.slice(1));
@@ -16,6 +22,31 @@ function Home() {
             window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
         }
     }, [location]);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            changePictureOnRight();
+        }, 3000);
+        return () => clearTimeout(timer);
+    });
+
+    // triggered via timeout
+    const changePictureOnRight = () => {
+        if (currentPicture == pictures.length - 1) {
+            setCurrentPicture(0);
+        } else {
+            setCurrentPicture(currentPicture + 1);
+        }
+    };
+
+    const changePictureOnLeft = () => {
+        if (currentPicture == -1) {
+            setCurrentPicture(pictures.length - 1);
+        } else {
+            setCurrentPicture(currentPicture - 1);
+        }
+    };
+
     const { pathname } = useLocation();
     if (pathname === "/reserve") {
         return <></>;
@@ -25,8 +56,7 @@ function Home() {
                 {/* // THIS CODE IS IMPORTANT UNTIL HERE  */}
                 <div className="home-div" id="home-div">
                     <img
-                        // src="https://lh3.googleusercontent.com/p/AF1QipM2-1q3y02OLtQRglRivhdYtyLJzKASZgslUM2M=w1080-h608-p-no-v0"
-                        src="https://i.imgur.com/3hoca6H.jpg"
+                        src={pictures[currentPicture]}
                         alt="honeyNightfood"
                         className="home-background"
                     />
