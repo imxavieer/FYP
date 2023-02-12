@@ -26,9 +26,7 @@ function SocialMedia({ classes }) {
                     color="primary"
                     aria-label="upload picture"
                     component="label"
-                    onClick={() =>
-                        window.open("https://wa.me/86711443")
-                    }
+                    onClick={() => window.open("https://wa.me/86711443")}
                 >
                     <WhatsAppIcon color="warning" fontSize="large" />
                 </IconButton>
@@ -66,9 +64,9 @@ function CopyRight({ classes }) {
         // From 0 to 600px wide (smart-phones), I take up 12 columns, or the whole device width!
         // From 600-690px wide (tablets), I take up 6 out of 12 columns, so 2 columns fit the screen.
         // From 960px wide and above, I take up 25% of the device (3/12), so 4 columns fit the screen.
-        <Grid item xs={12} sm={12} md={4}>
+        <Grid item xs={12} sm={12} md={4} sx={{ color: "#a66709" }}>
             <div className="center-text copyright">
-                © Copyright Honey Night Co.
+                <b> © Copyright Honey Night Co.</b>
             </div>
         </Grid>
     );
