@@ -26,6 +26,8 @@
   width: 100%;
   filter: brightness(40%);
   position: relative;
+  transition: 0.2s ease-in-out;
+  
 }
 
 .home-centered-text {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useTransition } from "react";
 import { useLocation } from "react-router-dom";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -33,6 +33,7 @@ function Home() {
     // });
 
     // triggered via timeout
+
     const changePictureOnRight = () => {
         if (currentPicture == pictures.length - 1) {
             // setCurrentPicture(0);
@@ -54,8 +55,14 @@ function Home() {
     };
 
     // to add animation
+    const [opacity, setOpacity] = useState(1);
     const changePicture = (newPicture) => {
-        setCurrentPicture(newPicture);
+        setOpacity(0);
+        const timer = setTimeout(() => {
+            setCurrentPicture(newPicture);
+            setOpacity(1);
+        }, 350);
+        return () => clearTimeout(timer);
     };
 
     const { pathname } = useLocation();
@@ -70,6 +77,9 @@ function Home() {
                         src={pictures[currentPicture]}
                         alt="honeyNightfood"
                         className="home-background"
+                        style={{
+                            opacity: opacity,
+                        }}
                     />
                     <div className="home-centered-text">
                         Delivering the most authentic Korean taste
