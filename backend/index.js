@@ -22,9 +22,7 @@ app.use((error, req, res, next) => {
 
 // ==================initialise==================
 mongoose
-    .connect(
-        "mongodb+srv://sanghil:1058022a@cluster0.ahpmxxy.mongodb.net/FYP?retryWrites=true&w=majority"
-    )
+    .connect(process.env.DATABASE_URL)
     .then(() => {
         app.listen(8000);
         console.log("Connected Successfully");
