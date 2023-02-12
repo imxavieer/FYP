@@ -12,7 +12,6 @@ app.use(bodyParser.json());
 
 const ReservationRoute = require("./Routes/ReservationRoutes");
 
-
 // ==================use routes==================
 app.use("/api/reservation", ReservationRoute);
 app.use((error, req, res, next) => {
@@ -22,9 +21,7 @@ app.use((error, req, res, next) => {
 
 // ==================initialise==================
 mongoose
-    .connect(
-        "mongodb+srv://sanghil:1058022a@cluster0.ahpmxxy.mongodb.net/FYP?retryWrites=true&w=majority"
-    )
+    .connect(process.env.DATABASE_URL)
     .then(() => {
         app.listen(8000);
         console.log("Connected Successfully");
