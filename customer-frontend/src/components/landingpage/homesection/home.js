@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useTransition } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -9,9 +9,9 @@ function Home() {
     // THIS CODE IS IMPORTANT FROM HERE
     let location = useLocation();
     const pictures = [
+        // "https://i.imgur.com/2gfJw9o.png",
         "https://i.imgur.com/3hoca6H.jpg",
         "https://insanelygoodrecipes.com/wp-content/uploads/2020/12/Korean-Side-Dishes.png",
-        "https://media.timeout.com/images/105303587/image.jpg",
     ];
     const [currentPicture, setCurrentPicture] = useState(0);
     useEffect(() => {
@@ -51,6 +51,13 @@ function Home() {
         }, 350);
         return () => clearTimeout(timer);
     };
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            changePictureOnRight();
+        }, 2000);
+        return () => clearTimeout(timer);
+    });
 
     const { pathname } = useLocation();
     if (pathname === "/reserve") {
