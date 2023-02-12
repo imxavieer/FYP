@@ -89,40 +89,6 @@ function MenuItem({ menuImage, menuItemName, menuItemPrice }) {
                         <></>
                     )}
                 </CardContent>
-                {/* <Grid container>
-                    <Grid item xs={12} md={6}>
-                        <img src={menuImage} className="menuItemImage" />
-                    </Grid>
-
-                    <Grid item xs={12} md={6}>
-                        <Grid container>
-                            <Grid item xs={9}>
-                                <Typography
-                                    variant="subtitle1"
-                                    textAlign={"left"}
-                                    sx={{
-                                        fontWeight: "bold",
-                                        color: "white",
-                                    }}
-                                >
-                                    {menuItemName}
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={3}>
-                                <Typography
-                                    variant="subtitle1"
-                                    textAlign={"right"}
-                                    sx={{
-                                        fontWeight: "bold",
-                                        color: "white",
-                                    }}
-                                >
-                                    {menuItemPrice}
-                                </Typography>
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                </Grid> */}
             </Card>
         </Grid>
     );

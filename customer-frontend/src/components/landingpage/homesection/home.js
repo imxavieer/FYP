@@ -25,31 +25,18 @@ function Home() {
         }
     }, [location]);
 
-    // useEffect(() => {
-    //     const timer = setTimeout(() => {
-    //         changePictureOnRight();
-    //     }, 3000);
-    //     return () => clearTimeout(timer);
-    // });
-
-    // triggered via timeout
-
     const changePictureOnRight = () => {
         if (currentPicture == pictures.length - 1) {
-            // setCurrentPicture(0);
             changePicture(0);
         } else {
-            // setCurrentPicture(currentPicture + 1);
             changePicture(currentPicture + 1);
         }
     };
 
     const changePictureOnLeft = () => {
         if (currentPicture == 0) {
-            // setCurrentPicture(pictures.length - 1);
             changePicture(pictures.length - 1);
         } else {
-            // setCurrentPicture(currentPicture - 1);
             changePicture(currentPicture - 1);
         }
     };
