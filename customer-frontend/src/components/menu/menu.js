@@ -14,8 +14,7 @@ function Menu() {
 
     const menuItems = [
         {
-            menuImage:
-                "https://www.thespruceeats.com/thmb/m-tYmUNj3nHdyXsTXdp_xsqH1oM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/kimbap-korean-sushi-rolls-2118795-Hero_01-2453c846edd1449ab87c26761be72064.jpg",
+            menuImage:"https://twoplaidaprons.com/wp-content/uploads/2022/06/spam-kimbap-cut-on-plate.jpg",
             menuItemName: "Honey Night Kimbab",
             menuItemPrice: "$9.90",
             menuItemDescription:
@@ -90,7 +89,7 @@ function Menu() {
                     Top 6
                 </h2>
                 <h1 className="menuTitle">Menu</h1>
-                
+
                 <Grid
                     container
                     justifyContent="space-evenly"
