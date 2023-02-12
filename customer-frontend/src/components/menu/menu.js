@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Grid, Button, Link, Box, Toolbar } from "@mui/material";
-import MenuItem from "./MenuItem";
+import MenuItem from "./menuitem/MenuItem";
 import MenuPdf from "../../documents/menu.pdf";
 import "./menu.css";
 
