@@ -403,7 +403,7 @@ const createReservation = async (req, res, next) => {
 
         // because GMT +8
         const originalDateTimeInMs =
-            Date.parse(date_of_visit) - 8 * 60 * 60 * 1000;
+            Date.parse(date_of_visit);
         // first 30 min
         const originalDateTime = new Date(originalDateTimeInMs);
         // second 30 min
