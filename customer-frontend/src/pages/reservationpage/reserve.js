@@ -1,7 +1,7 @@
 import * as React from "react";
 import { styled } from "@mui/material/styles";
 import "./reserve.css";
-
+import axios from "axios";
 import {
     Paper,
     TextField,
@@ -148,6 +148,42 @@ function Reserve() {
     const [showConfirmationPaper, setShowPaper] = React.useState(false);
     const openConfirmationPaper = () => setShowPaper(true);
 
+    const [email, setEmail] = React.useState("");
+
+    const bookTable = async () => {
+        const day = JSON.stringify(reserveDate).substring(9, 11);
+        const month = JSON.stringify(reserveDate).substring(6, 8);
+        const year = JSON.stringify(reserveDate).substring(1, 5);
+        const timeSlotString = timeslot.toString();
+        const hour = timeSlotString.substring(0, 2);
+        const minutes = timeSlotString.substring(2, 4);
+        console.log({
+            day,
+            month,
+            year,
+            timeSlotString,
+            hour,
+            minutes,
+        });
+        const currDate = new Date(year, month + 1, day, hour, minutes, 0, 0);
+        console.log(currDate);
+        await axios
+            .post(`${process.env.REACT_APP_BACKEND_URL}reservation`, {
+                name: "Michiru Sama",
+                email,
+                pax: numpax,
+                date_of_visit: currDate,
+                table_id: [1, 2],
+                status: 1,
+            })
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+    };
+
     return (
         <React.Fragment sx={{ color: "black" }}>
             <Grid container className="reservationText">
@@ -290,10 +326,19 @@ function Reserve() {
                                         defaultValue=""
                                         variant="standard"
                                         focused
+                                        value={email}
+                                        onChange={(e) => {
+                                            setEmail(e.target.value);
+                                        }}
                                     ></EmailAddress>
                                 </Grid>
                                 <Grid item xs={4}>
-                                    <BookTableButton variant="contained">
+                                    <BookTableButton
+                                        variant="contained"
+                                        onClick={() => {
+                                            bookTable();
+                                        }}
+                                    >
                                         BOOK A TABLE
                                     </BookTableButton>
                                 </Grid>
