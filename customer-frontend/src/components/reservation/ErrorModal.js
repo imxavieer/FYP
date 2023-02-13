@@ -17,7 +17,6 @@ const style = {
 };
 
 export default function ErrorModal(props) {
-    const count = 0
     const openModal = props.openModal;
     const [open, setOpen] = React.useState(openModal);
     const handleClose = () => setOpen(false);
