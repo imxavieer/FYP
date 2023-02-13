@@ -1,6 +1,7 @@
 import * as React from "react";
 import { styled } from "@mui/material/styles";
 import "./reserve.css";
+import ErrorModal from "../../components/reservation/ErrorModal";
 import axios from "axios";
 import {
     Paper,
@@ -149,8 +150,12 @@ function Reserve() {
     const openConfirmationPaper = () => setShowPaper(true);
 
     const [email, setEmail] = React.useState("");
+    
+    const [errors, setErrors] = React.useState({});
+    const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const [openModal, setModalConfiguration] = React.useState(false);
 
-    const bookTable = async () => {
+    const bookTable = async () => {  
         const day = JSON.stringify(reserveDate).substring(9, 11);
         const month = JSON.stringify(reserveDate).substring(6, 8);
         const year = JSON.stringify(reserveDate).substring(1, 5);
@@ -159,22 +164,47 @@ function Reserve() {
         const minutes = timeSlotString.substring(2, 4);
         const currDate = new Date(year, month + 1, day, hour, minutes, 0, 0);
 
-        await axios
-            .post(`${process.env.REACT_APP_BACKEND_URL}reservation`, {
-                name: "Michiru Sama",
-                email,
-                pax: numpax,
-                date_of_visit: currDate,
-                table_id: [1, 2],
-                status: 1,
-            })
-            .then((res) => {
-                console.log(res);
-            })
-            .catch((err) => {
-                console.error(err);
-            });
-    };
+        if (numpax == null || numpax.length == 0){
+            setErrors({numpax: 'Please select the number of people'});
+        }
+        if (day == null){
+            setErrors({date: 'Please select a valid date'});
+        }
+        if (!new RegExp(EMAIL_REGEX).test(email)){
+            setErrors({email: 'Please enter a valid email'});
+        }
+        if (timeSlotString.length == 0 || timeSlotString == null){
+            errors.timeslot = 'Please enter a valid time';
+            setErrors({timeslot: 'Please enter a valid time'});
+        }
+        console.log(Object.keys(errors).length);
+
+        if (Object.keys(errors).length >= 0){
+            setModalConfiguration(true);
+        }
+        else{
+            await axios
+                .post(`${process.env.REACT_APP_BACKEND_URL}reservation`, {
+                        email: email,
+                        name: "Michiru Sama",
+                        pax: numpax,
+                        date_of_visit: currDate,
+                        table_id: [1, 2],
+                        status: 1
+                })
+                .then((response) => {
+                        console.log(response.data);
+                })
+                .catch((error) => {
+                        console.error(error);
+                        errors.others = 'Please try again!';
+                        setModalConfiguration(true);
+                });
+        }
+
+    }
+    console.log(errors);
+    console.log(openModal);
 
     return (
         <React.Fragment sx={{ color: "black" }}>
@@ -338,6 +368,8 @@ function Reserve() {
                         </Paper>
                     </Grid>
                 )}
+
+                {openModal && (<ErrorModal errors={errors} openModal={openModal}/>)}
             </Box>
         </React.Fragment>
     );
