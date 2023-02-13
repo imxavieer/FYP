@@ -369,7 +369,7 @@ function Reserve() {
                     </Grid>
                 )}
 
-                {openModal && (<ErrorModal errors={errors} openModal={openModal}/>)}
+                {openModal && (<ErrorModal errors={errors} openModal={openModal} setOpenModal = {setModalConfiguration}/>)}
             </Box>
         </React.Fragment>
     );
