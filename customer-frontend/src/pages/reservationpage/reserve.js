@@ -2,6 +2,7 @@ import * as React from "react";
 import { styled } from "@mui/material/styles";
 import "./reserve.css";
 import ErrorModal from "../../components/reservation/ErrorModal";
+import SuccessModal from "../../components/reservation/SuccessModal";
 import axios from "axios";
 import {
     Paper,
@@ -152,11 +153,12 @@ function Reserve() {
     const [email, setEmail] = React.useState("");
     
     const [errors, setErrors] = React.useState({});
-    const [openModal, setModalConfiguration] = React.useState(false);
+    const [openErrorModal, setErrorModal] = React.useState(false);
+    const [openSuccessModal, setSuccessModal] = React.useState(false);
     
     var bookTable = async () => {  
         setErrors({});
-        setModalConfiguration(false);
+        setErrorModal(false);
         const day = JSON.stringify(reserveDate).substring(9, 11);
         const month = JSON.stringify(reserveDate).substring(6, 8);
         const year = JSON.stringify(reserveDate).substring(1, 5);
@@ -180,15 +182,15 @@ function Reserve() {
             setErrors({numpax: 'Please select the number of people'});
         }
         console.log(errors);
-        console.log(openModal);
+        console.log(openErrorModal);
         if (JSON.stringify(errors) != "{}"){
-            setModalConfiguration(true);
+            setErrorModal(true);
         }
         else{
             await axios
                 .post(`${process.env.REACT_APP_BACKEND_URL}reservation`, {
                         email: email,
-                        name: "Michiru Sama",
+                        name: "Customer",
                         pax: numpax,
                         date_of_visit: currDate,
                         table_id: [1, 2],
@@ -196,16 +198,17 @@ function Reserve() {
                 })
                 .then((response) => {
                         console.log(response.data);
+                        setSuccessModal(true);
                 })
                 .catch((error) => {
                         console.error(error);
-                        setModalConfiguration(true);
+                        setErrorModal(true);
                 });
         }
 
     }
     // console.log(errors);
-    // console.log(openModal);
+    // console.log(openErrorModal);
 
     return (
         <Grid sx={{ color: "black" }}>
@@ -370,7 +373,8 @@ function Reserve() {
                     </Grid>
                 )}
 
-                {openModal && (<ErrorModal errors={errors} openModal={openModal} setOpenModal={setModalConfiguration}/>)}
+                {openErrorModal && (<ErrorModal errors={errors} openErrorModal={openErrorModal} setOpenModal={setErrorModal}/>)}
+                {openSuccessModal && (<SuccessModal openSuccessModal={openSuccessModal} setOpenModal={setSuccessModal}/>)}
             </Box>
         </Grid>
     );

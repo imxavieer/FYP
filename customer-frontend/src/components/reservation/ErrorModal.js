@@ -16,13 +16,13 @@ const style = {
     p: 4,
 };
 
-export default function ErrorModal({ openModal, errors, setOpenModal }) {
+export default function ErrorModal({ openErrorModal, errors, setOpenModal }) {
     const handleClose = () => setOpenModal(false);
 
     return (
         <div>
             <Modal
-                open={openModal}
+                open={openErrorModal}
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
