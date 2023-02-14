@@ -6,7 +6,7 @@ const router = express.Router();
 
 const ReservationController = require("../Controllers/ReservationController");
 
-router.get(
+router.post(
     "/timing",
     [check("date").not().isEmpty(), check("pax").not().isEmpty()],
     ReservationController.getAvailableTiming

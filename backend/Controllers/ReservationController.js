@@ -31,7 +31,7 @@ const t_list = [
     "2100",
     "2130",
     "2200",
-    "2230",
+    "2230"
 ];
 
 const combine_rule = {
@@ -95,17 +95,17 @@ const getAvailableTiming = async (req, res, next) => {
     
     /*
     const test = new Reservation({
-        email: "shchong.2020@gmail.com",
+        email: "shchong.2020@scis.smu.edu.sg",
         name: "sanghil",
-        pax: 5,
-        date_of_visit: "2023-01-24 1200",
-        table_id: [4,11],
+        pax: 4,
+        date_of_visit: "2023-02-09 1230",
+        table_id: [8],
         status: 1
     });
 
     test.save();
     
-    res.json({message: "successful"});
+    res.json({message: "successfully added"});
     */
 
     
@@ -302,7 +302,7 @@ const getAvailableTiming = async (req, res, next) => {
             }
         }
 
-        res.json({ return_list });
+        res.json(return_list);
     } else {
         //If you reach this block means that number of pax is 5 or greater
         //Since from 5pax onwards, tables need to be combined no matter what, instead of separating the filtered rows into first_list and second_list, based on the table IDs,
@@ -385,7 +385,7 @@ const getAvailableTiming = async (req, res, next) => {
             id_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
         }
 
-        res.json({ return_list });
+        res.json(return_list);
     }
     
 };
