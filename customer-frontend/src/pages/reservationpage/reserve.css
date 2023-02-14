@@ -4,33 +4,33 @@
 } */
 
 
-.background{
+.background {
     justify-content: center;
     margin: 0;
     align-items: center;
     height: 100vh;
 }
 
-.bee{
+.bee {
     -webkit-animation: hover 2s ease-in-out infinite;
     animation: hover 2s ease-in-out infinite;
 }
 
-.bee-body{
+.bee-body {
     position: relative;
-    margin: 136px , 130px , 38px , 130px;
+    margin: 136px, 130px, 38px, 130px;
     min-width: 130px;
     background: #ffca31;
     height: 130px;
     width: 130px;
     border-radius: 50%;
-    background-size: 130px 65px, cover , cover , cover;
-    background-image: linear-gradient(to bottom, transparent 50% , #292929 50%),
-        radial-gradient(circle at 51% 36% , #ffd764 47% , transparent , 47%),
-        radial-gradient(circle at 51% 53% , #ffd764 557% , transparent , 55%),
-        radial-gradient(circle at 60% 53% , #ffd764 60% , transparent , 60%);
+    background-size: 130px 65px, cover, cover, cover;
+    background-image: linear-gradient(to bottom, transparent 50%, #292929 50%),
+        radial-gradient(circle at 51% 36%, #ffd764 47%, transparent, 47%),
+        radial-gradient(circle at 51% 53%, #ffd764 557%, transparent, 55%),
+        radial-gradient(circle at 60% 53%, #ffd764 60%, transparent, 60%);
     box-shadow: 35px -105px 0 -44px #ffd764, -35px -105px 0 -44px #ffd764,
-        -32px -107px 0 -41px #ffebb1, 35px -105px 0 -38px #ffca31, 
+        -32px -107px 0 -41px #ffebb1, 35px -105px 0 -38px #ffca31,
         -35px -105px 0 -38px #ffca31, 3px -95px 0 -18px #ffd764, 5px -100px 0 -15px #ffebb1,
         0px -95px 0 -10px #ffca31, -35px -183px 0 -57px #363636,
         35px -183px 0 -57px #363636, -33px -185px 0 -56px #505050,
@@ -38,10 +38,10 @@
         35px -184px 0 -54px #292929;
 }
 
-.bee-body::after{
+.bee-body::after {
     position: absolute;
     content: "";
-    background: linear-gradient(to bottom , transparent 50% , #363636 50%);
+    background: linear-gradient(to bottom, transparent 50%, #363636 50%);
     height: 130px;
     width: 130px;
     right: 0px;
@@ -52,7 +52,7 @@
     clip-path: ellipse(41% at 61% 48%);
 }
 
-.mouth{
+.mouth {
     content: "";
     position: absolute;
     width: 20px;
@@ -64,7 +64,7 @@
     border-bottom: 5px solid #363636;
 }
 
-.antenae{
+.antenae {
     position: relative;
     z-index: 2;
     width: 60px;
@@ -78,7 +78,7 @@
     transform: skewY(-20deg);
 }
 
-.antenae::before{
+.antenae::before {
     content: "";
     position: absolute;
     width: 60px;
@@ -92,7 +92,7 @@
     transform: skewY(400deg);
 }
 
-.antenae::after{
+.antenae::after {
     transform: skewY(20deg);
     position: absolute;
     content: "";
@@ -100,18 +100,18 @@
     left: -33px;
     width: 30px;
     height: 30px;
-    background: linear-gradient(to right , #292929 50%,
-    #363636 50%);
-    -webkit-clip-path:polygon(0 0, 50% 100% , 100% 0);
-    clip-path:polygon(0 0, 50% 100% , 100% 0);
+    background: linear-gradient(to right, #292929 50%,
+            #363636 50%);
+    -webkit-clip-path: polygon(0 0, 50% 100%, 100% 0);
+    clip-path: polygon(0 0, 50% 100%, 100% 0);
 }
 
-.bee-left{
+.bee-left {
     -webkit-animation: flight-left 0.5s ease-out infinite;
     animation: flight-left 0.5s ease-out infinite;
     content: "";
     background-color: #f8f8f8;
-    position:absolute;
+    position: absolute;
     height: 90px;
     width: 140px;
     bottom: 90px;
@@ -126,12 +126,12 @@
 
 
 
-.bee-right{
+.bee-right {
     -webkit-animation: flight-right 0.5s ease-out infinite;
     animation: flight-right 0.5s ease-out infinite;
     content: "";
     background-color: #f8f8f8;
-    position:absolute;
+    position: absolute;
     height: 90px;
     width: 140px;
     bottom: 90px;
@@ -143,11 +143,12 @@
     box-shadow: inset 30px 105px 0 -70px #fff;
 }
 
-.blink{
+.blink {
     position: fixed;
 }
 
-.blink::before , .blink::after{
+.blink::before,
+.blink::after {
     -webkit-clip-path: ellipse(50% 46% at 50% 50%);
     clip-path: ellipse(50% 46% at 50% 50%);
     content: "";
@@ -160,34 +161,34 @@
     animation: blink 10s linear infinite;
 }
 
-.blink::before{
+.blink::before {
     background-image: radial-gradient(circle at 71% 38%,
-    #fff 8% , transparent 8%), radial-gradient(circle at 65% 50% , #363636 16%, transparent 16%),
-    radial-gradient(circle at 69% 47% , #434343 19%, transparent 19%),
-    radial-gradient(circle at 65% 50% , #292929 25% , transparent 25%),
-    radial-gradient(ellipse at 50% 55% , #f8f8f8 50% , transparent 50%),
-    radial-gradient(circle at 70% 50% , #fff 65% , transparent);
+            #fff 8%, transparent 8%), radial-gradient(circle at 65% 50%, #363636 16%, transparent 16%),
+        radial-gradient(circle at 69% 47%, #434343 19%, transparent 19%),
+        radial-gradient(circle at 65% 50%, #292929 25%, transparent 25%),
+        radial-gradient(ellipse at 50% 55%, #f8f8f8 50%, transparent 50%),
+        radial-gradient(circle at 70% 50%, #fff 65%, transparent);
     left: 2px;
 }
 
 
-.blink::after{
+.blink::after {
     background-image: radial-gradient(circle at 41% 38%,
-    #fff 8% , transparent 8%), radial-gradient(circle at 35% 50% , #363636 16%, transparent 16%),
-    radial-gradient(circle at 39% 47% , #434343 19%, transparent 19%),
-    radial-gradient(circle at 35% 50% , #292929 25% , transparent 25%),
-    radial-gradient(ellipse at 50% 55% , #f8f8f8 50% , transparent 50%),
-    radial-gradient(circle at 70% 50% , #fff 65% , transparent);
+            #fff 8%, transparent 8%), radial-gradient(circle at 35% 50%, #363636 16%, transparent 16%),
+        radial-gradient(circle at 39% 47%, #434343 19%, transparent 19%),
+        radial-gradient(circle at 35% 50%, #292929 25%, transparent 25%),
+        radial-gradient(ellipse at 50% 55%, #f8f8f8 50%, transparent 50%),
+        radial-gradient(circle at 70% 50%, #fff 65%, transparent);
     left: 73px;
 }
 
-.wrapper{
+.wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.shadow{
+.shadow {
     height: 45px;
     width: 170px;
     border-radius: 50%;
@@ -196,7 +197,7 @@
 }
 
 
-@-webkit-keyframes blink{
+@-webkit-keyframes blink {
     0% {
         -webkit-clip-path: ellipse(50% 50% at 50% 50%);
         clip-path: ellipse(50% 50% at 50% 50%);
@@ -277,17 +278,17 @@
     }
 
 
-    80%{
+    80% {
         -webkit-clip-path: ellipse(50% 5% at 50% 50%);
         clip-path: ellipse(50% 5% at 50% 50%);
     }
 
-    81%{
+    81% {
         -webkit-clip-path: ellipse(50% 50% at 50% 50%);
         clip-path: ellipse(50% 50% at 50% 50%);
     }
 
-    100%{
+    100% {
         -webkit-clip-path: ellipse(50% 50% at 50% 50%);
         clip-path: ellipse(50% 50% at 50% 50%);
     }
@@ -295,130 +296,138 @@
 }
 
 
-@-webkit-keyframes hover{
-    0%{
+@-webkit-keyframes hover {
+    0% {
         transform: translateY(0px);
     }
 
-    50%{
+    50% {
         transform: translateY(-15px);
     }
 
-    100%{
+    100% {
         transform: translateY(0px);
     }
 }
 
 
-@keyframes hover{
-    0%{
+@keyframes hover {
+    0% {
         transform: translateY(0px);
     }
 
-    50%{
+    50% {
         transform: translateY(-15px);
     }
 
-    100%{
+    100% {
         transform: translateY(0px);
     }
 }
 
-@keyframes shadow{
-    0%{
+@keyframes shadow {
+    0% {
         width: 170px;
     }
 
-    50%{
+    50% {
         width: 180px;
     }
 
-    100%{
+    100% {
         width: 170px;
     }
 }
 
 
 
-@-webkit-keyframes flight-left{
-    0%{
+@-webkit-keyframes flight-left {
+    0% {
         width: 150px;
         transform: skewY(20deg);
     }
-    50%{
+
+    50% {
         width: 125px;
         transform: skewY(25deg);
     }
-    100%{
+
+    100% {
         width: 150px;
         transform: skewY(20deg);
     }
 }
 
 
-@keyframes flight-left{
-    0%{
+@keyframes flight-left {
+    0% {
         width: 150px;
         transform: skewY(20deg);
     }
-    50%{
+
+    50% {
         width: 125px;
         transform: skewY(25deg);
     }
-    100%{
+
+    100% {
         width: 150px;
         transform: skewY(20deg);
     }
 }
 
-@-webkit-keyframes flight-right{
-    0%{
+@-webkit-keyframes flight-right {
+    0% {
         width: 150px;
         transform: skewY(-20deg);
     }
-    50%{
+
+    50% {
         width: 125px;
         transform: skewY(-25deg);
     }
-    100%{
+
+    100% {
         width: 150px;
         transform: skewY(-20deg);
     }
 }
 
-@keyframes flight-right{
-    0%{
+@keyframes flight-right {
+    0% {
         width: 150px;
         transform: skewY(-20deg);
     }
-    50%{
+
+    50% {
         width: 125px;
         transform: skewY(-25deg);
     }
-    100%{
+
+    100% {
         width: 150px;
         transform: skewY(-20deg);
     }
 }
 
-.firstBlock{
-   text-align: center;
-   background-color: ;
-   margin-bottom: -25px
+.firstBlock {
+    text-align: center;
+    background-color: ;
+    margin-bottom: -25px
 }
 
-#whatsapp{
+#whatsapp {
     background-color: #F49300;
-    
+
 
 }
 
-#first_block{
+#first_block {
     background-color: #fbf8f7;
     padding: 30px 10px 85px 10px;
 }
 
-.secondBlock{
+.secondBlock {
     background-color: ;
     padding-top: 1px;
     padding-bottom: 30px;
@@ -426,74 +435,74 @@
     opacity: 0.9;
 }
 
-.thirdBlock{
+.thirdBlock {
     text-align: center;
     background-color: ;
     margin: 0px 90px 0px 90px;
 }
 
-#mapBlock{
+#mapBlock {
     background-color: violet;
-    
-    
+
+
 }
 
-#mapDetailBlock{
+#mapDetailBlock {
     background-color: #505050;
 }
 
 
-.item{
+.item {
     width: 190px;
     height: 195px;
     background-color: #fff;
     border: 1px solid black;
-    
+
 }
 
 
 
-.reservationText{
+.reservationText {
     justify-content: center;
     margin-top: -15px;
     margin-bottom: 58px;
     color: black;
-    
-    
+
+
 }
 
-.GridContainerCenter{
+.GridContainerCenter {
     justify-content: center;
 }
 
 
 
-.seoul{
+.seoul {
     font-family: 'SeoulHangangC';
 }
 
-.roboto{
-    font-family:sans-serif;
+.roboto {
+    font-family: "Roboto";
 }
 
-#reservationWord{
+#reservationWord {
     padding-top: 5px;
     margin-bottom: 53px;
 }
 
-#bookTableWord{
+#bookTableWord {
     font-size: 60px;
     margin-bottom: -15px;
     margin-top: -40px;
 }
 
 
-#changeOne{
+#changeOne {
     font-size: 17px;
     margin-top: 11px;
 }
 
-#changeTwo{
+#changeTwo {
     font-size: 17px;
     margin-top: -2px;
     margin-bottom: -35px;
@@ -502,49 +511,44 @@
     padding-right: 35px;
 }
 
-#changeThree{
+#changeThree {
     margin-top: -15px;
     padding-bottom: 10px;
 }
 
 
-a{
+a {
     color: black;
 }
 
 
-#img{
-    
-}
+#img {}
 
-#paxInput{
+#paxInput {
     padding-left: 0%;
-    margin-top:  -25px;
+    margin-top: -25px;
 }
 
-#dateInput{
+#dateInput {
     margin-top: 15px;
 }
 
-.testing{
+.testing {
     background-color: black;
 }
 
-#shiftIcon{
+#shiftIcon {
     margin-left: -4px;
     padding-left: 2.5px;
 }
 
-#timeInput{
+#timeInput {
     padding-left: 0%;
     margin-top: 15px;
     margin-bottom: 15px;
 }
 
-#emailInput{
+#emailInput {
 
-   padding-left: 0px;
+    padding-left: 0px;
 }
-
-
-

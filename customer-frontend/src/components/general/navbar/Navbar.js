@@ -17,9 +17,9 @@ import {
 import { styled } from "@mui/system";
 import { useTheme } from "@mui/material/styles";
 import DrawerComponent from "./DrawerComponent";
+
 import "./Navbar.css";
 
-import "@fontsource/roboto/300.css";
 import HoneyNightLogo from ".././../../images/honeynightlogo.PNG";
 
 import AnchorLink from "react-anchor-link-smooth-scroll-v2";
