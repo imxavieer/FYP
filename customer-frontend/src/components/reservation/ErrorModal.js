@@ -17,7 +17,6 @@ const style = {
 };
 
 export default function ErrorModal({ openModal, errors, setOpenModal }) {
-    const count = 0;
     const handleClose = () => setOpenModal(false);
 
     return (

@@ -152,10 +152,11 @@ function Reserve() {
     const [email, setEmail] = React.useState("");
     
     const [errors, setErrors] = React.useState({});
-    const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const [openModal, setModalConfiguration] = React.useState(false);
-
-    const bookTable = async () => {  
+    
+    var bookTable = async () => {  
+        setErrors({});
+        setModalConfiguration(false);
         const day = JSON.stringify(reserveDate).substring(9, 11);
         const month = JSON.stringify(reserveDate).substring(6, 8);
         const year = JSON.stringify(reserveDate).substring(1, 5);
@@ -163,13 +164,8 @@ function Reserve() {
         const hour = timeSlotString.substring(0, 2);
         const minutes = timeSlotString.substring(2, 4);
         const currDate = new Date(year, month + 1, day, hour, minutes, 0, 0);
-
-        if (numpax == null || numpax.length == 0){
-            setErrors({numpax: 'Please select the number of people'});
-        }
-        if (day == null){
-            setErrors({date: 'Please select a valid date'});
-        }
+        
+        const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (!new RegExp(EMAIL_REGEX).test(email)){
             setErrors({email: 'Please enter a valid email'});
         }
@@ -177,9 +173,15 @@ function Reserve() {
             errors.timeslot = 'Please enter a valid time';
             setErrors({timeslot: 'Please enter a valid time'});
         }
-        console.log(Object.keys(errors).length);
-
-        if (Object.keys(errors).length >= 0){
+        if (day == null){
+            setErrors({date: 'Please select a valid date'});
+        }
+        if (numpax == null || numpax.length == 0){
+            setErrors({numpax: 'Please select the number of people'});
+        }
+        console.log(errors);
+        console.log(openModal);
+        if (JSON.stringify(errors) != "{}"){
             setModalConfiguration(true);
         }
         else{
@@ -197,17 +199,16 @@ function Reserve() {
                 })
                 .catch((error) => {
                         console.error(error);
-                        errors.others = 'Please try again!';
                         setModalConfiguration(true);
                 });
         }
 
     }
-    console.log(errors);
-    console.log(openModal);
+    // console.log(errors);
+    // console.log(openModal);
 
     return (
-        <React.Fragment sx={{ color: "black" }}>
+        <Grid sx={{ color: "black" }}>
             <Grid container className="reservationText">
                 <Box textAlign={"center"}>
                     <h5>RESERVATION</h5>
@@ -369,9 +370,9 @@ function Reserve() {
                     </Grid>
                 )}
 
-                {openModal && (<ErrorModal errors={errors} openModal={openModal} setOpenModal = {setModalConfiguration}/>)}
+                {openModal && (<ErrorModal errors={errors} openModal={openModal} setOpenModal={setModalConfiguration}/>)}
             </Box>
-        </React.Fragment>
+        </Grid>
     );
 }
 
