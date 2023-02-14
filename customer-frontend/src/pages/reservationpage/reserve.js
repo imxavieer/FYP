@@ -1,6 +1,8 @@
 import * as React from "react";
 import { styled } from "@mui/material/styles";
 import "./reserve.css";
+import ErrorModal from "../../components/reservation/ErrorModal";
+import SuccessModal from "../../components/reservation/SuccessModal";
 import axios from "axios";
 import {
     Paper,
@@ -149,8 +151,14 @@ function Reserve() {
     const openConfirmationPaper = () => setShowPaper(true);
 
     const [email, setEmail] = React.useState("");
-
-    const bookTable = async () => {
+    
+    const [errors, setErrors] = React.useState({});
+    const [openErrorModal, setErrorModal] = React.useState(false);
+    const [openSuccessModal, setSuccessModal] = React.useState(false);
+    
+    var bookTable = async () => {  
+        setErrors({});
+        setErrorModal(false);
         const day = JSON.stringify(reserveDate).substring(9, 11);
         const month = JSON.stringify(reserveDate).substring(6, 8);
         const year = JSON.stringify(reserveDate).substring(1, 5);
@@ -158,26 +166,52 @@ function Reserve() {
         const hour = timeSlotString.substring(0, 2);
         const minutes = timeSlotString.substring(2, 4);
         const currDate = new Date(year, month + 1, day, hour, minutes, 0, 0);
+        
+        const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (!new RegExp(EMAIL_REGEX).test(email)){
+            setErrors({email: 'Please enter a valid email'});
+        }
+        if (timeSlotString.length == 0 || timeSlotString == null){
+            errors.timeslot = 'Please enter a valid time';
+            setErrors({timeslot: 'Please enter a valid time'});
+        }
+        if (day == null){
+            setErrors({date: 'Please select a valid date'});
+        }
+        if (numpax == null || numpax.length == 0){
+            setErrors({numpax: 'Please select the number of people'});
+        }
+        console.log(errors);
+        console.log(openErrorModal);
+        if (JSON.stringify(errors) != "{}"){
+            setErrorModal(true);
+        }
+        else{
+            await axios
+                .post(`${process.env.REACT_APP_BACKEND_URL}reservation`, {
+                        email: email,
+                        name: "Customer",
+                        pax: numpax,
+                        date_of_visit: currDate,
+                        table_id: [1, 2],
+                        status: 1
+                })
+                .then((response) => {
+                        console.log(response.data);
+                        setSuccessModal(true);
+                })
+                .catch((error) => {
+                        console.error(error);
+                        setErrorModal(true);
+                });
+        }
 
-        await axios
-            .post(`${process.env.REACT_APP_BACKEND_URL}reservation`, {
-                name: "Michiru Sama",
-                email,
-                pax: numpax,
-                date_of_visit: currDate,
-                table_id: [1, 2],
-                status: 1,
-            })
-            .then((res) => {
-                console.log(res);
-            })
-            .catch((err) => {
-                console.error(err);
-            });
-    };
+    }
+    // console.log(errors);
+    // console.log(openErrorModal);
 
     return (
-        <React.Fragment sx={{ color: "black" }}>
+        <Grid sx={{ color: "black" }}>
             <Grid container className="reservationText">
                 <Box textAlign={"center"}>
                     <h5>RESERVATION</h5>
@@ -338,8 +372,11 @@ function Reserve() {
                         </Paper>
                     </Grid>
                 )}
+
+                {openErrorModal && (<ErrorModal errors={errors} openErrorModal={openErrorModal} setOpenModal={setErrorModal}/>)}
+                {openSuccessModal && (<SuccessModal openSuccessModal={openSuccessModal} setOpenModal={setSuccessModal}/>)}
             </Box>
-        </React.Fragment>
+        </Grid>
     );
 }
 
