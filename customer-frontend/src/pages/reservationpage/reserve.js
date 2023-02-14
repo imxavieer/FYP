@@ -134,7 +134,7 @@ function Reserve() {
         setNumPax(event.target.value);
     };
 
-    var [reserveDate, setDate] = React.useState();
+    var [reserveDate, setDate] = React.useState(new Date());
     const handleDateChange = (newValue) => {
         setDate(newValue);
         reserveDate = newValue.$d;
