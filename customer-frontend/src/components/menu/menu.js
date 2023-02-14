@@ -14,7 +14,7 @@ function Menu() {
 
     const menuItems = [
         {
-            menuImage:"https://twoplaidaprons.com/wp-content/uploads/2022/06/spam-kimbap-cut-on-plate.jpg",
+            menuImage:"https://i.imgur.com/ndyIwwL.jpg",
             menuItemName: "Honey Night Kimbab",
             menuItemPrice: "$9.90",
             menuItemDescription:

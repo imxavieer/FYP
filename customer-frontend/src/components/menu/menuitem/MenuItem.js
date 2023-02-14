@@ -17,13 +17,13 @@ const imageProperties = {
         xs: "100% 400px",
         sm: "100% 300px",
         md: "100% 400px",
-        lg: "100% 450px",
+        lg: "100%",
     },
     height: {
         xs: "400px",
         sm: "300px",
         md: "400px",
-        lg: "450px",
+        lg: "300px",
     },
 };
 
