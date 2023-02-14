@@ -18,6 +18,9 @@ const style = {
 
 export default function ErrorModal({ openErrorModal, errors, setOpenModal }) {
     const handleClose = () => setOpenModal(false);
+    if (JSON.stringify(errors) == "{}"){
+        setOpenModal(false);
+    }
 
     return (
         <div>
