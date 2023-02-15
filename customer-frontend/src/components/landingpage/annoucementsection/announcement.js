@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 
-import { Box, CardMedia } from "@mui/material";
-
-import "../../../pages/reservationpage/reserve.css"
-
+import "../../../pages/reservationpage/reserve.css";
+import "./announcement.css";
 import Carousel from "react-elastic-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const breakPoints = [
-    { width: 1, itemsToShow: 1 },
-    { width: 550, itemsToShow: 1, itemsToScroll: 1, pagination: true },
-    { width: 850, itemsToShow: 2 },
-    { width: 1150, itemsToShow: 3, itemsToScroll: 2 },
+    { width: 1, itemsToShow: 2, itemsToScroll: 2, pagination: true },
+    { width: 550, itemsToShow: 3, itemsToScroll: 3, pagination: true },
+    // { width: 850, itemsToShow: 2 },
+    // { width: 1150, itemsToShow: 3, itemsToScroll: 2 },
 ];
 
 const announcementMessages = [
@@ -60,10 +58,18 @@ const announcementMessages = [
 // md: 900px
 // lg:1200px
 // xl:1536px
+const Image = styled("img")({
+    display: "block",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "400px",
+    width: "400px",
+});
 
 function Annoucement({ menuItmeSize }) {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [sidePadding, setSidePadding] = useState(20);
+    // const [componentWidth, setComponentWidth] = useState(100);
 
     useEffect(() => {
         const handleWindowResize = () => {
@@ -71,10 +77,12 @@ function Annoucement({ menuItmeSize }) {
             // xs
             if (windowWidth < 600) {
                 setSidePadding(20);
+                // setComponentWidth(100);
             }
             // sm
             else if (windowWidth < 900) {
                 setSidePadding(35);
+                // setComponentWidth(80);
             }
             // md
             // else if (windowWidth < 1200) {
@@ -87,6 +95,7 @@ function Annoucement({ menuItmeSize }) {
             // // xl
             else {
                 setSidePadding(50);
+                // setComponentWidth(60);
             }
         };
         window.addEventListener("resize", handleWindowResize);
@@ -114,25 +123,28 @@ function Annoucement({ menuItmeSize }) {
                     A N N O U N C E M E N T S
                 </h1>
             </div>
+            {menuItmeSize}
             <Carousel
                 id="carousel"
                 focusOnSelect={true}
                 infiniteLoop
                 breakPoints={breakPoints}
-                style={{ margin: "auto", padding: `${sidePadding}px` }}
+                style={{
+                    margin: "auto",
+                    padding: `${sidePadding}px`,
+                    // width: `${componentWidth}vw`,
+                }}
+                itemPadding={[0, 10]}
             >
                 {announcementMessages.map((messageImage) => {
                     return (
-                        <CardMedia
-                            component={"img"}
+                        <Image
+                            alt="image1"
+                            id="img"
                             src={messageImage}
                             sx={{
-                                display: "block",
-                                justifyContent: "center",
-                                alignItems: "center",
                                 height: menuItmeSize,
                                 width: menuItmeSize,
-                                background: "grey",
                             }}
                         />
                     );

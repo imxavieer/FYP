@@ -80,25 +80,26 @@ function Menu({ setMenuItemSize }) {
                         fontSize: "4vw",
                     }}
                 >
-                    T O P  6 
+                    T O P 6
                 </h1>
                 <h1 className="menuTitle">Menu</h1>
 
-                <Grid
-                    container
-                    justifyContent="space-evenly"
-                    spacing={1}
-                    sx={{
-                        padding: {
-                            xs: "20px",
-                            sm: "35px",
-                            md: "50px",
-                        },
-                    }}
-                >
+                <Grid container justifyContent="space-evenly" spacing={1}>
                     <Grid item xs={12} sx={{ padding: "0" }}>
                         <Box>
-                            <Grid container spacing={2} id="menuItems">
+                            <Grid
+                                container
+                                spacing={0}
+                                id="menuItems"
+                                sx={{
+                                    width: {
+                                        xs: "100vw",
+                                        sm: "80vw",
+                                        md: "60vw",
+                                    },
+                                    margin: "auto",
+                                }}
+                            >
                                 {menuItems.map((item, index) => {
                                     const {
                                         menuImage,
