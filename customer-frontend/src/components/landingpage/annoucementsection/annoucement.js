@@ -1,18 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 
-import {
-    Paper,
-    TextField,
-    Stack,
-    Grid,
-    Button,
-    Box,
-    InputLabel,
-    MenuItem,
-    FormControl,
-    Select,
-} from "@mui/material";
+import { Box, CardMedia } from "@mui/material";
 
 import Carousel from "react-elastic-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -23,14 +12,6 @@ const breakPoints = [
     { width: 850, itemsToShow: 2 },
     { width: 1150, itemsToShow: 3, itemsToScroll: 2 },
 ];
-
-const Image = styled("img")({
-    display: "block",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "400px",
-    width: "400px",
-});
 
 const announcementMessages = [
     "https://lh3.googleusercontent.com/p/AF1QipPHlM7f_2xQkT1Ed3pmXYppxbm6zxw9YOCHUiKf=w768-h768-n-o-v1",
@@ -78,7 +59,7 @@ const announcementMessages = [
 // lg:1200px
 // xl:1536px
 
-function Annoucement() {
+function Annoucement({ menuItmeSize }) {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [sidePadding, setSidePadding] = useState(10);
 
@@ -131,26 +112,6 @@ function Annoucement() {
                     A N N O U N C E M E N T S
                 </h1>
             </div>
-            <Box className="customCarousel">
-                {/* store image */}
-                <Box></Box>
-                {/* arrow button */}
-
-                {/* {announcementMessages.map((messageImage) => {
-                    return (
-                        <Image
-                            alt="image1"
-                            id="img"
-                            src={messageImage}
-                            draggable="false"
-                        />
-                    );
-                })} */}
-            </Box>
-
-            {/* <Button>Left</Button>
-            <Button>Right</Button>
-            <h1>Width: {windowWidth}</h1> */}
             <Carousel
                 id="carousel"
                 focusOnSelect={true}
@@ -160,11 +121,17 @@ function Annoucement() {
             >
                 {announcementMessages.map((messageImage) => {
                     return (
-                        <Image
-                            alt="image1"
-                            id="img"
+                        <CardMedia
+                            component={"img"}
                             src={messageImage}
-                            draggable="false"
+                            sx={{
+                                display: "block",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                height: menuItmeSize,
+                                width: menuItmeSize,
+                                background: "grey",
+                            }}
                         />
                     );
                 })}
