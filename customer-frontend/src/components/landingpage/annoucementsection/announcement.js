@@ -123,7 +123,6 @@ function Annoucement({ menuItmeSize }) {
                     A N N O U N C E M E N T S
                 </h1>
             </div>
-            {menuItmeSize}
             <Carousel
                 id="carousel"
                 focusOnSelect={true}

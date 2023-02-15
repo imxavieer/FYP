@@ -85,11 +85,11 @@ function Menu({ setMenuItemSize }) {
                 <h1 className="menuTitle">Menu</h1>
 
                 <Grid container justifyContent="space-evenly" spacing={1}>
-                    <Grid item xs={12} sx={{ padding: "0" }}>
-                        <Box>
+                    <Grid item xs={12}>
+                        <Box sx={{ display: "flex" ,justifyContent:"center"}}>
                             <Grid
                                 container
-                                spacing={0}
+                                spacing={1}
                                 id="menuItems"
                                 sx={{
                                     width: {
@@ -97,7 +97,7 @@ function Menu({ setMenuItemSize }) {
                                         sm: "80vw",
                                         md: "60vw",
                                     },
-                                    margin: "auto",
+                                    // margin: "0 auto",
                                 }}
                             >
                                 {menuItems.map((item, index) => {
