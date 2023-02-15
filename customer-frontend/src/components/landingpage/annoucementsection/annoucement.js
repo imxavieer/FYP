@@ -63,18 +63,18 @@ const announcementMessages = [
 
 function Annoucement({ menuItmeSize }) {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-    const [sidePadding, setSidePadding] = useState(10);
+    const [sidePadding, setSidePadding] = useState(20);
 
     useEffect(() => {
         const handleWindowResize = () => {
             setWindowWidth(window.innerWidth);
             // xs
             if (windowWidth < 600) {
-                setSidePadding(10);
+                setSidePadding(20);
             }
             // sm
             else if (windowWidth < 900) {
-                setSidePadding(25);
+                setSidePadding(35);
             }
             // md
             // else if (windowWidth < 1200) {

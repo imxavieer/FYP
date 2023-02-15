@@ -47,8 +47,8 @@ function Contact() {
                             // justifyContent={"center"}
                             sx={{
                                 padding: {
-                                    xs: "10px",
-                                    sm: "25px",
+                                    xs: "20px",
+                                    sm: "35px",
                                     md: "50px",
                                 },
                                 width: {

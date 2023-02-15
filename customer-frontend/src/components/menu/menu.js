@@ -90,8 +90,8 @@ function Menu({ setMenuItemSize }) {
                     spacing={1}
                     sx={{
                         padding: {
-                            xs: "10px",
-                            sm: "25px",
+                            xs: "20px",
+                            sm: "35px",
                             md: "50px",
                         },
                     }}
