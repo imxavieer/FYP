@@ -1,6 +1,3 @@
-/* div.rec-slider-container {
-    width: 60vw
-} */
 @media only screen and (max-width: 600px) {
     div.rec-slider-container {
         width: 90vw;

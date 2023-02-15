@@ -145,6 +145,7 @@ function Annoucement({ menuItmeSize }) {
                                 height: menuItmeSize,
                                 width: menuItmeSize,
                             }}
+                            loading={"lazy"}
                         />
                     );
                 })}
