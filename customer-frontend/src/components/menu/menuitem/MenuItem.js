@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import {
-    Grid,
-    Card,
-    Typography,
-    CardContent,
-} from "@mui/material";
+import { Grid, Card, Typography, CardContent } from "@mui/material";
 import "./MenuItem.css";
 // props:
 // menuImage --> url of the image
@@ -13,26 +8,15 @@ import "./MenuItem.css";
 // menuItemDescription --> description of the menu item
 
 const imageProperties = {
-    backgroundSize: {
-        xs: "100% 400px",
-        sm: "100% 300px",
-        md: "100% 400px",
-        lg: "100%",
-    },
-    height: {
-        xs: "300px",
-        sm: "300px",
-        md: "300px",
-        lg: "300px",
-    },
+    backgroundSize: "100% 100%",
 };
 
 function MenuItem({ menuImage, menuItemName, menuItemPrice }) {
-    const { backgroundSize, height } = imageProperties;
+    const { backgroundSize, height, width } = imageProperties;
     const [isHovered, setIsHovered] = useState(false);
 
     return (
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid item xs={6} sm={6} md={4}>
             <Card
                 className="menuItemContainer"
                 sx={{
@@ -42,10 +26,11 @@ function MenuItem({ menuImage, menuItemName, menuItemPrice }) {
                         background: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),url(${menuImage}) `,
                         color: "white",
                         backgroundSize,
-                        height,
                     },
                     backgroundSize,
-                    height,
+                    aspectRatio: 1,
+                    height: "100%",
+                    width: "100%",
                     margin: "0 auto",
                     display: "flex",
                     alignItems: "end",

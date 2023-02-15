@@ -1,6 +1,7 @@
 .menuItemContainer {
     margin: 0 auto;
-    background-color: #2f3133
+    background-color: #2f3133;
+    aspect-ratio: 1
 }
 
 .menuItemImage {

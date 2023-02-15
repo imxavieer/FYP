@@ -34,23 +34,8 @@ const Image = styled("img")({
 function Annoucement() {
     return (
         <div className="secondBlock">
-            {/*}
-            <div class = "wrapper">
-                <div class = "bee">
-                    <div class = "bee-body">
-                        <div class = "blink"></div>
-                        <div class = "mouth"></div>
-                        <div class = "antenae"></div>
-                        <div class = "bee-left"></div>
-                        <div class = "bee-right"></div>
-                    </div>
-                </div>
-                <div class = "shadow"></div>
-            </div>
-            {*/}
             <div
                 style={{
-                    backgroundColor: "",
                     textAlign: "center",
                     marginTop: "80px",
                     marginBottom: "50px",
