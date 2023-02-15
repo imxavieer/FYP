@@ -3,6 +3,8 @@ import { styled } from "@mui/material/styles";
 
 import { Box, CardMedia } from "@mui/material";
 
+import "../../../pages/reservationpage/reserve.css"
+
 import Carousel from "react-elastic-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
