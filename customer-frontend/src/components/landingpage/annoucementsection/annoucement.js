@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 
 import {
@@ -71,7 +71,43 @@ const announcementMessages = [
     "https://scontent-xsp1-2.xx.fbcdn.net/v/t1.6435-9/62235591_1173942472785667_3580511495038959616_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=0debeb&_nc_ohc=XifLJbSFfMgAX9SvZhf&_nc_ht=scontent-xsp1-2.xx&oh=00_AfBCioA3AzTpl0atxAA_mDEMpH1Z4pvXNcRfSZcw08OMpw&oe=6412D039",
 ];
 
+// breakpts: (MUI default breakpoints)
+// xs: 0px
+// sm: 600px
+// md: 900px
+// lg:1200px
+// xl:1536px
+
 function Annoucement() {
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [sidePadding, setSidePadding] = useState(10);
+
+    useEffect(() => {
+        const handleWindowResize = () => {
+            setWindowWidth(window.innerWidth);
+            // xs
+            if (windowWidth < 600) {
+                setSidePadding(10);
+            }
+            // sm
+            else if (windowWidth < 900) {
+                setSidePadding(25);
+            }
+            // md
+            // else if (windowWidth < 1200) {
+            //     setSidePadding(50);
+            // }
+            // // lg
+            // else if (windowWidth < 1536) {
+            //     setSidePadding(50);
+            // }
+            // // xl
+            else {
+                setSidePadding(50);
+            }
+        };
+        window.addEventListener("resize", handleWindowResize);
+    });
     return (
         <div className="secondBlock">
             <div
@@ -95,12 +131,32 @@ function Annoucement() {
                     A N N O U N C E M E N T S
                 </h1>
             </div>
+            <Box className="customCarousel">
+                {/* store image */}
+                <Box></Box>
+                {/* arrow button */}
+
+                {/* {announcementMessages.map((messageImage) => {
+                    return (
+                        <Image
+                            alt="image1"
+                            id="img"
+                            src={messageImage}
+                            draggable="false"
+                        />
+                    );
+                })} */}
+            </Box>
+
+            {/* <Button>Left</Button>
+            <Button>Right</Button>
+            <h1>Width: {windowWidth}</h1> */}
             <Carousel
                 id="carousel"
                 focusOnSelect={true}
                 infiniteLoop
                 breakPoints={breakPoints}
-                style={{ backgroundColor: "" }}
+                style={{ margin: "auto", padding: `${sidePadding}px` }}
             >
                 {announcementMessages.map((messageImage) => {
                     return (
