@@ -24,6 +24,13 @@ function PopupPrompt() {
                 onMouseLeave={() => {
                     setHovered(false);
                 }}
+                sx={{
+                    display: {
+                        xs: "none",
+                        sm: "block",
+                    },
+                    fontSize:"18px"
+                }}
             >
                 {!hovered ? (
                     <>
