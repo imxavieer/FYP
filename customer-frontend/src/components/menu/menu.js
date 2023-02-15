@@ -68,14 +68,20 @@ function Menu({ setMenuItemSize }) {
         return (
             <div className="menu-div" id="menu-div">
                 <Toolbar />
-                <h2
-                    className="menuTitle"
+
+                <h1
+                    className="seoul"
+                    id="bookTableWord"
                     style={{
-                        color: "orange",
+                        backgroundColor: "",
+                        color: "#F49300",
+                        marginLeft: "84px",
+                        marginRight: "84px",
+                        fontSize: "4vw",
                     }}
                 >
-                    Top 6
-                </h2>
+                    T O P  6 
+                </h1>
                 <h1 className="menuTitle">Menu</h1>
 
                 <Grid
