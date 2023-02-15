@@ -24,6 +24,9 @@ function MenuItem({ menuImage, menuItemName, menuItemPrice, setMenuItemSize }) {
         };
         window.addEventListener("resize", handleWindowResize);
     });
+    useEffect(() => {
+        setMenuItemSize(ref.current.offsetWidth);
+    }, []);
     return (
         <Grid item xs={6} sm={6} md={4}>
             <div ref={ref}>
