@@ -11,9 +11,11 @@ router.post(
     [check("date").not().isEmpty(), check("pax").not().isEmpty()],
     ReservationController.getAvailableTiming
 );
-
+router.get("/:reservationId", [], ReservationController.getReservationById);
 router.post("/", [], ReservationController.createReservation);
 
-router.post("/confirm",[],ReservationController.testEmailConfirmation)
+router.post("/confirm", [], ReservationController.testEmailConfirmation);
+
+router.delete("/:reservationId", [], ReservationController.cancelReservation);
 
 module.exports = router;
