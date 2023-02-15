@@ -35,7 +35,7 @@ const t_list = [
     "2100",
     "2130",
     "2200",
-    "2230"
+    "2230",
 ];
 
 const combine_rule = {
@@ -95,46 +95,10 @@ const two_pax_table = [1, 2, 3, 4, 5, 6, 7];
 
 const four_pax_table = [8, 9, 10, 11, 12, 13, 14, 15, 16];
 
-// ========================main functions========================
-
-const getAvailableTiming = async (req, res, next) => {
-    /*
-    const test = new Reservation({
-        email: "shchong.2020@scis.smu.edu.sg",
-        name: "sanghil",
-        pax: 4,
-        date_of_visit: "2023-02-09 1230",
-        table_id: [8],
-        status: 1
-    });
-
-    test.save();
-    
-    res.json({message: "successfully added"});
-    */
-
-    const error = validationResult(req);
-
-    if (!error.isEmpty()) {
-        const err = new HttpError("Invalid inputs passed", 422);
-        return next(err);
-    }
-
-    const { date, pax } = req.body;
-
-    let date_input = date;
-    let num_pax = pax;
-    let reservations;
-
-    try {
-        reservations = await Reservation.find({});
-    } catch (error) {
-        const err = new HttpError(
-            "Something went wrong while fetching data",
-            500
-        );
-        return next(err);
-    }
+// ========================helper functions========================
+const getAvailableTimingsAndTable = (reservations, date_input, num_pax) => {
+    let takenTables = []; //for both tables and 2
+    let return_list = []; //the timeslots
 
     //Create an empty list to store all the filtered rows that match the date of visit selected and reservation status = 1
     let filtered_rows = [];
@@ -171,9 +135,6 @@ const getAvailableTiming = async (req, res, next) => {
 
     //If pax is 1 or 2
     if (num_pax === 1 || num_pax === 2) {
-        //Create an empty array that will return timings to be blocked out (it means at that timing, all the tables are booked)
-        let return_list = [];
-
         //Initialize the sum to be added up
         let sum = 0;
 
@@ -187,6 +148,9 @@ const getAvailableTiming = async (req, res, next) => {
                 let timing = row.date_of_visit.split(" ")[1];
                 if (timing === compare_timing) {
                     sum += row.table_id;
+                    if (!takenTables.includes(row.table_id)) {
+                        takenTables.push(row.table_id);
+                    }
                 }
             }
             if (sum === 28) {
@@ -198,14 +162,14 @@ const getAvailableTiming = async (req, res, next) => {
             sum = 0;
         }
 
-        res.json(return_list);
+        return {
+            takenTables,
+            return_list,
+        };
     } else if (num_pax === 3 || num_pax === 4) {
         //Either One 4 pax table can be used or Two 2 pax tables can be used
         //BUT we need to prioritize One 4 pax table first
         //For each of the timing in t_list, we need to first check if there is at least one available 4 pax table
-
-        //Create an empty array that will return timings to be blocked out (it means at that timing, all the tables are booked)
-        let return_list = [];
 
         //WHILE all the timings in the t_list have been looped through, starting from 0800, loop t_list against second_list
         let counter = 0;
@@ -237,6 +201,9 @@ const getAvailableTiming = async (req, res, next) => {
                     let compare_id = row.table_id;
                     if (timing === compare_timing) {
                         let index = id_list.indexOf(compare_id);
+                        if (!takenTables.includes(index)) {
+                            takenTables.push(index);
+                        }
                         id_list.splice(index, 1);
                     }
                 }
@@ -304,17 +271,16 @@ const getAvailableTiming = async (req, res, next) => {
                 sum = 0;
             }
         }
-
-        res.json(return_list);
+        return {
+            takenTables,
+            return_list,
+        };
     } else {
         //If you reach this block means that number of pax is 5 or greater
         //Since from 5pax onwards, tables need to be combined no matter what, instead of separating the filtered rows into first_list and second_list, based on the table IDs,
         //we will directly use the filtered rows that contain all the 2 pax and 4 pax IDs
         //Instead, we will create the id_list that contains ALL the table IDs as well.
         let id_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
-
-        //Initialize the return_list that will return the timings to be blocked out on the UI
-        let return_list = [];
 
         //***
         //The idea is that, for EACH of the timing in the t_list, we are going to filter out those table IDs that are already booked at particular timing by removing
@@ -341,6 +307,9 @@ const getAvailableTiming = async (req, res, next) => {
                 if (compare_timing === row_timing) {
                     //Since this table is already booked at this timing, remove that table ID from id_list
                     let index = id_list.indexOf(id_check);
+                    if (!takenTables.includes(index)) {
+                        takenTables.push(index);
+                    }
                     id_list.splice(index, 1);
                 }
             }
@@ -387,23 +356,113 @@ const getAvailableTiming = async (req, res, next) => {
             counter++;
             id_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
         }
-
-        res.json(return_list);
+        return {
+            takenTables,
+            return_list,
+        };
     }
 };
 
-const createReservation = async (req, res, next) => {
-    const { email, name, pax, date_of_visit, table_id, status } = req.body;
-    try {
-        // 1) get the original datetime object --> original
-        // 2) add 30 min to original --> dummy
-        // 3) create a new reservation with original
-        // 4) create reservation with dummy datetime
-        // 5) send confirmation email for 3)
+// ========================main functions========================
 
+const getAvailableTiming = async (req, res, next) => {
+    /*
+    const test = new Reservation({
+        email: "shchong.2020@scis.smu.edu.sg",
+        name: "sanghil",
+        pax: 4,
+        date_of_visit: "2023-02-09 1230",
+        table_id: [8],
+        status: 1
+    });
+
+    test.save();
+    
+    res.json({message: "successfully added"});
+    */
+
+    const error = validationResult(req);
+
+    if (!error.isEmpty()) {
+        const err = new HttpError("Invalid inputs passed", 422);
+        return next(err);
+    }
+
+    const { date, pax } = req.body;
+
+    let reservations;
+
+    try {
+        reservations = await Reservation.find({});
+    } catch (error) {
+        const err = new HttpError(
+            "Something went wrong while fetching data",
+            500
+        );
+        return next(err);
+    }
+    const { return_list } = getAvailableTimingsAndTable(
+        reservations,
+        date,
+        pax
+    );
+    res.json(return_list);
+};
+
+const createReservation = async (req, res, next) => {
+    const { email, name, pax, date_of_visit } = req.body;
+    // try {
+    // 1) get the original datetime object --> original
+    // 2) add 30 min to original --> dummy
+    // 3) create a new reservation with original
+    // 4) create reservation with dummy datetime
+    // 5) send confirmation email for 3)
+
+    try {
+        reservations = await Reservation.find({});
+    } catch (error) {
+        const err = new HttpError(
+            "Something went wrong while fetching data",
+            500
+        );
+        return next(err);
+    }
+
+    // return list means all taken
+    const { takenTables } = getAvailableTimingsAndTable(
+        reservations,
+        date_of_visit,
+        pax
+    );
+    console.log(takenTables)
+
+    var availableCombis = [];
+    if (pax < 3) {
+        two_pax_table.forEach((tableId) => {
+            if (!takenTables.includes(tableId)) {
+                availableCombis.push([tableId]);
+            }
+        });
+    } else {
+        for (var i = 0; i < combine_rule[pax].length; i++) {
+            if (
+                !combine_rule[pax][i].every((table) =>
+                    takenTables.includes(table)
+                )
+            ) {
+                availableCombis.push(combine_rule[pax][i]);
+            }
+        }
+    }
+
+    if (availableCombis.length == 0) {
+        // impossible to book
+        res.status(404).json({
+            message: "Reservation failed as no tables are available",
+        });
+    } else {
         // because GMT +8
-        const originalDateTimeInMs =
-            Date.parse(date_of_visit);
+        const originalDateTimeInMs = Date.parse(date_of_visit);
         // first 30 min
         const originalDateTime = new Date(originalDateTimeInMs);
         // second 30 min
@@ -415,8 +474,8 @@ const createReservation = async (req, res, next) => {
             name,
             pax,
             date_of_visit: convertToDateTimeFormat(originalDateTime),
-            table_id,
-            status,
+            table_id: availableCombis[0],
+            status: 1,
         });
 
         const dummyReservation = new Reservation({
@@ -424,8 +483,8 @@ const createReservation = async (req, res, next) => {
             name,
             pax,
             date_of_visit: convertToDateTimeFormat(dummyDateTime),
-            table_id,
-            status,
+            table_id: availableCombis[0],
+            status: 1,
         });
 
         const createReservationPromise = await Reservation.create(
@@ -435,7 +494,6 @@ const createReservation = async (req, res, next) => {
             dummyReservation
         );
 
-        // this is to ensure the confirmation email is only sent after both reservations are successfully created
         Promise.allSettled([
             createReservationPromise,
             createDummyReservationPromise,
@@ -461,10 +519,11 @@ const createReservation = async (req, res, next) => {
                     });
             })
             .catch((err) => {});
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send("Server Error");
     }
+    // } catch (err) {
+    //     console.error(err.message);
+    //     res.status(500).send("Server Error");
+    // }
 };
 
 const getReservationById = async (req, res, next) => {
@@ -546,7 +605,6 @@ const cancelReservation = async (req, res) => {
                     message: "Failed to delete",
                 });
             });
-
     } catch (err) {
         console.warn(err);
         return res.status(500).json({
