@@ -68,25 +68,33 @@ function Menu({ setMenuItemSize }) {
         return (
             <div className="menu-div" id="menu-div">
                 <Toolbar />
-
-                <h1
-                    className="seoul"
-                    id="bookTableWord"
+                <h6
+                    className="roboto"
+                    id="reservationWord"
                     style={{
-                        backgroundColor: "",
                         color: "#F49300",
-                        marginLeft: "84px",
-                        marginRight: "84px",
-                        fontSize: "4vw",
+                        margin: "0 auto",
                     }}
+                    align="center"
                 >
                     T O P 6
+                </h6>
+                <h1
+                    className="seoul"
+                    id=""
+                    style={{
+                        fontWeight: "bold",
+                        margin:"0",
+                        marginTop:"0",
+                        marginBottom:"20px"
+                    }}
+                >
+                    Menu
                 </h1>
-                <h1 className="menuTitle">Menu</h1>
 
                 <Grid container justifyContent="space-evenly" spacing={1}>
                     <Grid item xs={12}>
-                        <Box sx={{ display: "flex" ,justifyContent:"center"}}>
+                        <Box sx={{ display: "flex", justifyContent: "center" }}>
                             <Grid
                                 container
                                 spacing={1}
@@ -126,6 +134,7 @@ function Menu({ setMenuItemSize }) {
                     href={MenuPdf}
                     sx={{
                         textDecoration: "none",
+                        
                     }}
                 >
                     <Button
@@ -134,9 +143,9 @@ function Menu({ setMenuItemSize }) {
                         sx={{
                             background: "#e19200",
                             color: "white",
-                            margin: "10px auto",
                             display: "flex",
                             padding: "10px",
+                            margin: "30px auto",
                         }}
                     >
                         View Full Menu
