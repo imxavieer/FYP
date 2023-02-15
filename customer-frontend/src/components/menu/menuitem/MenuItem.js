@@ -48,7 +48,7 @@ function MenuItem({ menuImage, menuItemName, menuItemPrice }) {
                     height,
                     margin: "0 auto",
                     display: "flex",
-                    alignItems: "start",
+                    alignItems: "end",
                 }}
                 onMouseEnter={() => {
                     setIsHovered(true);
