@@ -263,7 +263,6 @@ function Reserve() {
 
     const bookTable = async () => {
         const stringifiedDate = JSON.stringify(reserveDate)
-        console.log("stringifiedDate",stringifiedDate)
         const day = stringifiedDate.substring(9, 11);
         const month = stringifiedDate.substring(6, 8);
         const year = stringifiedDate.substring(1, 5);
@@ -280,7 +279,6 @@ function Reserve() {
             minutes,
         });
         const currDate = new Date(year, month-1, day, hour, minutes, 0, 0);
-        console.log("currDate",currDate)
         await fetch(`${process.env.REACT_APP_BACKEND_URL}reservation`, {
             crossDomain: true,
             method: "POST",
@@ -294,8 +292,7 @@ function Reserve() {
         })
             .then((res) => res.json())
             .then((response) => {
-                console.log(response);
-                alert("Reserved!");
+                alert(response.message);
             })
             .catch((error) => {
                 console.error("Error", error);
