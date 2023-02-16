@@ -97,6 +97,7 @@ const four_pax_table = [8, 9, 10, 11, 12, 13, 14, 15, 16];
 
 // ========================helper functions========================
 const getAvailableTimingsAndTable = (reservations, date_input, num_pax) => {
+    console.log(reservations);
     let takenTables = []; //for both tables and 2
     let return_list = []; //the timeslots
 
@@ -120,6 +121,7 @@ const getAvailableTimingsAndTable = (reservations, date_input, num_pax) => {
     for (let j = 0; j < filtered_rows.length; j++) {
         let filtered_row = filtered_rows[j];
         let array = filtered_row.table_id;
+        console.log("array",array)
         array.map(function (element) {
             if (two_pax_table.includes(element)) {
                 filtered_row.table_id = element;
@@ -130,6 +132,8 @@ const getAvailableTimingsAndTable = (reservations, date_input, num_pax) => {
             }
         });
     }
+    console.log("first_list", first_list);
+    console.log("second_list", second_list);
 
     //We now have two filtered rows: first_list and second_list
 
@@ -184,6 +188,9 @@ const getAvailableTimingsAndTable = (reservations, date_input, num_pax) => {
                 let timing = row.date_of_visit.split(" ")[1];
                 if (timing === compare_timing) {
                     sum += row.table_id;
+                    if (!takenTables.includes(index)) {
+                        takenTables.push(index);
+                    }
                 }
             }
 
@@ -401,11 +408,13 @@ const getAvailableTiming = async (req, res, next) => {
         );
         return next(err);
     }
-    const { return_list } = getAvailableTimingsAndTable(
+
+    const { return_list, takenTables } = getAvailableTimingsAndTable(
         reservations,
         date,
         pax
     );
+    console.log("return_list", return_list);
     res.json(return_list);
 };
 
@@ -434,7 +443,7 @@ const createReservation = async (req, res, next) => {
         date_of_visit,
         pax
     );
-    console.log(takenTables)
+    console.log(takenTables);
 
     var availableCombis = [];
     if (pax < 3) {
