@@ -8,9 +8,9 @@ import Carousel from "react-elastic-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const breakPoints = [
-    { width: 1, itemsToShow: 2, itemsToScroll: 2, pagination: true },
-    { width: 550, itemsToShow: 3, itemsToScroll: 3, pagination: true },
-    // { width: 850, itemsToShow: 2 },
+    { width: 1, itemsToShow: 1, itemsToScroll: 1, pagination: true },
+    { width: 550, itemsToShow: 2, itemsToScroll: 2 },
+    { width: 850, itemsToShow: 3, itemsToScroll: 3 },
     // { width: 1150, itemsToShow: 3, itemsToScroll: 2 },
 ];
 
@@ -77,29 +77,30 @@ function Annoucement({ menuItmeSize }) {
             setWindowWidth(window.innerWidth);
             // xs
             if (windowWidth < 600) {
-                setSidePadding(20);
-                // setComponentWidth(100);
+                setSidePadding(0);
             }
             // sm
             else if (windowWidth < 900) {
                 setSidePadding(35);
-                // setComponentWidth(80);
-            }
-            // md
-            // else if (windowWidth < 1200) {
-            //     setSidePadding(50);
-            // }
-            // // lg
-            // else if (windowWidth < 1536) {
-            //     setSidePadding(50);
-            // }
-            // // xl
-            else {
+            } else {
                 setSidePadding(50);
-                // setComponentWidth(60);
             }
         };
         window.addEventListener("resize", handleWindowResize);
+    });
+
+    useEffect(() => {
+        setWindowWidth(window.innerWidth);
+        // xs
+        if (windowWidth < 600) {
+            setSidePadding(0);
+        }
+        // sm
+        else if (windowWidth < 900) {
+            setSidePadding(35);
+        } else {
+            setSidePadding(50);
+        }
     });
     return (
         <div className="secondBlock">
@@ -144,8 +145,8 @@ function Annoucement({ menuItmeSize }) {
                             src={messageImage}
                             referrerPolicy="no-referrer"
                             style={{
-                                height: menuItmeSize,
-                                width: menuItmeSize,
+                                height: windowWidth < 600 ? 350 : menuItmeSize,
+                                width: windowWidth < 600 ? 350 : menuItmeSize,
                             }}
                             loading={"lazy"}
                         />

@@ -16,6 +16,9 @@
     }
 }
 
+div.rec-carousel-wrapper {
+    margin: 0;
+}
 
 div.rec-carousel {
     display: flex;

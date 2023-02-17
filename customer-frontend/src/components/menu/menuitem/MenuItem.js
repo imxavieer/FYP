@@ -32,6 +32,7 @@ function MenuItem({ menuImage, menuItemName, menuItemPrice, setMenuItemSize }) {
             <div ref={ref}>
                 <Card
                     className="menuItemContainer"
+                    referrerPolicy="no-referrer"
                     sx={{
                         backgroundImage: `url(${menuImage})`,
                         transition: "background 0.3s, color 0.3s",
