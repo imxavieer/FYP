@@ -8,8 +8,8 @@ import Carousel from "react-elastic-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const breakPoints = [
-    { width: 1, itemsToShow: 1, itemsToScroll: 1, pagination: true },
-    { width: 550, itemsToShow: 2, itemsToScroll: 2 },
+    { width: 1, itemsToShow: 1, itemsToScroll: 1, pagination: false },
+    { width: 550, itemsToShow: 2, itemsToScroll: 2, pagination: true },
     { width: 850, itemsToShow: 3, itemsToScroll: 3 },
     // { width: 1150, itemsToShow: 3, itemsToScroll: 2 },
 ];
