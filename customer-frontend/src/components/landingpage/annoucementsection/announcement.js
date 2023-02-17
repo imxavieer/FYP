@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles";
 
 import "../../../pages/reservationpage/reserve.css";
 import "./announcement.css";
-import "../../../pages/reservationpage/reserve.css"
+import "../../../pages/reservationpage/reserve.css";
 import Carousel from "react-elastic-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
@@ -138,11 +138,12 @@ function Annoucement({ menuItmeSize }) {
             >
                 {announcementMessages.map((messageImage) => {
                     return (
-                        <Image
+                        <img
                             alt="image1"
                             id="img"
                             src={messageImage}
-                            sx={{
+                            referrerPolicy="no-referrer"
+                            style={{
                                 height: menuItmeSize,
                                 width: menuItmeSize,
                             }}
