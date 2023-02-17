@@ -35,7 +35,7 @@ const t_list = [
     "2100",
     "2130",
     "2200",
-    "2230"
+    "2230",
 ];
 
 const combine_rule = {
@@ -393,74 +393,128 @@ const getAvailableTiming = async (req, res, next) => {
 };
 
 const createReservation = async (req, res, next) => {
-    const { email, name, pax, date_of_visit, table_id, status } = req.body;
+    const { email, name, pax, date_of_visit, } = req.body;
     try {
+        
+        // filter for those that have that timing
         // 1) get the original datetime object --> original
         // 2) add 30 min to original --> dummy
         // 3) create a new reservation with original
         // 4) create reservation with dummy datetime
         // 5) send confirmation email for 3)
 
-        // because GMT +8
-        const originalDateTimeInMs =
-            Date.parse(date_of_visit);
+        const originalDateTimeInMs = Date.parse(date_of_visit);
         // first 30 min
         const originalDateTime = new Date(originalDateTimeInMs);
-        // second 30 min
-        const dummyDateTimeInMs = originalDateTimeInMs + 30 * 60 * 1000;
-        const dummyDateTime = new Date(dummyDateTimeInMs);
-
-        const newReservation = new Reservation({
-            email,
-            name,
-            pax,
-            date_of_visit: convertToDateTimeFormat(originalDateTime),
-            table_id,
-            status,
+        const formattedOriginalDate = convertToDateTimeFormat(originalDateTime);
+        const clashingReservation = await Reservation.find({
+            date_of_visit: formattedOriginalDate,
         });
-
-        const dummyReservation = new Reservation({
-            email,
-            name,
-            pax,
-            date_of_visit: convertToDateTimeFormat(dummyDateTime),
-            table_id,
-            status,
+        let takenTables = [];
+        clashingReservation.forEach((reservation) => {
+            reservation.table_id.forEach((tableId) => {
+                if (reservation.table_id.includes(tableId)) {
+                    takenTables.push(tableId);
+                }
+            });
         });
+        const availableCombi = [];
+        // check combi base on scenario
+        if (pax < 3) {
+            // 1 and 2
+            // check 2 pax
+            two_pax_table.forEach((table) => {
+                if (!takenTables.includes(table)) {
+                    availableCombi.push([table]);
+                }
+            });
+        } else if (pax < 5) {
+            // 3 & 4
+            // check 4 pax
+            four_pax_table.forEach((table) => {
+                if (!takenTables.includes(table)) {
+                    availableCombi.push([table]);
+                }
+            });
+            // check 2 pax (combi)
+            combine_rule[pax].forEach((combination) => {
+                for (let i = 0; i < combination.length; i++) {
+                    if (takenTables.includes(combination[i])) {
+                        continue;
+                    }
+                    availableCombi.push(combination);
+                }
+            });
+        } else {
+            // 5 or more
+            combine_rule[pax].forEach((combination) => {
+                for (let i = 0; i < combination.length; i++) {
+                    if (takenTables.includes(combination[i])) {
+                        continue;
+                    }
+                    availableCombi.push(combination);
+                }
+            });
+        }
+        if (availableCombi.length == 0) {
+            const err = new HttpError("No available tables found", 404);
+            return next(err);
+        } else {
+            const newReservation = new Reservation({
+                email,
+                name,
+                pax,
+                date_of_visit: formattedOriginalDate,
+                table_id:availableCombi[0],
+                status: 1,
+            });
 
-        const createReservationPromise = await Reservation.create(
-            newReservation
-        );
-        const createDummyReservationPromise = await Reservation.create(
-            dummyReservation
-        );
+            // second 30 min
+            const dummyDateTimeInMs = originalDateTimeInMs + 30 * 60 * 1000;
+            const dummyDateTime = new Date(dummyDateTimeInMs);
+            const dummyReservation = new Reservation({
+                email,
+                name,
+                pax,
+                date_of_visit: convertToDateTimeFormat(dummyDateTime),
+                table_id:availableCombi[0],
+                status: 1,
+            });
 
-        // this is to ensure the confirmation email is only sent after both reservations are successfully created
-        Promise.allSettled([
-            createReservationPromise,
-            createDummyReservationPromise,
-        ])
-            .then(async (results) => {
-                // if both succeed, send email
-                const originalReservation = results[0].value;
-                console.log("originalReservation", originalReservation);
-                await sendConfirmation(
-                    originalReservation,
-                    adminInterfaceLink +
-                        "/reservation/cancel/" +
-                        originalReservation._id
-                )
-                    .then(() => {
-                        return res.json({
-                            message: "Reservation created successfully",
-                            data: originalReservation._id,
+            const createReservationPromise = await Reservation.create(
+                newReservation
+            );
+            const createDummyReservationPromise = await Reservation.create(
+                dummyReservation
+            );
+
+            // this is to ensure the confirmation email is only sent after both reservations are successfully created
+            Promise.allSettled([
+                createReservationPromise,
+                createDummyReservationPromise,
+            ])
+                .then(async (results) => {
+                    // if both succeed, send email
+                    const originalReservation = results[0].value;
+                    console.log("originalReservation", originalReservation);
+                    await sendConfirmation(
+                        originalReservation,
+                        adminInterfaceLink +
+                            "/reservation/cancel/" +
+                            originalReservation._id
+                    )
+                        .then(() => {
+                            return res.json({
+                                message: "Reservation created successfully",
+                                data: originalReservation._id,
+                            });
+                        })
+                        .catch((err) => {
+                            console.log(err);
                         });
-                    })
-                    .catch((err) => {
-                        console.log(err);
-                    });
-            })
-            .catch((err) => {});
+                })
+                .catch((err) => {});
+        }
     } catch (err) {
         console.error(err.message);
         res.status(500).send("Server Error");
@@ -546,7 +600,6 @@ const cancelReservation = async (req, res) => {
                     message: "Failed to delete",
                 });
             });
-
     } catch (err) {
         console.warn(err);
         return res.status(500).json({

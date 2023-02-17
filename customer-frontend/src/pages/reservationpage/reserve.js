@@ -111,9 +111,10 @@ function Reserve() {
                         inputProps={{ "aria-label": "Without label" }}
                         id="selectTime"
                     >
-                        {timingFetched.map((timing) => (
-                            <MenuItem value={timing}>{timing}</MenuItem>
-                        ))}
+                        {timingFetched.map((timing) => {
+                            const { value, label } = timing;
+                            return <MenuItem value={value}>{label}</MenuItem>;
+                        })}
                         ;
                     </Select>
                 </FormControl>
@@ -217,7 +218,9 @@ function Reserve() {
                 });
                 timing_list.map(function (timing) {
                     let newTiming = changeTimeFormat(timing);
-                    return_list.push(newTiming);
+                    // the value should still be in in HHmm (this is for the datetime part for adding reservation)
+                    // the formatted timing can be used as a label
+                    return_list.push({ value: timing, label: newTiming });
                 });
                 fetchTiming(return_list);
             })
@@ -258,6 +261,44 @@ function Reserve() {
         return newString;
     };
 
+    const bookTable = async () => {
+        const stringifiedDate = JSON.stringify(reserveDate)
+        const day = stringifiedDate.substring(9, 11);
+        const month = stringifiedDate.substring(6, 8);
+        const year = stringifiedDate.substring(1, 5);
+
+        const timeSlotString = timeslot.toString();
+        const hour = timeSlotString.substring(0, 2);
+        const minutes = timeSlotString.substring(2, 4);
+        console.log({
+            day,
+            month,
+            year,
+            timeSlotString,
+            hour,
+            minutes,
+        });
+        const currDate = new Date(year, month-1, day, hour, minutes, 0, 0);
+        await fetch(`${process.env.REACT_APP_BACKEND_URL}reservation`, {
+            crossDomain: true,
+            method: "POST",
+            body: JSON.stringify({
+                name: "Michiru Sama",
+                email,
+                pax: numpax,
+                date_of_visit: currDate,
+            }),
+            headers: { "Content-Type": "application/json" },
+        })
+            .then((res) => res.json())
+            .then((response) => {
+                alert(response.message);
+            })
+            .catch((error) => {
+                console.error("Error", error);
+                alert("Reservation failed!");
+            });
+    };
     return (
         <React.Fragment>
             <div className="firstBlock" style={{}}>
@@ -419,7 +460,11 @@ function Reserve() {
                             <TextField
                                 id="input-with-icon-textfield"
                                 placeholder="Email"
-                                onKeyDown={handleEmailChange}
+                                value={email}
+                                // onKeyDown={handleEmailChange}
+                                onChange={(e) => {
+                                    setEmail(e.target.value);
+                                }}
                                 InputProps={{
                                     startAdornment: (
                                         <InputAdornment position="start">
@@ -435,7 +480,13 @@ function Reserve() {
 
                     {/*Start of Book Button Block*/}
                     <Grid container className="GridContainerCenter">
-                        <BookTableButton>Book Now</BookTableButton>
+                        <BookTableButton
+                            onClick={() => {
+                                bookTable();
+                            }}
+                        >
+                            Book Now
+                        </BookTableButton>
                     </Grid>
                     {/*End of Book Button Block*/}
                 </Grid>

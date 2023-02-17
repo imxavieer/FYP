@@ -10,7 +10,7 @@ function SocialMedia({ classes }) {
         // From 0 to 600px wide (smart-phones), I take up 12 columns, or the whole device width!
         // From 600-690px wide (tablets), I take up 6 out of 12 columns, so 2 columns fit the screen.
         // From 960px wide and above, I take up 25% of the device (3/12), so 4 columns fit the screen.
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid item xs={12} sm={4} md={4}>
             <div className="center-text three-icons">
                 <IconButton
                     color="primary"
@@ -49,7 +49,7 @@ function CompanyLogo({ classes }) {
         // From 0 to 600px wide (smart-phones), I take up 12 columns, or the whole device width!
         // From 600-690px wide (tablets), I take up 6 out of 12 columns, so 2 columns fit the screen.
         // From 960px wide and above, I take up 25% of the device (3/12), so 4 columns fit the screen.
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid item xs={12} sm={4} md={4} sx={{paddingTop: "10px"}}>
             <div className="center-text company-logo">
                 <img
                     src="https://honeytesting.netlify.app/assets/images/logo/logo_bottom_yellow.png"
@@ -64,7 +64,7 @@ function CopyRight({ classes }) {
         // From 0 to 600px wide (smart-phones), I take up 12 columns, or the whole device width!
         // From 600-690px wide (tablets), I take up 6 out of 12 columns, so 2 columns fit the screen.
         // From 960px wide and above, I take up 25% of the device (3/12), so 4 columns fit the screen.
-        <Grid item xs={12} sm={12} md={4} sx={{ color: "#a66709" }}>
+        <Grid item xs={12} sm={4} md={4} sx={{ color: "#a66709"}}>
             <div className="center-text copyright">
                 <b> © Copyright Honey Night Co.</b>
             </div>
@@ -75,7 +75,7 @@ function CopyRight({ classes }) {
 function Footer() {
     return (
         <div className="footer-bg">
-            <Grid container spacing={1}>
+            <Grid container sx={{alignItems: "center"}}>
                 <SocialMedia />
                 <CompanyLogo />
                 <CopyRight />
