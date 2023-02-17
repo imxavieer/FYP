@@ -42,6 +42,12 @@
   text-align: center;
 }
 
+@media screen and (max-width: 600px) {
+  .home-centered-text {
+    font-size: 33px;
+  }
+}
+
 @font-face {
   font-family: "SeoulHangangC";
   font-weight: 800;

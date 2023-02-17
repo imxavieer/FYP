@@ -123,22 +123,22 @@ function Navbar() {
                 <CssBaseline />
                 <Toolbar style={{ justifyContent: "space-between" }}>
                     <Grid container spacing={0}>
-                        <Grid item xs={5} lg={5}>
+                        <Grid item xs={8} lg={5}>
                             <div className="nav-title">
                                 <img
                                     src={HoneyNightLogo}
                                     alt="honeynightlogo"
-                                    className="honeynight-logo"
+                                    className="honeynight-logo mobile-nav"
                                 />
                                 <HoneyNightKorean
                                     to="/"
-                                    className="seoul-hangang "
+                                    className="seoul-hangang mobile-nav"
                                 >
                                     HONEY NIGHT 꿀밤
                                 </HoneyNightKorean>{" "}
                             </div>
                         </Grid>
-                        <Grid item xs={7} lg={7}>
+                        <Grid item xs={4} lg={7}>
                             {isMobile ? (
                                 <DrawerComponent />
                             ) : (
