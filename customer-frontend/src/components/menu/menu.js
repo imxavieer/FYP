@@ -14,37 +14,38 @@ function Menu({ setMenuItemSize }) {
 
     const menuItems = [
         {
-            menuImage: "https://i.imgur.com/ndyIwwL.jpg",
+            menuImage: "https://i.imgur.com/DafzKFi.jpg",
+            // "https://i.imgur.com/yu2Je3b.jpg",
+            //  "https://i.imgur.com/ndyIwwL.jpg",
             menuItemName: "Honey Night Kimbab",
             menuItemPrice: "$9.90",
         },
         {
-            menuImage:
-                "https://assets.bonappetit.com/photos/624f3dc73a6e981591892a9d/master/pass/0407-bibimbap-at-home-lede.jpg",
+            menuImage: "https://i.imgur.com/ABiFzVQ.jpg",
             menuItemName: "Bimbimbap",
             menuItemPrice: "$10",
         },
         {
-            menuImage:
-                "https://www.koreanbapsang.com/wp-content/uploads/2014/03/DSC_5089-3.jpg",
+            menuImage: "https://i.imgur.com/m67fQhI.jpeg",
+            // "https://www.koreanbapsang.com/wp-content/uploads/2014/03/DSC_5089-3.jpg",
             menuItemName: "Kimchi Stew",
             menuItemPrice: "$12",
         },
         {
-            menuImage:
-                "https://asianinspirations.com.au/wp-content/uploads/2021/09/R00397-Hot-Spicy-Tteokbokki.jpg",
+            menuImage: "https://i.imgur.com/2h9gHtl.jpg",
+            // "https://asianinspirations.com.au/wp-content/uploads/2021/09/R00397-Hot-Spicy-Tteokbokki.jpg",
             menuItemName: "Spicy Rice Cake",
             menuItemPrice: "$13",
         },
         {
-            menuImage:
-                "https://as2.ftcdn.net/v2/jpg/02/67/01/95/1000_F_267019566_2xc1s5VszZCMLXhpDfRlwpaLtuzCBUJ4.jpg",
+            menuImage: "https://i.imgur.com/0IkgZwj.jpg",
+            // "https://as2.ftcdn.net/v2/jpg/02/67/01/95/1000_F_267019566_2xc1s5VszZCMLXhpDfRlwpaLtuzCBUJ4.jpg",
             menuItemName: "Stir Fried Baby Octupus",
             menuItemPrice: "$26",
         },
         {
-            menuImage:
-                "https://www.kitchensanctuary.com/wp-content/uploads/2019/08/Korean-Fried-Chicken-foodporn-7373.jpg",
+            menuImage: "https://i.imgur.com/1qa6EMX.jpg",
+            // "https://www.kitchensanctuary.com/wp-content/uploads/2019/08/Korean-Fried-Chicken-foodporn-7373.jpg",
             menuItemName: "Boneless Chicken",
             menuItemPrice: "$15",
         },
@@ -84,9 +85,9 @@ function Menu({ setMenuItemSize }) {
                     id=""
                     style={{
                         fontWeight: "bold",
-                        margin:"0",
-                        marginTop:"0",
-                        marginBottom:"20px"
+                        margin: "0",
+                        marginTop: "0",
+                        marginBottom: "20px",
                     }}
                 >
                     Menu
@@ -134,7 +135,6 @@ function Menu({ setMenuItemSize }) {
                     href={MenuPdf}
                     sx={{
                         textDecoration: "none",
-                        
                     }}
                 >
                     <Button
