@@ -3,7 +3,6 @@ import { styled } from "@mui/material/styles";
 import "./reserve.css";
 import ErrorModal from "../../components/reservation/ErrorModal";
 import SuccessModal from "../../components/reservation/SuccessModal";
-// import axios from "axios";
 
 import {
     Paper,
@@ -152,6 +151,7 @@ function Reserve() {
         }
     }
 
+    const [openErrorModal, setErrorModal] = React.useState(false);
     const getTiming = async (event) => {
         let timing_list = [
             "1200",
@@ -261,6 +261,7 @@ function Reserve() {
         return newString;
     };
 
+    const [openSuccessModal, setSuccessModal] = React.useState(false);
     const bookTable = async () => {
         const stringifiedDate = JSON.stringify(reserveDate)
         const day = stringifiedDate.substring(9, 11);
@@ -283,7 +284,7 @@ function Reserve() {
             crossDomain: true,
             method: "POST",
             body: JSON.stringify({
-                name: "Michiru Sama",
+                name: "Customer",
                 email,
                 pax: numpax,
                 date_of_visit: currDate,
@@ -292,11 +293,12 @@ function Reserve() {
         })
             .then((res) => res.json())
             .then((response) => {
-                alert(response.message);
+                console.log(response.message);
+                setSuccessModal(true);
             })
             .catch((error) => {
                 console.error("Error", error);
-                alert("Reservation failed!");
+                setErrorModal(true);
             });
     };
     return (
@@ -489,6 +491,8 @@ function Reserve() {
                         </BookTableButton>
                     </Grid>
                     {/*End of Book Button Block*/}
+                    <ErrorModal openErrorModal={openErrorModal} setOpenModal={setErrorModal}/>
+                    <SuccessModal openSuccessModal={openSuccessModal} setOpenModal={setSuccessModal}/>
                 </Grid>
             </div>
             {/*End of Third Block */}
