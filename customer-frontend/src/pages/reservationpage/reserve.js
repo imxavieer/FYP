@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
 import "./reserve.css";
 import ErrorModal from "../../components/reservation/ErrorModal";
 import SuccessModal from "../../components/reservation/SuccessModal";
 
 import {
-    Paper,
     TextField,
     Stack,
     Grid,
@@ -47,6 +46,15 @@ const BookTableButton = styled(Button)({
         color: "#F49300",
     },
 });
+
+const ErrorMessage = styled(Typography)({
+    color: "red",
+    textAlign: "left",
+    fontSize: 15,
+    "& .MuiTypography-root": {
+        margin: '0px'
+    }
+})
 
 function Reserve() {
     let [timingFetched, fetchTiming] = useState([]);
@@ -262,6 +270,8 @@ function Reserve() {
     };
 
     const [openSuccessModal, setSuccessModal] = React.useState(false);
+    const [emailError, setEmailError] = React.useState();
+    const [disableBookNow, setBookNow] = React.useState(true);
     const bookTable = async () => {
         const stringifiedDate = JSON.stringify(reserveDate)
         const day = stringifiedDate.substring(9, 11);
@@ -279,6 +289,16 @@ function Reserve() {
             hour,
             minutes,
         });
+
+        const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (EMAIL_REGEX.test(email) === false){
+            setEmailError("Invalid Email");
+            return;
+        }else{
+            setEmailError("");
+            setBookNow(false);
+        }
+
         const currDate = new Date(year, month-1, day, hour, minutes, 0, 0);
         await fetch(`${process.env.REACT_APP_BACKEND_URL}reservation`, {
             crossDomain: true,
@@ -476,6 +496,7 @@ function Reserve() {
                                 }}
                                 variant="outlined"
                             />
+                            <ErrorMessage>{emailError}</ErrorMessage>
                         </Box>
                     </Grid>
                     {/*End of Email Input Field Block*/}
