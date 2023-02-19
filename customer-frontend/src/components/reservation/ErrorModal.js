@@ -16,12 +16,9 @@ const style = {
     p: 4,
 };
 
-export default function ErrorModal({ openErrorModal, errors, setOpenModal }) {
+export default function ErrorModal({ openErrorModal, setOpenModal }) {
     const handleClose = () => setOpenModal(false);
-    if (JSON.stringify(errors) == "{}"){
-        setOpenModal(false);
-    }
-
+    
     return (
         <div>
             <Modal
@@ -36,13 +33,10 @@ export default function ErrorModal({ openErrorModal, errors, setOpenModal }) {
                         variant="h6"
                         component="h2"
                     >
-                        Error!
+                        Reservation failed!
                     </Typography>
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        <span>{errors.numpax}</span>
-                        <span>{errors.date}</span>
-                        <span>{errors.timeslot}</span>
-                        <span>{errors.email}</span>
+                        <span>Please try again.</span>
                     </Typography>
                 </Box>
             </Modal>
