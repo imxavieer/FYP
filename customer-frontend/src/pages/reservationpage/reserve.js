@@ -21,6 +21,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import PersonIcon from '@mui/icons-material/Person';
 import InputAdornment from "@mui/material/InputAdornment";
 
 import Typography from "@mui/material/Typography";
@@ -74,6 +75,8 @@ function Reserve() {
     const handleCloseDialog = () => {
         setOpen(false);
     };
+
+    let [name, setName] = useState("");
 
     let [email, setEmail] = useState("");
     const handleEmailChange = (event) => {
@@ -287,6 +290,8 @@ function Reserve() {
     };
 
     const [openSuccessModal, setSuccessModal] = React.useState(false);
+    // errors
+    const [nameError, setNameError] = React.useState();
     const [emailError, setEmailError] = React.useState();
     const [numPaxError, setNumPaxError] = React.useState();
     const [timeslotError, setTimeslotError] = React.useState();
@@ -312,6 +317,12 @@ function Reserve() {
         const EMAIL_REGEX =
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         let errorCount = 0;
+
+        if (name.length == 0) {
+            setNameError("*Please enter your name");
+        } else {
+            setNameError("");
+        }
         if (numpax === null || numpax.length == 0) {
             setNumPaxError("*Please select the number of people");
             errorCount += 1;
@@ -341,7 +352,7 @@ function Reserve() {
             crossDomain: true,
             method: "POST",
             body: JSON.stringify({
-                name: "Customer",
+                name,
                 email,
                 pax: numpax,
                 date_of_visit: currDate,
@@ -506,6 +517,43 @@ function Reserve() {
                         </Box>
                     </Grid>
                     {/*End of Time Input Field Block*/}
+
+                    {/*Start of Name Input Field Block*/}
+                    <Grid container className="GridContainerCenter">
+                        <Box
+                            component="form"
+                            sx={{
+                                "& > :not(style)": { minWidth: 300 },
+                                marginTop: "23px",
+                            }}
+                            noValidate
+                            autoComplete="off"
+                            id="nameInput"
+                        >
+                            <TextField
+                                id="input-with-icon-textfield"
+                                placeholder="Name"
+                                value={name}
+                                // onKeyDown={handleEmailChange}
+                                onChange={(e) => {
+                                    setName(e.target.value);
+                                }}
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <PersonIcon id="shiftIcon" />
+                                        </InputAdornment>
+                                    ),
+                                }}
+                                variant="outlined"
+                            />
+                            <ErrorMessage sx={{ "& > :not(style)": { mt: 0 } }}>
+                                {nameError}
+                            </ErrorMessage>
+                        </Box>
+                    </Grid>
+                    {/*End of Name Input Field Block*/}
+
                     {/*Start of Email Input Field Block*/}
                     <Grid container className="GridContainerCenter">
                         <Box
