@@ -230,6 +230,7 @@ function Reserve() {
                     return_list.push({ value: timing, label: newTiming });
                 });
                 fetchTiming(return_list);
+                console.log(return_list);
             })
             .catch((error) => {
                 console.error("Error", error);
@@ -376,19 +377,7 @@ function Reserve() {
                                 <p className="roboto" id="changeTwo">
                                     Make a reservation online or send a booking
                                     request on{" "}
-                                    <Button
-                                        id="whatsapp"
-                                        style={{
-                                            padding: "",
-                                            fontWeight: "bold",
-                                            color: "black",
-                                        }}
-                                        variant="contained"
-                                        size="small"
-                                        onClick={handleOpenDialog}
-                                    >
-                                        WHATSAPP
-                                    </Button>
+                                    <u onClick={handleOpenDialog} style = {{cursor: "pointer" , fontWeight: "bold" , textUnderlineOffset : "4px"}}>Whatsapp</u>
                                 </p>
                                 <Dialog
                                     open={open}
