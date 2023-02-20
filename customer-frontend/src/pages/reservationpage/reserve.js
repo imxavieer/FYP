@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import "./reserve.css";
 import ErrorModal from "../../components/reservation/ErrorModal";
@@ -14,6 +14,7 @@ import {
     MenuItem,
     FormControl,
     Select,
+    LinearProgress,
 } from "@mui/material";
 
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -51,9 +52,9 @@ const ErrorMessage = styled(Typography)({
     textAlign: "left",
     fontSize: 15,
     "& .MuiTypography-root": {
-        margin: '0px'
-    }
-})
+        margin: "0px",
+    },
+});
 
 function Reserve() {
     let [timingFetched, fetchTiming] = useState([]);
@@ -61,6 +62,10 @@ function Reserve() {
     const todayDate = new Date();
 
     let [open, setOpen] = useState(false);
+    let [sendingReservation, setSendingReservation] = useState(false);
+    let [buttonWidth, setButtonWidth] = useState(0);
+
+    let ref = useRef(null);
 
     const handleOpenDialog = () => {
         setOpen(true);
@@ -94,6 +99,18 @@ function Reserve() {
     const handleTimeslotChange = (event) => {
         setTimeslot(event.target.value);
     };
+
+    // ==========this is to ensure that the loader width follows button width==========
+    useEffect(() => {
+        const handleWindowResize = () => {
+            // setWindowWidth(window.innerWidth);
+            setButtonWidth(ref.current.offsetWidth);
+        };
+        window.addEventListener("resize", handleWindowResize);
+    });
+    useEffect(() => {
+        setButtonWidth(ref.current.offsetWidth);
+    }, []);
 
     function TimeLogicHandling({ arrayStatus }) {
         if (arrayStatus.length > 0) {
@@ -275,7 +292,7 @@ function Reserve() {
     const [timeslotError, setTimeslotError] = React.useState();
 
     const bookTable = async () => {
-        const stringifiedDate = JSON.stringify(reserveDate)
+        const stringifiedDate = JSON.stringify(reserveDate);
         const day = stringifiedDate.substring(9, 11);
         const month = stringifiedDate.substring(6, 8);
         const year = stringifiedDate.substring(1, 5);
@@ -292,32 +309,34 @@ function Reserve() {
             minutes,
         });
 
-        const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        const EMAIL_REGEX =
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         let errorCount = 0;
-        if (numpax === null || numpax.length == 0){
+        if (numpax === null || numpax.length == 0) {
             setNumPaxError("*Please select the number of people");
             errorCount += 1;
-        }else{
+        } else {
             setNumPaxError("");
         }
-        if (timeSlotString.length == 0 || timeSlotString === null){
+        if (timeSlotString.length == 0 || timeSlotString === null) {
             setTimeslotError("*Please select a timeslot");
             errorCount += 1;
-        }else{
+        } else {
             setTimeslotError("");
         }
-        if (EMAIL_REGEX.test(email) === false || email.length == 0){
+        if (EMAIL_REGEX.test(email) === false || email.length == 0) {
             setEmailError("*Please enter a valid email");
             errorCount += 1;
-        }else{
+        } else {
             setEmailError("");
         }
         console.log(errorCount);
-        if (errorCount > 0){
+        if (errorCount > 0) {
             return;
         }
-        
-        const currDate = new Date(year, month-1, day, hour, minutes, 0, 0);
+
+        const currDate = new Date(year, month - 1, day, hour, minutes, 0, 0);
+        setSendingReservation(true);
         await fetch(`${process.env.REACT_APP_BACKEND_URL}reservation`, {
             crossDomain: true,
             method: "POST",
@@ -333,10 +352,12 @@ function Reserve() {
             .then((response) => {
                 console.log(response.message);
                 setSuccessModal(true);
+                setSendingReservation(false);
             })
             .catch((error) => {
                 console.error("Error", error);
                 setErrorModal(true);
+                setSendingReservation(false);
             });
     };
     return (
@@ -377,7 +398,16 @@ function Reserve() {
                                 <p className="roboto" id="changeTwo">
                                     Make a reservation online or send a booking
                                     request on{" "}
-                                    <u onClick={handleOpenDialog} style = {{cursor: "pointer" , fontWeight: "bold" , textUnderlineOffset : "4px"}}>Whatsapp</u>
+                                    <u
+                                        onClick={handleOpenDialog}
+                                        style={{
+                                            cursor: "pointer",
+                                            fontWeight: "bold",
+                                            textUnderlineOffset: "4px",
+                                        }}
+                                    >
+                                        Whatsapp
+                                    </u>
                                 </p>
                                 <Dialog
                                     open={open}
@@ -408,7 +438,6 @@ function Reserve() {
                         </Grid>
                     </Grid>
                     {/*End of First Block*/}
-
                     {/*Start of Pax Input Field Block*/}
                     <Grid container className="GridContainerCenter">
                         <FormControl sx={{ m: 1, minWidth: 300 }}>
@@ -446,7 +475,6 @@ function Reserve() {
                         </FormControl>
                     </Grid>
                     {/*End of Time Input Field Block*/}
-
                     {/*Start of Date Input Field Block*/}
                     <Grid container className="GridContainerCenter">
                         <FormControl
@@ -468,22 +496,23 @@ function Reserve() {
                         </FormControl>
                     </Grid>
                     {/*End of Date Input Field Block*/}
-
                     {/*Start of Time Input Field Block*/}
                     <Grid container className="GridContainerCenter">
                         <Box>
                             <TimeLogicHandling arrayStatus={timingFetched} />
-                            <ErrorMessage sx={{ml: 1, mt: 0}}>{timeslotError}</ErrorMessage>
+                            <ErrorMessage sx={{ ml: 1, mt: 0 }}>
+                                {timeslotError}
+                            </ErrorMessage>
                         </Box>
                     </Grid>
                     {/*End of Time Input Field Block*/}
-
                     {/*Start of Email Input Field Block*/}
                     <Grid container className="GridContainerCenter">
                         <Box
                             component="form"
                             sx={{
-                                "& > :not(style)": { minWidth: 300 }, marginTop: "23px"
+                                "& > :not(style)": { minWidth: 300 },
+                                marginTop: "23px",
                             }}
                             noValidate
                             autoComplete="off"
@@ -506,14 +535,18 @@ function Reserve() {
                                 }}
                                 variant="outlined"
                             />
-                            <ErrorMessage sx={{"& > :not(style)": { mt: 0}}}>{emailError}</ErrorMessage>
+                            <ErrorMessage sx={{ "& > :not(style)": { mt: 0 } }}>
+                                {emailError}
+                            </ErrorMessage>
                         </Box>
                     </Grid>
                     {/*End of Email Input Field Block*/}
 
                     {/*Start of Book Button Block*/}
                     <Grid container className="GridContainerCenter">
+                        {" "}
                         <BookTableButton
+                            ref={ref}
                             onClick={() => {
                                 bookTable();
                             }}
@@ -521,9 +554,40 @@ function Reserve() {
                             Book Now
                         </BookTableButton>
                     </Grid>
+                    <Box
+                        sx={{
+                            width: `${buttonWidth}px`,
+                            margin: "10px auto",
+                        }}
+                    >
+                        {sendingReservation ? (
+                            <>
+                                <LinearProgress
+                                    color="secondary"
+                                    sx={{
+                                        backgroundColor:
+                                            "rgb(244, 147, 0, 0.4)",
+                                        "& .MuiLinearProgress-bar": {
+                                            backgroundColor:
+                                                "rgb(197, 119, 2 )",
+                                        },
+                                    }}
+                                />
+                                Making reservation ...
+                            </>
+                        ) : (
+                            <> </>
+                        )}
+                    </Box>
                     {/*End of Book Button Block*/}
-                    <ErrorModal openErrorModal={openErrorModal} setOpenModal={setErrorModal}/>
-                    <SuccessModal openSuccessModal={openSuccessModal} setOpenModal={setSuccessModal}/>
+                    <ErrorModal
+                        openErrorModal={openErrorModal}
+                        setOpenModal={setErrorModal}
+                    />
+                    <SuccessModal
+                        openSuccessModal={openSuccessModal}
+                        setOpenModal={setSuccessModal}
+                    />
                 </Grid>
             </div>
             {/*End of Third Block */}
