@@ -37,6 +37,10 @@
             td {
                 text-align: left;
             }
+            #viewReservation {
+                color: white;
+                font-weight: bold;
+            }
 
             #cancelButton {
                 background: rgb(138, 91, 2);
@@ -79,11 +83,19 @@
                     </tbody>
                 </table>
                 <br />
-
+                You can also view the current reservation
+                <a
+                    href="{{viewReservationLink}}"
+                    target="_blank"
+                    id="viewReservation"
+                    >here</a
+                >.
+                <br />
+                <br />
                 In the unlikely event if you are unable to turn up for this
                 timeslot, click the cancel button below.
                 <br />
-                <a href={{cancellationLink}} target="_blank">
+                <a href="{{cancellationLink}}" target="_blank">
                     <button id="cancelButton">Cancel</button>
                 </a>
                 <br />

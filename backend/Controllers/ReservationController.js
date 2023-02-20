@@ -393,9 +393,8 @@ const getAvailableTiming = async (req, res, next) => {
 };
 
 const createReservation = async (req, res, next) => {
-    const { email, name, pax, date_of_visit, } = req.body;
+    const { email, name, pax, date_of_visit } = req.body;
     try {
-        
         // filter for those that have that timing
         // 1) get the original datetime object --> original
         // 2) add 30 min to original --> dummy
@@ -465,7 +464,7 @@ const createReservation = async (req, res, next) => {
                 name,
                 pax,
                 date_of_visit: formattedOriginalDate,
-                table_id:availableCombi[0],
+                table_id: availableCombi[0],
                 status: 1,
             });
 
@@ -477,7 +476,7 @@ const createReservation = async (req, res, next) => {
                 name,
                 pax,
                 date_of_visit: convertToDateTimeFormat(dummyDateTime),
-                table_id:availableCombi[0],
+                table_id: availableCombi[0],
                 status: 1,
             });
 
@@ -496,9 +495,12 @@ const createReservation = async (req, res, next) => {
                 .then(async (results) => {
                     // if both succeed, send email
                     const originalReservation = results[0].value;
-                    console.log("originalReservation", originalReservation);
+                    // console.log("originalReservation", originalReservation);
                     await sendConfirmation(
                         originalReservation,
+                        adminInterfaceLink +
+                            "/reservation/view/" +
+                            originalReservation._id,
                         adminInterfaceLink +
                             "/reservation/cancel/" +
                             originalReservation._id

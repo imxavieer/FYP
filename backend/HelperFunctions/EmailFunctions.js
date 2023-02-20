@@ -14,7 +14,7 @@ let transporter = nodemailer.createTransport({
 // email scenarios: (can refactor later)
 // confirmaion
 
-const sendConfirmation = async (reservationDetails,cancellationLink) => {
+const sendConfirmation = async (reservationDetails,viewReservationLink,cancellationLink) => {
     var confirmationHtmlTemplate = fs.readFileSync(
         path.resolve(__dirname, "../EmailTemplates/ConfirmationEmail.html"),
         { encoding: "utf-8" }
@@ -34,7 +34,8 @@ const sendConfirmation = async (reservationDetails,cancellationLink) => {
         pax,
         date_of_visit,
         reservation_id,
-        cancellationLink
+        cancellationLink,
+        viewReservationLink
     };
 
     var htmlToSend = template(replacements);
