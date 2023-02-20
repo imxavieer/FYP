@@ -35,8 +35,7 @@ import { DialogTitle } from "@mui/material";
 
 const BookTableButton = styled(Button)({
     padding: "10px 110px",
-    margin: "20px",
-    marginBottom: "0px",
+    marginTop: "23px",
     backgroundColor: "#F49300",
     fontWeight: "bold",
     color: "black",
@@ -271,7 +270,9 @@ function Reserve() {
 
     const [openSuccessModal, setSuccessModal] = React.useState(false);
     const [emailError, setEmailError] = React.useState();
-    const [disableBookNow, setBookNow] = React.useState(true);
+    const [numPaxError, setNumPaxError] = React.useState();
+    const [timeslotError, setTimeslotError] = React.useState();
+
     const bookTable = async () => {
         const stringifiedDate = JSON.stringify(reserveDate)
         const day = stringifiedDate.substring(9, 11);
@@ -291,14 +292,30 @@ function Reserve() {
         });
 
         const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        if (EMAIL_REGEX.test(email) === false){
-            setEmailError("Invalid Email");
-            return;
+        let errorCount = 0;
+        if (numpax === null || numpax.length == 0){
+            setNumPaxError("*Please select the number of people");
+            errorCount += 1;
+        }else{
+            setNumPaxError("");
+        }
+        if (timeSlotString.length == 0 || timeSlotString === null){
+            setTimeslotError("*Please select a timeslot");
+            errorCount += 1;
+        }else{
+            setTimeslotError("");
+        }
+        if (EMAIL_REGEX.test(email) === false || email.length == 0){
+            setEmailError("*Please enter a valid email");
+            errorCount += 1;
         }else{
             setEmailError("");
-            setBookNow(false);
         }
-
+        console.log(errorCount);
+        if (errorCount > 0){
+            return;
+        }
+        
         const currDate = new Date(year, month-1, day, hour, minutes, 0, 0);
         await fetch(`${process.env.REACT_APP_BACKEND_URL}reservation`, {
             crossDomain: true,
@@ -436,6 +453,7 @@ function Reserve() {
                                 <MenuItem value={9}>9 Pax</MenuItem>
                                 <MenuItem value={10}>10 Pax</MenuItem>
                             </Select>
+                            <ErrorMessage>{numPaxError}</ErrorMessage>
                         </FormControl>
                     </Grid>
                     {/*End of Time Input Field Block*/}
@@ -464,7 +482,10 @@ function Reserve() {
 
                     {/*Start of Time Input Field Block*/}
                     <Grid container className="GridContainerCenter">
-                        <TimeLogicHandling arrayStatus={timingFetched} />
+                        <Box>
+                            <TimeLogicHandling arrayStatus={timingFetched} />
+                            <ErrorMessage sx={{ml: 1, mt: 0}}>{timeslotError}</ErrorMessage>
+                        </Box>
                     </Grid>
                     {/*End of Time Input Field Block*/}
 
@@ -473,7 +494,7 @@ function Reserve() {
                         <Box
                             component="form"
                             sx={{
-                                "& > :not(style)": { m: 1, width: "34ch" },
+                                "& > :not(style)": { minWidth: 300 }, marginTop: "23px"
                             }}
                             noValidate
                             autoComplete="off"
@@ -496,7 +517,7 @@ function Reserve() {
                                 }}
                                 variant="outlined"
                             />
-                            <ErrorMessage>{emailError}</ErrorMessage>
+                            <ErrorMessage sx={{"& > :not(style)": { mt: 0}}}>{emailError}</ErrorMessage>
                         </Box>
                     </Grid>
                     {/*End of Email Input Field Block*/}
