@@ -85,7 +85,7 @@ function CancelReservation() {
                 <>
                     {loadSuccess && !triggeredDelete ? (
                         <>
-                            <Typography variant="h4">Reservation</Typography>
+                            <Typography variant="h4">Cancel Reservation</Typography>
                             <Typography variant="h5">
                                 Below contains the details of your current
                                 Reservation
@@ -155,7 +155,7 @@ function CancelReservation() {
                                     cancelReservation();
                                 }}
                             >
-                                Delete
+                                Cancel
                             </Button>
                             <Typography
                                 variant="subtitle1"
