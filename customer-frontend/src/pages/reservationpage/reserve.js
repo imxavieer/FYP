@@ -111,7 +111,7 @@ function Reserve() {
                     </InputLabel>
                     <Select
                         value={timeslot}
-                        label="pax"
+                        label="xxx Time"
                         onChange={handleTimeslotChange}
                         displayEmpty
                         inputProps={{ "aria-label": "Without label" }}
@@ -437,7 +437,7 @@ function Reserve() {
                             </InputLabel>
                             <Select
                                 value={numpax}
-                                label="pax"
+                                label="xxx Number of Pax"
                                 onChange={handlePaxChange}
                                 displayEmpty
                                 inputProps={{ "aria-label": "Without label" }}
