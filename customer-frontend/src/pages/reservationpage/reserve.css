@@ -412,7 +412,6 @@
 
 .firstBlock {
     text-align: center;
-    background-color: ;
     margin-bottom: -25px
 }
 
@@ -428,7 +427,6 @@
 }
 
 .secondBlock {
-    background-color: ;
     padding-top: 1px;
     padding-bottom: 30px;
     background-image: url("../../images/DarkBG.jpg");
@@ -437,7 +435,6 @@
 
 .thirdBlock {
     text-align: center;
-    background-color: ;
     margin: 0px 90px 0px 90px;
 }
 
@@ -543,10 +540,10 @@ a {
 #timeInput {
     padding-left: 0%;
     margin-top: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 0px;
+    /* margin-bottom: 15px; */
 }
 
 #emailInput {
-
     padding-left: 0px;
 }
