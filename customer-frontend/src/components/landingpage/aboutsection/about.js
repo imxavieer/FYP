@@ -56,6 +56,7 @@ function About() {
                                 <Grid
                                     item
                                     xs={12}
+                                    sm={12}
                                     md={6}
                                     sx={{ padding: "0px" }}
                                 >
@@ -68,10 +69,10 @@ function About() {
                                             },
                                         }}
                                     >
-                                        <h3 className="SeoulHangangC">
+                                        <h1 className="title">
                                             Our Story
-                                        </h3>
-                                        <p className="description">
+                                        </h1>
+                                        <p className="englishdescription">
                                             Looking for a taste of Korean
                                             cuisine that will tantalize your
                                             taste buds? Look no further than
@@ -80,7 +81,7 @@ function About() {
                                             in the mood for savory bibimbap,
                                             spicy kimchi stew, or the delicious
                                             flavors of Korean barbecue, we have
-                                            something for everyone.
+                                            something for everyone. <br/><br/>
                                         </p>
                                         <p className="description">
                                             안녕하세요! 우리 식당은 한국의
@@ -98,11 +99,13 @@ function About() {
                                 <Grid
                                     item
                                     xs={12}
+                                    sm={12}
                                     md={6}
                                     mt={5}
                                     rowSpacing={1.5}
                                     columnSpacing={1.5}
                                     sx={{ padding: "0px" }}
+                                    
                                 >
                                     <Box
                                         sx={{
@@ -116,9 +119,11 @@ function About() {
                                         <CardMedia
                                             component={"img"}
                                             src={aboutPic}
+                                            
                                         />
                                     </Box>
                                 </Grid>
+                                
                             </Grid>
                         </Box>
                     </div>
