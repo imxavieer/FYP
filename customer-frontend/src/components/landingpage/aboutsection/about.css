@@ -18,7 +18,7 @@
 }
 
 .title {
-    font-size: 50px; /* this is to align the size with the size of Menu heading*/
+    font-size: 40px; /* this is to align the size with the size of Menu heading*/
 }
 
 .small-text {
@@ -73,7 +73,7 @@ no-margin {
     /* font-style: normal; */
     font-weight: 100;
     font-size: 2.6vw;
-    color: rgb(232, 232, 232);
+    color: rgb(252, 252, 252);
 }
 
 .doNotWrap {
