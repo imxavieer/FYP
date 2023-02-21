@@ -40,7 +40,7 @@ function About() {
                         <Box sx={{ margin: "10px auto" }}>
                             <Grid
                                 container
-                                spacing={4}
+                                rowSpacing={{ xs: 0, md: 2 }}
                                 // gap={}
                                 sx={{
                                     padding: {
@@ -52,6 +52,7 @@ function About() {
                                         xs: "100vw",
                                         sm: "auto",
                                     },
+                                    // margin: "0 0 0 0",
                                 }}
                             >
                                 <Grid
