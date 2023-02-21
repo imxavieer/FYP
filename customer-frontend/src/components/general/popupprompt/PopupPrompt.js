@@ -14,7 +14,7 @@ function PopupPrompt() {
     } else {
         return (
             <Box
-                className="popupContainer"
+                className={`popupContainer hidden-mobile`}
                 onClick={() => {
                     window.open("https://qashiereats.com/honeynight");
                 }}
