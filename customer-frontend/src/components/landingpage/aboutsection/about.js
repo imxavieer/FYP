@@ -40,6 +40,7 @@ function About() {
                         <Box sx={{ margin: "10px auto" }}>
                             <Grid
                                 container
+                                spacing={4}
                                 // gap={}
                                 sx={{
                                     padding: {
@@ -64,7 +65,7 @@ function About() {
                                         sx={{
                                             margin: "0 auto",
                                             paddingRight: {
-                                                xs: "0",
+                                                xs: "0px",
                                                 md: "10px",
                                             },
                                         }}
@@ -72,26 +73,55 @@ function About() {
                                         <h1 className="title">
                                             Our Story
                                         </h1>
-                                        <p className="englishdescription">
+                                        <p className="englishdescription"
+                                            >
                                             Looking for a taste of Korean
                                             cuisine that will tantalize your
-                                            taste buds? Look no further than
+                                            tastebuds? Look no further than
                                             Honey Night, the premier Korean
                                             restaurant in town! Whether you're
                                             in the mood for savory bibimbap,
                                             spicy kimchi stew, or the delicious
                                             flavors of Korean barbecue, we have
-                                            something for everyone. <br/><br/>
+                                            something for everyone. <br></br>
                                         </p>
-                                        <p className="description">
-                                            안녕하세요! 우리 식당은 한국의
-                                            맛있는 음식을 제공하는 곳입니다.
-                                            저희는 다양한 한국적 요리, 예를 들어
-                                            비빔밥, 삼겹살, 김치찌개 등을
-                                            제공합니다. 또한 저희는 고객의
-                                            요구에 맞춰 적절한 음식을 추천하고,
-                                            최고의 서비스를 제공하겠습니다.
-                                            언제든지 저희 식당에 찾아주세요!
+                                        <p className="description"> 
+                                            {/* Insert doNotWrap for those phrases that you don't want the responsive browser to separate */}
+                                            안녕하세요!
+                                            우리
+                                            식당은
+                                            한국의
+                                            맛있는
+                                            음식을
+                                            제공하는
+                                            <span class="doNotWrap"> 곳입니다. </span>
+                                            저희는
+                                            다양한
+                                            한국적
+                                            요리,
+                                            예를
+                                            들어
+                                            비빔밥,
+                                            <span class="doNotWrap"> 삼겹살, </span>
+                                            김치찌개
+                                            등을
+                                            제공합니다
+                                            또한 
+                                            저희는 
+                                            <span class="doNotWrap"> 고객의</span>
+                                            요구에
+                                            맞춰
+                                            적절한
+                                            음식을
+                                            추천하고, 
+                                            최고의 
+                                            서비스를 
+                                            제공하겠습니다.
+                                            언제든지
+                                            <span class="doNotWrap"> 저희 </span>
+                                            식당에
+                                            찾아주세요!
+                                            
                                         </p>
                                     </Box>
                                 </Grid>

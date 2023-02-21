@@ -13,6 +13,8 @@
 .description {
     /* font-size: x-large; */
     font-size: 25px; /*1px smaller than original size */
+    margin-top: 30px; /* so that the text doesn't stay too close with the english description but still a smaller distance from title*/
+
 }
 
 .title {
@@ -74,6 +76,9 @@ no-margin {
     color: rgb(255, 255, 255);
 }
 
+.doNotWrap {
+    white-space: nowrap;
+ }
 
 @font-face {
     font-family: "SeoulHangangC";
