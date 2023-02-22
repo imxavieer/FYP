@@ -106,7 +106,7 @@ function About() {
                                             <span class="doNotWrap"> 삼겹살, </span>
                                             김치찌개
                                             등을
-                                            제공합니다
+                                            제공합니다<br></br>
                                             또한 
                                             저희는 
                                             <span class="doNotWrap"> 고객의</span>
@@ -116,7 +116,7 @@ function About() {
                                             음식을
                                             추천하고, 
                                             최고의 
-                                            서비스를 
+                                            서비스를<br></br> 
                                             제공하겠습니다.
                                             언제든지
                                             <span class="doNotWrap"> 저희 </span>
