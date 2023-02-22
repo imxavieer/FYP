@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Grid, Box, Button, CardMedia } from "@mui/material";
 import aboutPic from "../../../images/HoneyNightBG.png";
@@ -22,6 +22,15 @@ function About() {
             window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
         }
     }, [location]);
+
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const handleWindowResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+        window.addEventListener("resize", handleWindowResize);
+    });
     if (pathname === "/reserve") {
         return <></>;
     } else {
@@ -71,11 +80,26 @@ function About() {
                                             },
                                         }}
                                     >
-                                        <h1 className="title">
+                                        <h1
+                                            className="title"
+                                            style={{
+                                                textAlign:
+                                                    windowWidth < 600
+                                                        ? "center"
+                                                        : "left",
+                                            }}
+                                        >
                                             Our Story
                                         </h1>
-                                        <p className="englishdescription"
-                                            >
+                                        <p
+                                            className="englishdescription"
+                                            style={{
+                                                textAlign:
+                                                    windowWidth < 600
+                                                        ? "center"
+                                                        : "left",
+                                            }}
+                                        >
                                             Looking for a taste of Korean
                                             cuisine that will tantalize your
                                             tastebuds? Look no further than
@@ -86,43 +110,42 @@ function About() {
                                             flavors of Korean barbecue, we have
                                             something for everyone. <br></br>
                                         </p>
-                                        <p className="description"> 
+                                        <p
+                                            className="description"
+                                            style={{
+                                                textAlign:
+                                                    windowWidth < 600
+                                                        ? "center"
+                                                        : "left",
+                                            }}
+                                        >
                                             {/* Insert doNotWrap for those phrases that you don't want the responsive browser to separate */}
-                                            안녕하세요!
-                                            우리
-                                            식당은
-                                            한국의
-                                            맛있는
-                                            음식을
-                                            제공하는
-                                            <span class="doNotWrap"> 곳입니다. </span>
-                                            저희는
-                                            다양한
-                                            한국적
-                                            요리,
-                                            예를
-                                            들어
+                                            안녕하세요! 우리 식당은 한국의
+                                            맛있는 음식을 제공하는
+                                            <span class="doNotWrap">
+                                                {" "}
+                                                곳입니다.{" "}
+                                            </span>
+                                            저희는 다양한 한국적 요리, 예를 들어
                                             비빔밥,
-                                            <span class="doNotWrap"> 삼겹살, </span>
-                                            김치찌개
-                                            등을
-                                            제공합니다<br></br>
-                                            또한 
-                                            저희는 
-                                            <span class="doNotWrap"> 고객의</span>
-                                            요구에
-                                            맞춰
-                                            적절한
-                                            음식을
-                                            추천하고, 
-                                            최고의 
-                                            서비스를<br></br> 
-                                            제공하겠습니다.
-                                            언제든지
-                                            <span class="doNotWrap"> 저희 </span>
-                                            식당에
-                                            찾아주세요!
-                                            
+                                            <span class="doNotWrap">
+                                                {" "}
+                                                삼겹살,{" "}
+                                            </span>
+                                            김치찌개 등을 제공합니다<br></br>
+                                            또한 저희는
+                                            <span class="doNotWrap">
+                                                {" "}
+                                                고객의
+                                            </span>
+                                            요구에 맞춰 적절한 음식을 추천하고,
+                                            최고의 서비스를<br></br>
+                                            제공하겠습니다. 언제든지
+                                            <span class="doNotWrap">
+                                                {" "}
+                                                저희{" "}
+                                            </span>
+                                            식당에 찾아주세요!
                                         </p>
                                     </Box>
                                 </Grid>
@@ -136,7 +159,6 @@ function About() {
                                     rowSpacing={1.5}
                                     columnSpacing={1.5}
                                     sx={{ padding: "0px" }}
-                                    
                                 >
                                     <Box
                                         sx={{
@@ -150,11 +172,9 @@ function About() {
                                         <CardMedia
                                             component={"img"}
                                             src={aboutPic}
-                                            
                                         />
                                     </Box>
                                 </Grid>
-                                
                             </Grid>
                         </Box>
                     </div>
