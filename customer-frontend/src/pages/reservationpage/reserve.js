@@ -21,7 +21,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import PersonIcon from '@mui/icons-material/Person';
+import PersonIcon from "@mui/icons-material/Person";
 import InputAdornment from "@mui/material/InputAdornment";
 
 import Typography from "@mui/material/Typography";
@@ -436,7 +436,8 @@ function Reserve() {
                                                 height: "350px",
                                             }}
                                             alt=""
-                                            src="https://lh3.googleusercontent.com/p/AF1QipPmQu_-uCy1LJeNnJNJHlkA9JwG1xebj19pVUH6=s1280-p-no-v1"
+                                            src="https://res.cloudinary.com/duxqahhdk/image/upload/v1677220899/fyp/reservation/honeynightqrcode_rwzii6.jpg"
+                                            // src = "https://lh3.googleusercontent.com/p/AF1QipPmQu_-uCy1LJeNnJNJHlkA9JwG1xebj19pVUH6=s1280-p-no-v1"
                                         />
                                     </DialogContent>
                                     <DialogActions>
