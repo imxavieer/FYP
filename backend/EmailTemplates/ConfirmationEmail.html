@@ -2,25 +2,7 @@
 <html lang="en">
     <head>
         <style>
-            body {
-                background: black;
-                color: white;
-            }
-            #bodyContainer {
-                padding: 20px;
-                margin: 20px;
-            }
-            #emailHeader,
-            #emailBody {
-                padding: 5px;
-            }
-            #emailHeader h2 {
-                color: orange;
-            }
-            table {
-                width: 100%;
-            }
-            table,
+            /* table,
             th,
             td {
                 border: 1px solid white;
@@ -40,7 +22,7 @@
             #viewReservation {
                 color: white;
                 font-weight: bold;
-            }
+            } */
 
             #cancelButton {
                 background: rgb(138, 91, 2);
@@ -50,59 +32,134 @@
                 padding: 10px;
                 color: white;
             }
-            #cancelButton:hover {
+            /* #cancelButton:hover {
                 cursor: pointer;
-            }
+            } */
         </style>
     </head>
-    <body>
-        <div id="bodyContainer">
-            <div id="emailHeader"><h2>Honey Night</h2></div>
+    <body style="background-color: black; color: white">
+        <div style="padding: 20px; margin: 20px">
+            <div style="padding: 5px">
+                <h2 style="color: orange">Honey Night</h2>
+            </div>
             <hr />
-            <div id="emailBody">
-                Dear {{name}},
-                <br /><br />
-                Thank you for making a reservation with us. Your reservation
-                details are as follows: <br /><br />
-                <table border="1">
+            <div style="color: white">
+                <p style="color: white">Dear {{name}},</p>
+                <p style="color: white">
+                    Thank you for making a reservation with us. Your reservation
+                    details are as follows:
+                </p>
+                <table
+                    border="1"
+                    style="
+                        width: 100%;
+                        border: 1px solid white;
+                        border-collapse: collapse;
+                    "
+                >
                     <tbody>
                         <tr>
-                            <th>Reference:</th>
-                            <td>{{reservation_id}}</td>
+                            <th
+                                style="
+                                    border: 1px solid white;
+                                    border-collapse: collapse;
+                                    padding: 5px;
+                                    text-align: right;
+                                "
+                            >
+                                Reference:
+                            </th>
+                            <td
+                                style="
+                                    border: 1px solid white;
+                                    border-collapse: collapse;
+                                    padding: 5px;
+                                    text-align: left;
+                                "
+                            >
+                                {{reservation_id}}
+                            </td>
                         </tr>
 
                         <tr>
-                            <th>Reservation Date:</th>
-                            <td>{{date_of_visit}}</td>
+                            <th
+                                style="
+                                    border: 1px solid white;
+                                    border-collapse: collapse;
+                                    padding: 5px;
+                                    text-align: right;
+                                "
+                            >
+                                Reservation Date:
+                            </th>
+                            <td
+                                style="
+                                    border: 1px solid white;
+                                    border-collapse: collapse;
+                                    padding: 5px;
+                                    text-align: left;
+                                "
+                            >
+                                {{date_of_visit}}
+                            </td>
                         </tr>
 
                         <tr>
-                            <th>Number of Pax:</th>
-                            <td>{{pax}}</td>
+                            <th
+                                style="
+                                    border: 1px solid white;
+                                    border-collapse: collapse;
+                                    padding: 5px;
+                                    text-align: right;
+                                "
+                            >
+                                Number of Pax:
+                            </th>
+                            <td
+                                style="
+                                    border: 1px solid white;
+                                    border-collapse: collapse;
+                                    padding: 5px;
+                                    text-align: left;
+                                "
+                            >
+                                {{pax}}
+                            </td>
                         </tr>
                     </tbody>
                 </table>
-                <br />
-                You can also view the current reservation
-                <a
-                    href="{{viewReservationLink}}"
-                    target="_blank"
-                    id="viewReservation"
-                    >here</a
-                >.
-                <br />
-                <br />
-                In the unlikely event if you are unable to turn up for this
-                timeslot, click the cancel button below.
-                <br />
+                <p style="color: white">
+                    You can also view the current reservation
+                    <a
+                        href="{{viewReservationLink}}"
+                        target="_blank"
+                        style="color: white; font-weight: bold"
+                        >here</a
+                    >.
+                </p>
+                <p style="color: white">
+                    In the unlikely event if you are unable to turn up for this
+                    timeslot, click the cancel button below.
+                </p>
                 <a href="{{cancellationLink}}" target="_blank">
-                    <button id="cancelButton">Cancel</button>
+                    <button
+                        style="
+                            background: rgb(138, 91, 2);
+                            border: 0;
+                            border-radius: 5px;
+                            margin: 10px auto;
+                            padding: 10px;
+                            color: white;
+                        "
+                    >
+                        Cancel
+                    </button>
                 </a>
                 <br />
-                We look forward to seeing you!<br />
+                <p style="color: white">We look forward to seeing you!</p>
                 <br />
-
-                Regards, <br />&nbsp;&nbsp; -Honey Night
+                <p style="color: white">Regards,</p>
+                <p style="color: white">&nbsp;&nbsp; -Honey Night</p>
                 <br />
                 <img src="cid:honeyNightLogo" />
             </div>
