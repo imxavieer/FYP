@@ -220,6 +220,10 @@ function Reserve() {
             month = "0" + month;
         }
 
+        if (day < 10) {
+            day = "0" + day;
+        }
+
         let date = `${year}-${month}-${day}`;
 
         let pax = +numpax;

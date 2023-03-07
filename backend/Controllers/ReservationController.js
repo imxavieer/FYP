@@ -142,11 +142,14 @@ const getAvailableTiming = async (req, res, next) => {
     for (let i = 0; i < reservations.length; i++) {
         let reservation = reservations[i].toObject();
         let date_fetched = reservation.date_of_visit.split(" ")[0];
+        console.log("date_input",date_input)
+        console.log("date_fetched",date_fetched)
 
-        if (date_fetched === date_input) {
+        if (date_fetched == date_input) {
             filtered_rows.push(reservation);
         }
     }
+    console.log("filtered_rows",filtered_rows)
 
     //Create two empty lists -> One to store all the 2 pax table IDs and another to store all the 4 pax table IDs
     let first_list = []; //Stores all the 2 pax table IDs from filtered_rows
@@ -166,6 +169,8 @@ const getAvailableTiming = async (req, res, next) => {
             }
         });
     }
+    console.log("first_list",first_list)
+    console.log("second_list",second_list)
 
     //We now have two filtered rows: first_list and second_list
 
