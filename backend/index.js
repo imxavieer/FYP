@@ -30,6 +30,13 @@ app.use((error, req, res, next) => {
     res.json({ message: error.message || "An unknown error occurred" });
 });
 
+app.get("/",(req,res)=>{
+    res.send("OK")
+})
+app.get("/api", (req, res) => {
+    res.send("Hello");
+});
+
 // ==================initialise==================
 mongoose
     .connect(process.env.DATABASE_URL)
