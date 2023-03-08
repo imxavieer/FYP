@@ -31,6 +31,7 @@ const IndivdualReservation = ({ readOnly = true, reservationId }) => {
     // 2 key requests
     // find reservation
     const getReservationById = async () => {
+        console.log(`${process.env.REACT_APP_BACKEND_URL}reservation/${reservationId}`)
         await axios
             .get(
                 `${process.env.REACT_APP_BACKEND_URL}reservation/${reservationId}`
