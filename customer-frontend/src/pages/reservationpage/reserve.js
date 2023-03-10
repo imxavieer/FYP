@@ -352,6 +352,8 @@ function Reserve() {
 
         const currDate = new Date(year, month - 1, day, hour, minutes, 0, 0);
         setSendingReservation(true);
+        setSuccessModal(false);
+        setErrorModal(false);
         await fetch(`${process.env.REACT_APP_BACKEND_URL}reservation`, {
             crossDomain: true,
             method: "POST",
@@ -365,8 +367,10 @@ function Reserve() {
         })
             .then((res) => res.json())
             .then((response) => {
-                // console.log(response.message);
-                if (response.messge == "Reservation created successfully") {
+                console.log(
+                    response.message === "Reservation created successfully"
+                );
+                if (response.message === "Reservation created successfully") {
                     setSuccessModal(true);
                 } else {
                     setErrorModal(true);

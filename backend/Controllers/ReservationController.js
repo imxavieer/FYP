@@ -572,6 +572,7 @@ const createReservation = async (req, res, next) => {
             const err = new HttpError("No available tables found", 404);
             return next(err);
         } else {
+            var createReservationPromises = [];
             const newReservation = new Reservation({
                 email,
                 name,
@@ -580,6 +581,10 @@ const createReservation = async (req, res, next) => {
                 table_id: availableCombi[0],
                 status: 1,
             });
+            console.log(
+                "originalDateTime.getMinutes()",
+                originalDateTime.getMinutes() == 30
+            );
 
             // second 30 min
             const dummyDateTimeInMs = originalDateTimeInMs + 30 * 60 * 1000;
@@ -599,12 +604,32 @@ const createReservation = async (req, res, next) => {
             const createDummyReservationPromise = await Reservation.create(
                 dummyReservation
             );
+            createReservationPromises.push(createReservationPromise);
+            createReservationPromises.push(createDummyReservationPromise);
+
+            // check if it starts at the 2nd half hour
+            if (originalDateTime.getMinutes() == 30) {
+                const frontDummyDateTimeInMs =
+                    originalDateTimeInMs - 30 * 60 * 1000;
+                const frontDummyDateTime = new Date(frontDummyDateTimeInMs);
+                const frontDummyReservation = new Reservation({
+                    email,
+                    name,
+                    pax,
+                    date_of_visit: convertToDateTimeFormat(frontDummyDateTime),
+                    table_id: availableCombi[0],
+                    status: 1,
+                });
+                const createFrontDummyReservationPromise =
+                    await Reservation.create(frontDummyReservation);
+                // console.log("frontDummyReservation",frontDummyReservation)
+                createReservationPromises.push(
+                    createFrontDummyReservationPromise
+                );
+            }
 
             // this is to ensure the confirmation email is only sent after both reservations are successfully created
-            Promise.allSettled([
-                createReservationPromise,
-                createDummyReservationPromise,
-            ])
+            Promise.allSettled(createReservationPromises)
                 .then(async (results) => {
                     // if both succeed, send email
                     const originalReservation = results[0].value;
