@@ -365,8 +365,13 @@ function Reserve() {
         })
             .then((res) => res.json())
             .then((response) => {
-                console.log(response.message);
-                setSuccessModal(true);
+                // console.log(response.message);
+                if (response.messge == "Reservation created successfully") {
+                    setSuccessModal(true);
+                } else {
+                    setErrorModal(true);
+                }
+
                 setSendingReservation(false);
             })
             .catch((error) => {
