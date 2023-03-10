@@ -14,8 +14,7 @@ function Menu({ setMenuItemSize }) {
 
     const menuItems = [
         {
-            menuImage:
-                "https://res.cloudinary.com/duxqahhdk/image/upload/v1676650081/fyp/menuitems/2.-Tuna-Kimbap_aw7pgg.jpg",
+            menuImage: "https://res.cloudinary.com/duxqahhdk/image/upload/v1676650081/fyp/menuitems/2.-Tuna-Kimbap_aw7pgg.jpg",
             // "https://i.imgur.com/DafzKFi.jpg",
 
             // "https://i.imgur.com/yu2Je3b.jpg",
@@ -24,24 +23,21 @@ function Menu({ setMenuItemSize }) {
             menuItemPrice: "$9.90",
         },
         {
-            menuImage:
-                "https://res.cloudinary.com/duxqahhdk/image/upload/v1676650063/fyp/menuitems/0407-bibimbap-at-home-lede_j8sksx.jpg",
+            menuImage: "https://res.cloudinary.com/duxqahhdk/image/upload/v1676650063/fyp/menuitems/0407-bibimbap-at-home-lede_j8sksx.jpg",
             // "https://i.imgur.com/ABiFzVQ.jpg",
             menuItemName: "Bimbimbap",
             menuItemPrice: "$10",
         },
         {
-            menuImage:
-                "https://res.cloudinary.com/duxqahhdk/image/upload/v1676650085/fyp/menuitems/Spam-Kimchi-Jjigae-thumbnail_ar2r05.jpg",
+            menuImage: "https://res.cloudinary.com/duxqahhdk/image/upload/v1676650085/fyp/menuitems/Spam-Kimchi-Jjigae-thumbnail_ar2r05.jpg",
             // "https://i.imgur.com/m67fQhI.jpeg",
-
+            
             // "https://www.koreanbapsang.com/wp-content/uploads/2014/03/DSC_5089-3.jpg",
             menuItemName: "Kimchi Stew",
             menuItemPrice: "$12",
         },
         {
-            menuImage:
-                "https://res.cloudinary.com/duxqahhdk/image/upload/v1676650111/fyp/menuitems/tteokbokki-korean-rice-cakes-5_2_jkzpsz.jpg",
+            menuImage: "https://res.cloudinary.com/duxqahhdk/image/upload/v1676650111/fyp/menuitems/tteokbokki-korean-rice-cakes-5_2_jkzpsz.jpg",
             // "https://i.imgur.com/2h9gHtl.jpg",
 
             // "https://asianinspirations.com.au/wp-content/uploads/2021/09/R00397-Hot-Spicy-Tteokbokki.jpg",
@@ -49,9 +45,8 @@ function Menu({ setMenuItemSize }) {
             menuItemPrice: "$13",
         },
         {
-            menuImage:
-                "https://res.cloudinary.com/duxqahhdk/image/upload/v1676650145/fyp/menuitems/spicy-stir-fried-octopus_2_vrkufz.jpg",
-
+            menuImage: "https://res.cloudinary.com/duxqahhdk/image/upload/v1676650145/fyp/menuitems/spicy-stir-fried-octopus_2_vrkufz.jpg",
+            
             // "https://i.imgur.com/0IkgZwj.jpg",
 
             // "https://as2.ftcdn.net/v2/jpg/02/67/01/95/1000_F_267019566_2xc1s5VszZCMLXhpDfRlwpaLtuzCBUJ4.jpg",
@@ -59,8 +54,7 @@ function Menu({ setMenuItemSize }) {
             menuItemPrice: "$26",
         },
         {
-            menuImage:
-                "https://res.cloudinary.com/duxqahhdk/image/upload/v1676650182/fyp/menuitems/20200501_195258_ma65em.jpg",
+            menuImage: "https://res.cloudinary.com/duxqahhdk/image/upload/v1676650182/fyp/menuitems/20200501_195258_ma65em.jpg",
             // "https://i.imgur.com/1qa6EMX.jpg",
 
             // "https://www.kitchensanctuary.com/wp-content/uploads/2019/08/Korean-Fried-Chicken-foodporn-7373.jpg",

@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import "./reserve.css";
 import ErrorModal from "../../components/reservation/ErrorModal";
@@ -62,7 +61,6 @@ function Reserve() {
     let [timingFetched, fetchTiming] = useState([]);
 
     const todayDate = new Date();
-    const navigate = useNavigate();
 
     let [open, setOpen] = useState(false);
     let [sendingReservation, setSendingReservation] = useState(false);
@@ -370,7 +368,6 @@ function Reserve() {
                 console.log(response.message);
                 setSuccessModal(true);
                 setSendingReservation(false);
-                navigate("/reserve/success")
             })
             .catch((error) => {
                 console.error("Error", error);

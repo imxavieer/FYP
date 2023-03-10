@@ -11,12 +11,7 @@ const imageProperties = {
     backgroundSize: "100% 100%",
 };
 
-function MenuItem({
-    menuImage,
-    menuItemName,
-    menuItemPrice,
-    setMenuItemSize,
-}) {
+function MenuItem({ menuImage, menuItemName, menuItemPrice, setMenuItemSize }) {
     const { backgroundSize } = imageProperties;
     const [isHovered, setIsHovered] = useState(false);
 
