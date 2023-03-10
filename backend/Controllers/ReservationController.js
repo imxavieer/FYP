@@ -95,7 +95,96 @@ const two_pax_table = [1, 2, 3, 4, 5, 6, 7];
 
 const four_pax_table = [8, 9, 10, 11, 12, 13, 14, 15, 16];
 
+let checkSubset = (parentArray, subsetArray) => {
+    return subsetArray.every((el) => {
+        return parentArray.includes(el);
+    });
+};
+
 // ========================main functions========================
+const findAvailableTiming = async (req, res, next) => {
+    // find bookings of the given time
+    const error = validationResult(req);
+
+    if (!error.isEmpty()) {
+        const err = new HttpError("Invalid inputs passed", 422);
+        return next(err);
+    }
+
+    const { date, pax } = req.body;
+
+    let date_input = date;
+    let num_pax = pax;
+    let reservations;
+
+    try {
+        reservations = await Reservation.find({});
+    } catch (error) {
+        const err = new HttpError(
+            "Something went wrong while fetching data",
+            500
+        );
+        return next(err);
+    }
+
+    // get all reservations that matches the date
+    // dictionary be like:
+    timingTableDict = {};
+    return_list = [];
+    // timing: [tableNo]
+
+    // take all tables at said timing
+    for (let i = 0; i < reservations.length; i++) {
+        const { table_id, date_of_visit } = reservations[i].toObject();
+        const [date_fetched, timing_fetched] = date_of_visit.split(" ");
+
+        if (date_fetched == date_input) {
+            // check if inside dict
+            if (!timingTableDict.hasOwnProperty(timing_fetched)) {
+                timingTableDict[timing_fetched] = table_id;
+            } else {
+                temp = timingTableDict[timing_fetched];
+                timingTableDict[timing_fetched] = temp.concat(table_id);
+            }
+        }
+    }
+    // check each timing against all the combis
+    var combinations = [];
+    if (pax < 3) {
+        two_pax_table.forEach((table) => {
+            combinations.push([table]);
+        });
+    } else if (pax < 5) {
+        two_pax_table.forEach((table) => {
+            combinations.push([table]);
+        });
+        combinations = combinations.concat(combine_rule[pax]);
+    } else {
+        combinations = combine_rule[pax];
+    }
+    for (const timing in timingTableDict) {
+        let availableCombi = [];
+        combinations.forEach((combination) => {
+            let available = true;
+            for (let i = 0; i < combination.length; i++) {
+                if (timingTableDict[timing].includes(combination[i])) {
+                    available = false;
+                    continue;
+                }
+            }
+            if (available) {
+                availableCombi.push(combination);
+            }
+        });
+        if (availableCombi.length == 0) {
+            return_list.push(timing);
+        }
+    }
+    console.log(pax, return_list);
+    console.log();
+
+    return res.json(return_list);
+};
 
 const getAvailableTiming = async (req, res, next) => {
     /*
@@ -142,14 +231,14 @@ const getAvailableTiming = async (req, res, next) => {
     for (let i = 0; i < reservations.length; i++) {
         let reservation = reservations[i].toObject();
         let date_fetched = reservation.date_of_visit.split(" ")[0];
-        console.log("date_input",date_input)
-        console.log("date_fetched",date_fetched)
+        console.log("date_input", date_input);
+        console.log("date_fetched", date_fetched);
 
         if (date_fetched == date_input) {
             filtered_rows.push(reservation);
         }
     }
-    console.log("filtered_rows",filtered_rows)
+    console.log("filtered_rows", filtered_rows);
 
     //Create two empty lists -> One to store all the 2 pax table IDs and another to store all the 4 pax table IDs
     let first_list = []; //Stores all the 2 pax table IDs from filtered_rows
@@ -169,8 +258,8 @@ const getAvailableTiming = async (req, res, next) => {
             }
         });
     }
-    console.log("first_list",first_list)
-    console.log("second_list",second_list)
+    console.log("first_list", first_list);
+    console.log("second_list", second_list);
 
     //We now have two filtered rows: first_list and second_list
 
@@ -202,7 +291,7 @@ const getAvailableTiming = async (req, res, next) => {
             counter++;
             sum = 0;
         }
-
+        console.log(return_list);
         res.json(return_list);
     } else if (num_pax === 3 || num_pax === 4) {
         //Either One 4 pax table can be used or Two 2 pax tables can be used
@@ -309,7 +398,7 @@ const getAvailableTiming = async (req, res, next) => {
                 sum = 0;
             }
         }
-
+        console.log(return_list);
         res.json(return_list);
     } else {
         //If you reach this block means that number of pax is 5 or greater
@@ -392,6 +481,7 @@ const getAvailableTiming = async (req, res, next) => {
             counter++;
             id_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
         }
+        console.log(return_list);
 
         res.json(return_list);
     }
@@ -422,7 +512,11 @@ const createReservation = async (req, res, next) => {
                 }
             });
         });
-        const availableCombi = [];
+        takenTables.sort(function (a, b) {
+            return a - b;
+        });
+        console.log("takenTables", takenTables);
+        let availableCombi = [];
         // check combi base on scenario
         if (pax < 3) {
             // 1 and 2
@@ -437,29 +531,43 @@ const createReservation = async (req, res, next) => {
             // check 4 pax
             four_pax_table.forEach((table) => {
                 if (!takenTables.includes(table)) {
+                    takenTables.push(table);
                     availableCombi.push([table]);
                 }
             });
             // check 2 pax (combi)
             combine_rule[pax].forEach((combination) => {
+                let available = true;
                 for (let i = 0; i < combination.length; i++) {
                     if (takenTables.includes(combination[i])) {
+                        available = false;
                         continue;
                     }
-                    availableCombi.push(combination);
+                    if (available) {
+                        availableCombi.push(combination);
+                    }
                 }
             });
         } else {
             // 5 or more
             combine_rule[pax].forEach((combination) => {
+                let available = true;
                 for (let i = 0; i < combination.length; i++) {
                     if (takenTables.includes(combination[i])) {
+                        available = false;
                         continue;
                     }
+                }
+                if (available) {
                     availableCombi.push(combination);
                 }
             });
         }
+        // sm.lee.2020@smu.edu.sg
+        // 10,10, 5,8
+        console.log("pax", pax);
+        console.log("takenTables", takenTables);
+        console.log("availableCombi", availableCombi);
         if (availableCombi.length == 0) {
             const err = new HttpError("No available tables found", 404);
             return next(err);
@@ -617,6 +725,7 @@ const cancelReservation = async (req, res) => {
 
 module.exports = {
     getAvailableTiming,
+    findAvailableTiming,
     createReservation,
     cancelReservation,
     testEmailConfirmation,

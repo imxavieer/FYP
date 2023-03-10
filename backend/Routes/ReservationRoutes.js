@@ -9,7 +9,7 @@ const ReservationController = require("../Controllers/ReservationController");
 router.post(
     "/timing",
     [check("date").not().isEmpty(), check("pax").not().isEmpty()],
-    ReservationController.getAvailableTiming
+    ReservationController.findAvailableTiming
 );
 router.get("/:reservationId", [], ReservationController.getReservationById);
 router.post("/", [], ReservationController.createReservation);
